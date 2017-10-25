@@ -9,7 +9,5 @@ import fr.adaming.model.Produit;
 public interface IAgentDao {
 	
 	public Agent isExist(Agent a) throws Exception;
-	
-	public Agent addAgent(Agent a);
 
 }

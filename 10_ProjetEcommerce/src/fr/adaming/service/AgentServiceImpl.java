@@ -29,10 +29,4 @@ public class AgentServiceImpl implements IAgentService {
 		return agentDao.isExist(a);
 	}
 
-	@Override
-	public Agent addAgent(Agent a) {
-		
-		return agentDao.addAgent(a);
-	}
-
 }

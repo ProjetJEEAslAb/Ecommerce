@@ -3,12 +3,16 @@ package fr.adaming.managedBean;
 import java.io.Serializable;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import fr.adaming.model.Agent;
 import fr.adaming.service.IAgentService;
 
+@ManagedBean(name="aMB")
+@RequestScoped
 public class AgentManagedBean implements Serializable {
 
 	// ============ 1. Injection de dépendance Service ============
@@ -21,7 +25,7 @@ public class AgentManagedBean implements Serializable {
 
 	// ============ 3. Constructeur vide ============
 	public AgentManagedBean() {
-		super();
+		this.agent = new Agent();
 	}
 
 	// ============ 4. Getters et Setters ============
@@ -46,23 +50,32 @@ public class AgentManagedBean implements Serializable {
 	public String seConnecter() {
 
 		try {
-		
+
 			Agent agentOut = agentService.isExist(this.agent);
 
 			// Ajouter l'agent dans la session
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("agentSession", agentOut);
 
-			return "accueil";
+			return "accueilAgent";
 
 		} catch (Exception e) {
-			
+
 			// Envoyer un message d'erreur
 			FacesContext.getCurrentInstance().addMessage(null,
 					new FacesMessage("Identifiant et/ou mot de passe incorrect"));
 
-			return "login";
+			return "accueilGeneral";
 		}
 
+	}
+
+	// TODO seDeconnecter
+	public String seDeconnecter() {
+
+		// Récupérer la session
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+
+		return "accueilGeneral";
 	}
 
 }

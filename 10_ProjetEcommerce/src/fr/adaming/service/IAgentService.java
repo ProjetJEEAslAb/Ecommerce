@@ -9,6 +9,4 @@ public interface IAgentService {
 
 	public Agent isExist(Agent a) throws Exception;
 
-	public Agent addAgent(Agent a);
-
 }

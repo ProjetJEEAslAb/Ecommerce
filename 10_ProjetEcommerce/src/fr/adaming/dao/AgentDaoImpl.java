@@ -35,12 +35,4 @@ public class AgentDaoImpl implements IAgentDao {
 		return aRec;
 	}
 
-	@Override
-	public Agent addAgent(Agent a) {
-		
-		// Ajouter le nouvel Agent dans la bdd
-		em.persist(a); 
-		return a;
-	}
-
 }

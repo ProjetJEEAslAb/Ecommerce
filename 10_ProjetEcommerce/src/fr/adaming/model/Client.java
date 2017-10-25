@@ -1,5 +1,5 @@
 package fr.adaming.model;
 
-public class Personne {
+public class Client {
 
 }

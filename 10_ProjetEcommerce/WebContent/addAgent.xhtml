@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Page d'ajout</title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+		<legend>Catégorie</legend>
+		<p:growl id="messages" autoUpdate="true" />
+		<h:panelGrid columns="2">
+
+			<p:outputLabel for="descId" value="Description : " />
+			<p:inputMask id="descId" value="#{catMB.categorie.description}"
+				required="true" />
+
+			<p:outputLabel for="nomId" value="Nom : " />
+			<p:inputMask id="nomId" value="#{catMB.categorie.nomCategorie}"
+				required="true" />
+
+			<p:commandButton styleClass="myButton" value="Ajouter"
+				action="#{catMB.addCategorie}" icon="ui-icon-circle-plus" />
+		</h:panelGrid>
+	</h:form>
+
+	<h:form>
+		<legend>Produit</legend>
+		<p:growl id="messages" autoUpdate="true" />
+		<h:panelGrid columns="2">
+			<p:outputLabel for="desiId" value="Désignation : " />
+			<p:inputMask id="desiId" value="Designation" required="true" />
+
+			<p:outputLabel for="descId" value="Description : " />
+			<p:inputMask id="descId" value="Description" required="true" />
+
+			<p:outputLabel for="prixId" value="Prix : " />
+			<p:inputMask id="prixId" value="Prix" required="true" />
+
+			<p:outputLabel for="qteId" value="Quantité : " />
+			<p:inputMask id="qteId" value="Quantité" required="true" />
+
+			<p:commandButton styleClass="myButton" value="Ajouter"
+				action="EnCours" icon="ui-icon-circle-plus" />
+		</h:panelGrid>
+	</h:form>
+
+
+</h:body>
+
+</html>

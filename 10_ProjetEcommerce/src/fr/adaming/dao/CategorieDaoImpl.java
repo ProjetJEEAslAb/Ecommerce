@@ -20,25 +20,28 @@ public class CategorieDaoImpl implements ICategorieDao {
 	@PersistenceContext(unitName = "PU_EC")
 	EntityManager em;
 
+	// TODO getCategorieById
 	@Override
-	public Categorie getCategorieById(Categorie cat) throws Exception{
-		
+	public Categorie getCategorieById(Categorie cat) throws Exception {
+
 		// 1. Requête
 		String req = "SELECT cat FROM Categorie cat WHERE cat.idCategorie =:pIdCategorie";
 		Query query = em.createQuery(req);
-		
+
 		// 2. Paramètres
 		query.setParameter("pIdCategorie", cat.getIdCategorie());
-		
+
 		// 3. Résultat
 		Categorie catFind = (Categorie) query.getSingleResult();
 		return catFind;
 	}
 
+	// TODO addCategorie
 	@Override
 	public Categorie addCategorie(Categorie cat) {
-		// TODO Auto-generated method stub
-		return null;
+
+		em.persist(cat);
+		return cat;
 	}
 
 	@Override
@@ -52,7 +55,5 @@ public class CategorieDaoImpl implements ICategorieDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 
 }

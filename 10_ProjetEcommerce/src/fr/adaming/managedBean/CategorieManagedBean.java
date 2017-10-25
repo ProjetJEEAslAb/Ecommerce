@@ -95,17 +95,15 @@ public class CategorieManagedBean implements Serializable {
 	// ============ 5. Méthodes ============
 
 	// TODO getCategorieById
-
 	public String getCategorieById() {
 
 		// Récupérer l'agent de la session
 		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
 		this.categorie.setAttAgent(this.agent);
-		
+
 		try {
 
 			this.categorie = categorieService.getCategorieById(this.categorie, this.agent);
-			System.out.println(this.categorie);
 			this.indice = true;
 
 			return "findAgent";
@@ -114,7 +112,34 @@ public class CategorieManagedBean implements Serializable {
 
 			this.indice = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La catégorie n'existe pas"));
-			return "find";
+			return "findAgent";
+
+		}
+
+	}
+
+	// TODO getCategorieById
+	public String addCategorie() {
+
+		// Récupérer l'agent de la session
+		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+
+		try {
+			// Ajouter les informations dans this.categorie
+			this.categorie = categorieService.addCategorie(this.categorie);
+			this.categorie.setAttAgent(this.agent);
+
+			// Actualiser la liste des catégorie
+			this.agent.getListeCategorie().add(this.categorie);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("categorieListe",
+					this.agent.getListeCategorie());
+
+			return "accueilAgent";
+
+		} catch (Exception e) {
+
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout a échoué"));
+			return "findAgent";
 
 		}
 

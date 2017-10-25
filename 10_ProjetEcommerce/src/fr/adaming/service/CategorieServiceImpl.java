@@ -33,7 +33,7 @@ public class CategorieServiceImpl implements ICategorieService {
 
 	@Override
 	public Categorie getCategorieById(Categorie cat, Agent a) throws Exception {
-		
+
 		if (cat.getAttAgent().getId() == a.getId()) {
 
 			return categorieDao.getCategorieById(cat);
@@ -58,8 +58,8 @@ public class CategorieServiceImpl implements ICategorieService {
 
 	@Override
 	public Categorie addCategorie(Categorie cat) {
-		// TODO Auto-generated method stub
-		return null;
+		
+			return categorieDao.addCategorie(cat);
 	}
 
 }

@@ -17,7 +17,10 @@ import fr.adaming.service.IClientService;
 @ManagedBean(name = "aMB")
 @RequestScoped
 public class AgentManagedBean implements Serializable {
-
+	
+//=====================Bonjour c'est anissa===============================================//
+	
+	
 	// Injecter un EJB Service (injection de dépendance)
 	@EJB
 	private IAgentService agentService;

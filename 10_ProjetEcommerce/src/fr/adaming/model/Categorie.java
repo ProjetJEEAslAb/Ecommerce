@@ -17,7 +17,7 @@ public class Categorie implements Serializable {
 	// ============ 1. Attributs ============
 	@Id
 	@Column(name="id_cat")
-	private long idCategorie;
+	private Long idCategorie;
 	
 	@Column(name="nom_cat")
 	private String nomCategorie;
@@ -42,7 +42,7 @@ public class Categorie implements Serializable {
 	}
 
 	// Avec id
-	public Categorie(long idCategorie, String nomCategorie, String description) {
+	public Categorie(Long idCategorie, String nomCategorie, String description) {
 		super();
 		this.idCategorie = idCategorie;
 		this.nomCategorie = nomCategorie;
@@ -50,13 +50,7 @@ public class Categorie implements Serializable {
 	}
 
 	// ============ 3. Getters et Setters ============
-	public long getIdCategorie() {
-		return idCategorie;
-	}
-
-	public void setIdCategorie(long idCategorie) {
-		this.idCategorie = idCategorie;
-	}
+	
 
 	public String getNomCategorie() {
 		return nomCategorie;
@@ -64,6 +58,22 @@ public class Categorie implements Serializable {
 
 	public void setNomCategorie(String nomCategorie) {
 		this.nomCategorie = nomCategorie;
+	}
+	
+	public Long getIdCategorie() {
+		return idCategorie;
+	}
+
+	public void setIdCategorie(Long idCategorie) {
+		this.idCategorie = idCategorie;
+	}
+
+	public List<Produit> getListeProduits() {
+		return listeProduits;
+	}
+
+	public void setListeProduits(List<Produit> listeProduits) {
+		this.listeProduits = listeProduits;
 	}
 
 	public String getDescription() {

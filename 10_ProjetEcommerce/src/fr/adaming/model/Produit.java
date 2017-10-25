@@ -16,7 +16,7 @@ public class Produit implements Serializable {
 	// ============ 1. Attributs ============
 	@Id
 	@Column(name="id_pro")
-	private long idProduit;
+	private Long idProduit;
 	
 	@Column(name="desi_pro")
 	private String designation;
@@ -54,7 +54,7 @@ public class Produit implements Serializable {
 	}
 
 	// Avec id
-	public Produit(long idProduit, String designation, String description, double prix, int quantite,
+	public Produit(Long idProduit, String designation, String description, double prix, int quantite,
 			boolean selectionne) {
 		super();
 		this.idProduit = idProduit;
@@ -66,20 +66,28 @@ public class Produit implements Serializable {
 	}
 
 	// ============ 3. Getters et Setters ============
-	public long getIdProduit() {
-		return idProduit;
-	}
-
-	public void setIdProduit(long idProduit) {
-		this.idProduit = idProduit;
-	}
-
 	public String getDesignation() {
 		return designation;
 	}
 
 	public void setDesignation(String designation) {
 		this.designation = designation;
+	}
+	
+	public Long getIdProduit() {
+		return idProduit;
+	}
+
+	public void setIdProduit(Long idProduit) {
+		this.idProduit = idProduit;
+	}
+
+	public Categorie getAttCategorie() {
+		return attCategorie;
+	}
+
+	public void setAttCategorie(Categorie attCategorie) {
+		this.attCategorie = attCategorie;
 	}
 
 	public String getDescription() {

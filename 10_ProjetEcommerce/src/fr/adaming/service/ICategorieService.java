@@ -13,7 +13,7 @@ public interface ICategorieService {
 	// ============= Méthodes pour Agent =============
 
 	// TODO getCategorieById
-	public Categorie getCategorieById (Categorie cat, Agent a) throws Exception;
+	public Categorie getCategorieById(Categorie cat, Agent a) throws Exception;
 
 	// TODO addCategorie
 	public Categorie addCategorie(Categorie cat);
@@ -23,5 +23,8 @@ public interface ICategorieService {
 
 	// TODO updateCategorie
 	public Categorie updateCategorie(Categorie cat, Agent a);
+
+	// TODO getAllCategorie
+	public List<Categorie> getAllCategorie(Agent a);
 
 }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Page login</title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+		<p:growl id="messages" autoUpdate="true" />
+		<h:panelGrid columns="3">
+			<p:outputLabel for="Id" value="ID Catégorie : " />
+			<p:inputMask id="Id" value="#{catMB.categorie.idCategorie}"
+				required="true" size="5" />
+			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
+				action="#{catMB.deleteCategorie}" update="@all" />
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+
+</html>

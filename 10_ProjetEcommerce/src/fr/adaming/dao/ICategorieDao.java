@@ -13,7 +13,7 @@ import fr.adaming.model.Produit;
 public interface ICategorieDao {
 
 	// ============= Méthodes pour Agent =============
-	
+
 	// TODO getCategorieById
 	public Categorie getCategorieById(Categorie cat) throws Exception;
 
@@ -25,6 +25,9 @@ public interface ICategorieDao {
 
 	// TODO updateCategorie
 	public Categorie updateCategorie(Categorie cat);
+
+	// TODO getAllCategorie
+	public List<Categorie> getAllCategorie(Agent a);
 
 	// ============= Méthodes pour Client =============
 

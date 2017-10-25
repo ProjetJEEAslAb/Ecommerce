@@ -34,9 +34,27 @@ public class CategorieServiceImpl implements ICategorieService {
 	@Override
 	public Categorie getCategorieById(Categorie cat, Agent a) throws Exception {
 
-		if (cat.getAttAgent().getId() == a.getId()) {
+		Categorie catFind = categorieDao.getCategorieById(cat);
 
-			return categorieDao.getCategorieById(cat);
+		if (catFind.getAttAgent().getId() == a.getId()) {
+
+			return catFind;
+
+		} else {
+
+			return null;
+		}
+	}
+
+	// TODO deleteCategorie
+	@Override
+	public Categorie deleteCategorie(Categorie cat, Agent a) {
+
+		Categorie catDel = categorieDao.deleteCategorie(cat);
+
+		if (catDel.getAttAgent().getId() == a.getId()) {
+
+			return catDel;
 
 		} else {
 
@@ -45,21 +63,32 @@ public class CategorieServiceImpl implements ICategorieService {
 	}
 
 	@Override
-	public Categorie deleteCategorie(Categorie cat, Agent a) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Categorie updateCategorie(Categorie cat, Agent a) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Categorie catUp = categorieDao.updateCategorie(cat);
+
+		if (catUp.getAttAgent().getId() == a.getId()) {
+
+			return catUp;
+
+		} else {
+
+			return null;
+		}
 	}
 
+	// TODO addCategorie
 	@Override
 	public Categorie addCategorie(Categorie cat) {
-		
-			return categorieDao.addCategorie(cat);
+
+		return categorieDao.addCategorie(cat);
+	}
+
+	// TODO getAllCategorie
+	@Override
+	public List<Categorie> getAllCategorie(Agent a) {
+
+		return categorieDao.getAllCategorie(a);
 	}
 
 }

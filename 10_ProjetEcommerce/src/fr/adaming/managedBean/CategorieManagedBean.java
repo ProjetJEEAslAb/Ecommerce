@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -99,11 +100,12 @@ public class CategorieManagedBean implements Serializable {
 
 		// Récupérer l'agent de la session
 		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
-		this.categorie.setAttAgent(this.agent);
+		// this.categorie.setAttAgent(this.agent);
 
 		try {
 
 			this.categorie = categorieService.getCategorieById(this.categorie, this.agent);
+
 			this.indice = true;
 
 			return "findAgent";
@@ -118,7 +120,7 @@ public class CategorieManagedBean implements Serializable {
 
 	}
 
-	// TODO getCategorieById
+	// TODO addCategorie
 	public String addCategorie() {
 
 		// Récupérer l'agent de la session
@@ -126,20 +128,78 @@ public class CategorieManagedBean implements Serializable {
 
 		try {
 			// Ajouter les informations dans this.categorie
-			this.categorie = categorieService.addCategorie(this.categorie);
 			this.categorie.setAttAgent(this.agent);
+			this.categorie = categorieService.addCategorie(this.categorie);
 
-			// Actualiser la liste des catégorie
-			this.agent.getListeCategorie().add(this.categorie);
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("categorieListe",
-					this.agent.getListeCategorie());
+			// Actualiser la liste à afficher
+			List<Categorie> liste = categorieService.getAllCategorie(this.agent);
+			agentSession.setAttribute("categorieListe", liste);
 
 			return "accueilAgent";
 
 		} catch (Exception e) {
 
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout a échoué"));
-			return "findAgent";
+			return "addAgent";
+
+		}
+
+	}
+
+	// TODO deleteCategorie
+	public String deleteCategorie() {
+
+		// Récupérer l'agent de la session
+		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+
+		try {
+			// Trouver la catégorie à supprimer
+			Categorie catDel = categorieService.getCategorieById(this.categorie, this.agent);
+
+			// Supprimer la catégorie retrouvée
+			categorieService.deleteCategorie(catDel, this.agent);
+
+			// Actualiser la liste à afficher
+			List<Categorie> liste = categorieService.getAllCategorie(this.agent);
+			agentSession.setAttribute("categorieListe", liste);
+
+			return "accueilAgent";
+
+		} catch (Exception e) {
+
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué"));
+			return "deleteAgent";
+
+		}
+
+	}
+
+	// TODO updateCategorie
+	public String updateCategorie() {
+
+		// Récupérer l'agent de la session
+		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+
+		try {
+			// Trouver la catégorie à modifier
+			Categorie catUp = categorieService.getCategorieById(this.categorie, this.agent);
+
+			// Modifier la catégorie retrouvée
+			catUp.setNomCategorie(this.categorie.getNomCategorie());
+			catUp.setDescription(this.categorie.getDescription());
+
+			categorieService.updateCategorie(catUp, this.agent);
+
+			// Actualiser la liste à afficher
+			List<Categorie> liste = categorieService.getAllCategorie(this.agent);
+			agentSession.setAttribute("categorieListe", liste);
+
+			return "accueilAgent";
+
+		} catch (Exception e) {
+
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La modification a échoué"));
+			return "updateAgent";
 
 		}
 

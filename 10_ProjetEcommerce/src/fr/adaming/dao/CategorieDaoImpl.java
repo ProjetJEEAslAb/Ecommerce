@@ -20,6 +20,7 @@ public class CategorieDaoImpl implements ICategorieDao {
 	@PersistenceContext(unitName = "PU_EC")
 	EntityManager em;
 
+	// ============ 2. Méthodes ============
 	// TODO getCategorieById
 	@Override
 	public Categorie getCategorieById(Categorie cat) throws Exception {
@@ -44,16 +45,42 @@ public class CategorieDaoImpl implements ICategorieDao {
 		return cat;
 	}
 
+	// TODO deleteCategorie
 	@Override
 	public Categorie deleteCategorie(Categorie cat) {
-		// TODO Auto-generated method stub
-		return null;
+
+		Categorie catDel = em.find(Categorie.class, cat.getIdCategorie());
+		em.remove(catDel);
+
+		return catDel;
 	}
 
+	// updateCategorie
 	@Override
 	public Categorie updateCategorie(Categorie cat) {
-		// TODO Auto-generated method stub
-		return null;
+
+		em.merge(cat);
+
+		return cat;
+	}
+
+	// TODO getAllCategorie
+	@Override
+	public List<Categorie> getAllCategorie(Agent a) {
+
+		// 1. Requête JPQL
+		String req = "SELECT cat FROM Categorie cat WHERE cat.attAgent.id=:pIdCategorie";
+
+		// 2. Création de Query
+		Query query = em.createQuery(req);
+
+		// 3. Passage de paramètres
+		query.setParameter("pIdCategorie", a.getId());
+
+		// 4. Récupérer le résultat
+		List<Categorie> liste = (List<Categorie>) query.getResultList();
+
+		return liste;
 	}
 
 }

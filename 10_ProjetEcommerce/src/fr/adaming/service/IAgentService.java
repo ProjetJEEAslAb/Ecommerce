@@ -1,15 +1,14 @@
-package fr.adaming.dao;
+package fr.adaming.service;
 
 import javax.ejb.Local;
 
 import fr.adaming.model.Agent;
-import fr.adaming.model.Produit;
 
 @Local
-public interface IAgentDao {
-	
+public interface IAgentService {
+
 	public Agent isExist(Agent a) throws Exception;
-	
+
 	public Agent addAgent(Agent a);
 
 }

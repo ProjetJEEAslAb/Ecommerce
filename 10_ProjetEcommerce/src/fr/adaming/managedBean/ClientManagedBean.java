@@ -42,9 +42,13 @@ public class ClientManagedBean implements Serializable{
 		
 		// recuperation du context
 		FacesContext context = FacesContext.getCurrentInstance();
+		
 		// recuperer la session a partir du context
 		this.session = (HttpSession) context.getExternalContext().getSession(false);
-
+		
+		//recuperation du client a partir de la session
+		this.client=(Client) session.getAttribute("clientSession");
+		
 	}
 	
 //=======================================================================//
@@ -100,17 +104,24 @@ public class ClientManagedBean implements Serializable{
 		}
 	
 //=======================================================================//	
-		public String ajouterClient(){
-			
-			//appelle de la methode pour ajouter un client
-			Client cl=clientService.addClient(this.client);
-			return null;
-			
-			
-			
-		
+	public String ajouterClient() {
+
+		// appelle de la methode pour ajouter un client
+		Client cl = clientService.addClient(this.client);
+
+		if (cl.getId() != 0) {
+
+			return "accueil";
+
+		} else {
+
 		}
-	
+		// afficher le message d'erreur sur la page
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a échoué"));
+
+		return "ajout";
+
+	}
 	
 	
 	

@@ -60,7 +60,7 @@ public class Commande implements Serializable{
 
 //transformation uml en java
 	@ManyToOne
-	@JoinColumn(name="commande_id", referencedColumnName="id_commande")
+	@JoinColumn(name="client_id", referencedColumnName="id_client")
 	private Client client;
 
 //=======================================================================//

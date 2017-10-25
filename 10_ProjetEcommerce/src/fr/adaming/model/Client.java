@@ -24,6 +24,7 @@ public class Client implements Serializable {
 	private String nom;
 	private String Client;
 	private String mail;
+	private String mdp;
 	private String tel;
 	
 	
@@ -42,23 +43,30 @@ public class Client implements Serializable {
 	}
 
 	// constructeur sans id
-	public Client(String nom, String client, String mail, String tel) {
-		super();
-		this.nom = nom;
-		Client = client;
-		this.mail = mail;
-		this.tel = tel;
-	}
+	
+	
+	public Client(String nom, String client, String mail, String mdp, String tel, List<Commande> listeCommande) {
+	super();
+	this.nom = nom;
+	Client = client;
+	this.mail = mail;
+	this.mdp = mdp;
+	this.tel = tel;
+	this.listeCommande = listeCommande;
+}
 
 	// constructeur avec id
 
-	public Client(Long id, String nom, String client, String mail, String tel) {
+	public Client(Long id, String nom, String client, String mail, String mdp, String tel,
+			List<Commande> listeCommande) {
 		super();
 		this.id = id;
 		this.nom = nom;
 		Client = client;
 		this.mail = mail;
+		this.mdp = mdp;
 		this.tel = tel;
+		this.listeCommande = listeCommande;
 	}
 	
 //=======================================================================//
@@ -93,6 +101,14 @@ public class Client implements Serializable {
 		return mail;
 	}
 
+	public List<Commande> getListeCommande() {
+		return listeCommande;
+	}
+
+	public void setListeCommande(List<Commande> listeCommande) {
+		this.listeCommande = listeCommande;
+	}
+
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
@@ -105,13 +121,24 @@ public class Client implements Serializable {
 		this.tel = tel;
 	}
 
+	public String getMdp() {
+		return mdp;
+	}
 
-//=======================================================================//
+	public void setMdp(String mdp) {
+		this.mdp = mdp;
+	}
+	// =======================================================================//
 	//methode toString
-	
+
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", Client=" + Client + ", mail=" + mail + ", tel=" + tel + "]";
+		return "Client [id=" + id + ", nom=" + nom + ", Client=" + Client + ", mail=" + mail + ", mdp=" + mdp + ", tel="
+				+ tel + "]";
 	}
+	
+
+
+	
 
 }

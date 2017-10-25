@@ -32,7 +32,7 @@ public class Produit implements Serializable {
 	@Column(name="qte_pro")
 	private int quantite;
 	
-	@Column(name="select_pro")
+	@Column(name="select_pro",columnDefinition = "TINYINT(1)")
 	private boolean selectionne;
 
 	// Association avec une seule Categorie

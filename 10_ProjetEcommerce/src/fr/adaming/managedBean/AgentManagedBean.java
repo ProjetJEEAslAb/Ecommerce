@@ -82,7 +82,12 @@ public class AgentManagedBean implements Serializable {
 			Agent agentOut = agentService.isExist(this.agent);
 
 			// Ajouter la liste des catégories avec le agentOut créé précédement
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("categorieListe", agentOut.getListeCategorie());
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("categorieListe",
+					agentOut.getListeCategorie());
+
+			// Ajouter la liste des produits avec le agentOut créé précédement
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe",
+					agentOut.getListeProduit());
 
 			// Ajouter l'agent dans la session
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("agentSession", agentOut);

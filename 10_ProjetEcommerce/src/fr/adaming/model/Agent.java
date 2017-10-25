@@ -33,7 +33,7 @@ public class Agent implements Serializable {
 	private List<Categorie> listeCategorie;
 
 	// Association avec plusieurs Produit
-	@OneToMany(mappedBy = "attAgent")
+	@OneToMany(mappedBy = "attAgent", fetch=FetchType.EAGER)
 	private List<Produit> listeProduit;
 
 	// ============ 2. Constructeurs ============

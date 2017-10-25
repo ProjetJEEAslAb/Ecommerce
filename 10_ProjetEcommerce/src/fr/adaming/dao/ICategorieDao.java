@@ -7,17 +7,25 @@ import javax.ejb.Local;
 import fr.adaming.model.Agent;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
+import fr.adaming.model.Produit;
 
 @Local
 public interface ICategorieDao {
 
 	// ============= Méthodes pour Agent =============
-	// TODO getAllClient
-	public List<Categorie> getAllCategoriesByAgent(Agent a);
+	
+	// TODO getCategorieById
+	public Categorie getCategorieById(Categorie cat) throws Exception;
+
+	// TODO addCategorie
+	public Categorie addCategorie(Categorie cat);
+
+	// TODO deleteCategorie
+	public Categorie deleteCategorie(Categorie cat);
+
+	// TODO updateCategorie
+	public Categorie updateCategorie(Categorie cat);
 
 	// ============= Méthodes pour Client =============
-	public List<Categorie> getAllCategories();
-
-	public Client getProduitByCategories(Categorie ca);
 
 }

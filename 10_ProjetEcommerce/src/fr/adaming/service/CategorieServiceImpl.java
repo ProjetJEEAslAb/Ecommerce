@@ -30,12 +30,36 @@ public class CategorieServiceImpl implements ICategorieService {
 	}
 
 	// ============ 3. Méthodes ============
-	// TODO getAllCategoriesByAgent
+
 	@Override
-	public List<Categorie> getAllCategoriesByAgent(Agent a) {
+	public Categorie getCategorieById(Categorie cat, Agent a) throws Exception {
 		
-		return categorieDao.getAllCategories();
-		
+		if (cat.getAttAgent().getId() == a.getId()) {
+
+			return categorieDao.getCategorieById(cat);
+
+		} else {
+
+			return null;
+		}
+	}
+
+	@Override
+	public Categorie deleteCategorie(Categorie cat, Agent a) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Categorie updateCategorie(Categorie cat, Agent a) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Categorie addCategorie(Categorie cat) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

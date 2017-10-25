@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,7 @@ import fr.adaming.model.Agent;
 import fr.adaming.model.Categorie;
 import fr.adaming.service.ICategorieService;
 
-@ManagedBean(name="catMB")
+@ManagedBean(name = "catMB")
 @RequestScoped
 public class CategorieManagedBean implements Serializable {
 
@@ -24,8 +25,11 @@ public class CategorieManagedBean implements Serializable {
 	// ============ 2. Attributs ============
 	private Agent agent;
 	private Categorie categorie;
-	
+
 	private HttpSession agentSession;
+
+	// Pour l'affichage des tables
+	private boolean indice = false;
 
 	// ============ 3. Constructeur vide ============
 	public CategorieManagedBean() {
@@ -64,6 +68,56 @@ public class CategorieManagedBean implements Serializable {
 		this.agent = agent;
 	}
 
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public HttpSession getAgentSession() {
+		return agentSession;
+	}
+
+	public void setAgentSession(HttpSession agentSession) {
+		this.agentSession = agentSession;
+	}
+
+	public boolean isIndice() {
+		return indice;
+	}
+
+	public void setIndice(boolean indice) {
+		this.indice = indice;
+	}
+
 	// ============ 5. Méthodes ============
+
+	// TODO getCategorieById
+
+	public String getCategorieById() {
+
+		// Récupérer l'agent de la session
+		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+		this.categorie.setAttAgent(this.agent);
+		
+		try {
+
+			this.categorie = categorieService.getCategorieById(this.categorie, this.agent);
+			System.out.println(this.categorie);
+			this.indice = true;
+
+			return "findAgent";
+
+		} catch (Exception e) {
+
+			this.indice = false;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La catégorie n'existe pas"));
+			return "find";
+
+		}
+
+	}
 
 }

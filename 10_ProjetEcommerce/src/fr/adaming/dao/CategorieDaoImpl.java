@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import fr.adaming.model.Agent;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
+import fr.adaming.model.Produit;
 
 @Stateless
 public class CategorieDaoImpl implements ICategorieDao {
@@ -20,33 +21,38 @@ public class CategorieDaoImpl implements ICategorieDao {
 	EntityManager em;
 
 	@Override
-	public List<Categorie> getAllCategoriesByAgent(Agent a) {
+	public Categorie getCategorieById(Categorie cat) throws Exception{
 		
-		// 1. Requête JPQL
-		String req = "SELECT cat FROM Categorie cat WHERE cat.attAgent.id=:pIdAgent";
-
-		// 2. Création de Query
+		// 1. Requête
+		String req = "SELECT cat FROM Categorie cat WHERE cat.idCategorie =:pIdCategorie";
 		Query query = em.createQuery(req);
-
-		// 3. Passage de paramètres
-		query.setParameter("pIdAgent", a.getId());
-
-		// 4. Récupérer le résultat
-		List<Categorie> listeCategorie = query.getResultList();
-
-		return listeCategorie;
+		
+		// 2. Paramètres
+		query.setParameter("pIdCategorie", cat.getIdCategorie());
+		
+		// 3. Résultat
+		Categorie catFind = (Categorie) query.getSingleResult();
+		return catFind;
 	}
 
 	@Override
-	public List<Categorie> getAllCategories() {
+	public Categorie addCategorie(Categorie cat) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Client getProduitByCategories(Categorie ca) {
+	public Categorie deleteCategorie(Categorie cat) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public Categorie updateCategorie(Categorie cat) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }

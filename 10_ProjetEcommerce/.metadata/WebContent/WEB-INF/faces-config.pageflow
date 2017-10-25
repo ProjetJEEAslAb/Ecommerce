@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15089263561030" configfile="/10_ProjetEcommerce/WebContent/WEB-INF/faces-config.xml"/>
+=======
+<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15089250166930" configfile="/10_ProjetEcommerce/WebContent/WEB-INF/faces-config.xml"/>
+>>>>>>> branch 'master' of https://github.com/ProjetJEEAslAb/Ecommerce.git

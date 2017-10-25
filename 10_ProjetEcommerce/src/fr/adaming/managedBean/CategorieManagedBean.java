@@ -119,6 +119,31 @@ public class CategorieManagedBean implements Serializable {
 		}
 
 	}
+	
+//	// TODO getProduitById
+//		public String getProduitById() {
+//
+//			// Récupérer l'agent de la session
+//			this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+//			// this.categorie.setAttAgent(this.agent);
+//
+//			try {
+//
+//				this.produit = produitService.getProduitById(this.produit, this.agent);
+//
+//				this.indice = true;
+//
+//				return "findAgent";
+//
+//			} catch (Exception e) {
+//
+//				this.indice = false;
+//				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Le produit n'existe pas"));
+//				return "findAgent";
+//
+//			}
+//
+//		}
 
 	// TODO addCategorie
 	public String addCategorie() {
@@ -145,6 +170,32 @@ public class CategorieManagedBean implements Serializable {
 		}
 
 	}
+	
+//	// TODO addProduit
+//		public String addProduit() {
+//
+//			// Récupérer l'agent de la session
+//			this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+//
+//			try {
+//				// Ajouter les informations dans this.categorie
+//				this.produit.setAttAgent(this.agent);
+//				this.produit = produitService.addProduit(this.produit);
+//
+//				// Actualiser la liste à afficher
+//				List<Produit> liste = produitService.getAllProduit(this.agent);
+//				agentSession.setAttribute("produitListe", liste);
+//
+//				return "accueilAgent";
+//
+//			} catch (Exception e) {
+//
+//				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout a échoué"));
+//				return "addAgent";
+//
+//			}
+//
+//		}
 
 	// TODO deleteCategorie
 	public String deleteCategorie() {
@@ -173,6 +224,34 @@ public class CategorieManagedBean implements Serializable {
 		}
 
 	}
+	
+//	// TODO deleteProduit
+//		public String deleteProduit() {
+//
+//			// Récupérer l'agent de la session
+//			this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+//
+//			try {
+//				// Trouver la catégorie à supprimer
+//				Produit proDel = produitService.getProduitById(this.produit, this.agent);
+//
+//				// Supprimer la catégorie retrouvée
+//				produitService.deleteProduit(proDel, this.agent);
+//
+//				// Actualiser la liste à afficher
+//				List<Produit> liste = produitService.getAllProduit(this.agent);
+//				agentSession.setAttribute("produitListe", liste);
+//
+//				return "accueilAgent";
+//
+//			} catch (Exception e) {
+//
+//				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué"));
+//				return "deleteAgent";
+//
+//			}
+//
+//		}
 
 	// TODO updateCategorie
 	public String updateCategorie() {
@@ -204,5 +283,39 @@ public class CategorieManagedBean implements Serializable {
 		}
 
 	}
+	
+//	// TODO updateProduit
+//		public String updateProduit() {
+//
+//			// Récupérer l'agent de la session
+//			this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+//
+//			try {
+//				// Trouver la catégorie à modifier
+//				Produit proUp = produitService.getProduitById(this.produit, this.agent);
+//
+//				// Modifier la catégorie retrouvée
+//				proUp.setDesignation(this.produit.getDesignation());
+//				proUp.setDescription(this.produit.getDescription());
+//				proUp.setPrix(this.produit.getPrix());
+//				proUp.setQuantite(this.produit.getQuantite());
+//				proUp.setAttCategorie(this.produit.getAttCategorie());
+//
+//				produitService.updateProduit(proUp, this.agent);
+//
+//				// Actualiser la liste à afficher
+//				List<Produit> liste = produitService.getAllProduit(this.agent);
+//				agentSession.setAttribute("produitListe", liste);
+//
+//				return "accueilAgent";
+//
+//			} catch (Exception e) {
+//
+//				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La modification a échoué"));
+//				return "updateAgent";
+//
+//			}
+//
+//		}
 
 }

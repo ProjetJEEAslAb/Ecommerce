@@ -37,6 +37,23 @@ public class CategorieDaoImpl implements ICategorieDao {
 		return catFind;
 	}
 
+	// // TODO getProduitById
+	// @Override
+	// public Produit getProduitById(Produit pro) throws Exception {
+	//
+	// // 1. Requête
+	// String req = "SELECT pro FROM Produit pro WHERE pro.idProduit
+	// =:pIdProduit";
+	// Query query = em.createQuery(req);
+	//
+	// // 2. Paramètres
+	// query.setParameter("pIdProduit", pro.getIdProduit());
+	//
+	// // 3. Résultat
+	// Categorie proFind = (Categorie) query.getSingleResult();
+	// return proFind;
+	// }
+
 	// TODO addCategorie
 	@Override
 	public Categorie addCategorie(Categorie cat) {
@@ -44,6 +61,24 @@ public class CategorieDaoImpl implements ICategorieDao {
 		em.persist(cat);
 		return cat;
 	}
+
+	// // TODO addProduit
+	// @Override
+	// public Produit addProduit(Produit pro) {
+	//
+	// em.persist(pro);
+	// return pro;
+	// }
+
+	// // TODO deleteProduit
+	// @Override
+	// public Produit deleteProduit(Produit pro) {
+	//
+	// Produit proDel = em.find(Produit.class, pro.getIdProduit());
+	// em.remove(proDel);
+	//
+	// return proDel;
+	// }
 
 	// TODO deleteCategorie
 	@Override
@@ -55,6 +90,16 @@ public class CategorieDaoImpl implements ICategorieDao {
 		return catDel;
 	}
 
+	// // TODO deleteProduit
+	// @Override
+	// public Produit deleteProduit(Produit pro) {
+	//
+	// Produit proDel = em.find(Produit.class, pro.getIdProduit());
+	// em.remove(proDel);
+	//
+	// return proDel;
+	// }
+
 	// updateCategorie
 	@Override
 	public Categorie updateCategorie(Categorie cat) {
@@ -63,6 +108,15 @@ public class CategorieDaoImpl implements ICategorieDao {
 
 		return cat;
 	}
+
+	// // updateProduit
+	// @Override
+	// public Produit updateProduit(Produit pro) {
+	//
+	// em.merge(pro);
+	//
+	// return pro;
+	// }
 
 	// TODO getAllCategorie
 	@Override
@@ -82,5 +136,24 @@ public class CategorieDaoImpl implements ICategorieDao {
 
 		return liste;
 	}
+
+//	// TODO getAllProduit
+//	@Override
+//	public List<Produit> getAllProduit(Agent a) {
+//
+//		// 1. Requête JPQL
+//		String req = "SELECT pro FROM Produit pro WHERE pro.attAgent.id=:pIdProduit";
+//
+//		// 2. Création de Query
+//		Query query = em.createQuery(req);
+//
+//		// 3. Passage de paramètres
+//		query.setParameter("pIdProduit", a.getId());
+//
+//		// 4. Récupérer le résultat
+//		List<Produit> liste = (List<Produit>) query.getResultList();
+//
+//		return liste;
+//	}
 
 }

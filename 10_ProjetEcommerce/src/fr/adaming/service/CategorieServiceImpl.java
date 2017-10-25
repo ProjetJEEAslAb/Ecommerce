@@ -31,6 +31,7 @@ public class CategorieServiceImpl implements ICategorieService {
 
 	// ============ 3. Méthodes ============
 
+	// TODO getCategorieById
 	@Override
 	public Categorie getCategorieById(Categorie cat, Agent a) throws Exception {
 
@@ -45,6 +46,22 @@ public class CategorieServiceImpl implements ICategorieService {
 			return null;
 		}
 	}
+	
+//	// TODO getProduitById
+//		@Override
+//		public Produit getProduitById(Produit cat, Agent a) throws Exception {
+//
+//			Produit proFind = produitDao.getProduitById(pro);
+//
+//			if (proFind.getAttAgent().getId() == a.getId()) {
+//
+//				return proFind;
+//
+//			} else {
+//
+//				return null;
+//			}
+//		}
 
 	// TODO deleteCategorie
 	@Override
@@ -61,6 +78,22 @@ public class CategorieServiceImpl implements ICategorieService {
 			return null;
 		}
 	}
+	
+//	// TODO deleteProduit
+//		@Override
+//		public Produit deleteProduit(Produit pro, Agent a) {
+//
+//			Categorie proDel = produitDao.deleteProduit(pro);
+//
+//			if (proDel.getAttAgent().getId() == a.getId()) {
+//
+//				return proDel;
+//
+//			} else {
+//
+//				return null;
+//			}
+//		}
 
 	@Override
 	public Categorie updateCategorie(Categorie cat, Agent a) {
@@ -76,6 +109,21 @@ public class CategorieServiceImpl implements ICategorieService {
 			return null;
 		}
 	}
+	
+//	@Override
+//	public Produit updateProduit(Produit pro, Agent a) {
+//
+//		Produit proUp = produitDao.updateProduit(pro);
+//
+//		if (proUp.getAttAgent().getId() == a.getId()) {
+//
+//			return proUp;
+//
+//		} else {
+//
+//			return null;
+//		}
+//	}
 
 	// TODO addCategorie
 	@Override
@@ -83,6 +131,13 @@ public class CategorieServiceImpl implements ICategorieService {
 
 		return categorieDao.addCategorie(cat);
 	}
+	
+//	// TODO addProduit
+//		@Override
+//		public Produit addProduit(Produit pro) {
+//
+//			return produitDao.addProduit(pro);
+//		}
 
 	// TODO getAllCategorie
 	@Override
@@ -90,5 +145,12 @@ public class CategorieServiceImpl implements ICategorieService {
 
 		return categorieDao.getAllCategorie(a);
 	}
+	
+//	// TODO getAllProduit
+//		@Override
+//		public List<Produit> getAllProduit(Agent a) {
+//
+//			return produitDao.getAllProduit(a);
+//		}
 
 }

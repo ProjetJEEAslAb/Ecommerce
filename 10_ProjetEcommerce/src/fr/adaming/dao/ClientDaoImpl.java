@@ -45,8 +45,7 @@ public class ClientDaoImpl implements IClientDao {
 //=======================================================================//
 
 	@Override
-	public Client addClient(Client cl) {
-
+	public Client addClient(Client cl) { 
 		em.persist(cl);
 		return cl; // jpa a synchronisé le client avec le context. en sortant a
 					// un id

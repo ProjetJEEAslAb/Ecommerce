@@ -1,12 +1,14 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Agent;
 import fr.adaming.model.Client;
@@ -24,6 +26,7 @@ public class ClientManagedBean implements Serializable{
 	//les attributs utilisés dans la page 	
 	
 	private Client client;
+	HttpSession session;
 	
 //=======================================================================//
 	
@@ -31,7 +34,19 @@ public class ClientManagedBean implements Serializable{
 	public ClientManagedBean() {
 		this.client = new Client();//instanciation du client sinon erreur no target unreachable;
 	}
+	
+//=======================================================================//	
+//creation de la session client
+	
+	public void sessionClient(){
+		
+		// recuperation du context
+		FacesContext context = FacesContext.getCurrentInstance();
+		// recuperer la session a partir du context
+		this.session = (HttpSession) context.getExternalContext().getSession(false);
 
+	}
+	
 //=======================================================================//
 	
 	// getters et setters
@@ -62,16 +77,17 @@ public class ClientManagedBean implements Serializable{
 			// ajouter le client dans la session
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clientSession", client_out);
 
-			return null;
+			return "login";
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("l'identifiant et/ou le mot de passe est erroné"));
 		}
-		return "echec";
+		return "accueilGeneral";
 	}
 	
-//=======================================================================//
-	// la mùethode pour se deconnecter
+
+	// la methode pour se deconnecter
 
 		public String seDeconnecterClient() {
 
@@ -83,8 +99,17 @@ public class ClientManagedBean implements Serializable{
 
 		}
 	
-	
-	
+//=======================================================================//	
+		public String ajouterClient(){
+			
+			//appelle de la methode pour ajouter un client
+			Client cl=clientService.addClient(this.client);
+			return null;
+			
+			
+			
+		
+		}
 	
 	
 	

@@ -6,6 +6,5 @@ import fr.adaming.model.Client;
 public interface IClientService {
 
 	public Client addClient(Client cl);
-	
 	public Client isExist(Client cl);
 }

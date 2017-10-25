@@ -15,16 +15,17 @@ public class ClientService implements IClientService {
 	private IClientDao clientDao= new ClientDaoImpl();
 
 //=======================================================================//
+	@Override
+	public Client isExist(Client cl) {
+		return clientDao.isExist(cl);
+	}
 	
 	@Override
 	public Client addClient(Client cl) {
 		return clientDao.addClient(cl);
 	}
 
-	@Override
-	public Client isExist(Client cl) {
-		return clientDao.isExist(cl);
-	}
+	
 
 	
 	

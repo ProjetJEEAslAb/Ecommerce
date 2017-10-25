@@ -81,7 +81,7 @@ public class ClientManagedBean implements Serializable{
 			// ajouter le client dans la session
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clientSession", client_out);
 
-			return "login";
+			return "accueilClient";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,7 +99,7 @@ public class ClientManagedBean implements Serializable{
 
 			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 			
-			return "login";
+			return "accueilGeneral";
 
 		}
 	
@@ -111,7 +111,7 @@ public class ClientManagedBean implements Serializable{
 
 		if (cl.getId() != 0) {
 
-			return "accueil";
+			return "accueilClient";
 
 		} else {
 
@@ -119,13 +119,50 @@ public class ClientManagedBean implements Serializable{
 		// afficher le message d'erreur sur la page
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a échoué"));
 
-		return "ajout";
+		return "ajoutClient";
 
 	}
 	
+//=======================================================================//	
+	public String modifierClient(){
+		
+		// appelle de la methode pour modifier un client
+		int clientOut = clientService.updateClient(this.client);
+		
+		if (clientOut==1) {
+			
+			return "accueilClient";
+			
+		} else {
+			
+			// afficher le message d'erreur sur la page
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la modifiction a échoué"));
+			
+			return "modifClient";
+		}
+		
+		
+	}
 	
-	
-	
+//=======================================================================//	
+	public String suprimerClient() {
+		
+		// appelle de la methode
+		int clientOut = clientService.deleteClient(this.client);
+		
+		if (clientOut == 1) {
+
+			return "accueilClient";
+
+		} else {
+
+			// afficher le message d'erreur sur la page
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la suppression a échoué"));
+
+			return "supClient";
+		}
+
+	}
 	
 	
 	

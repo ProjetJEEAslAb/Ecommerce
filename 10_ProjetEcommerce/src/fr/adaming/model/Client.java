@@ -22,7 +22,6 @@ public class Client implements Serializable {
 	@Column(name="id_client")
 	private Long id;
 	private String nom;
-	private String Client;
 	private String mail;
 	private String mdp;
 	private String tel;
@@ -45,10 +44,9 @@ public class Client implements Serializable {
 	// constructeur sans id
 	
 	
-	public Client(String nom, String client, String mail, String mdp, String tel, List<Commande> listeCommande) {
+	public Client(String nom, String mail, String mdp, String tel, List<Commande> listeCommande) {
 	super();
 	this.nom = nom;
-	Client = client;
 	this.mail = mail;
 	this.mdp = mdp;
 	this.tel = tel;
@@ -57,12 +55,11 @@ public class Client implements Serializable {
 
 	// constructeur avec id
 
-	public Client(Long id, String nom, String client, String mail, String mdp, String tel,
+	public Client(Long id, String nom, String mail, String mdp, String tel,
 			List<Commande> listeCommande) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		Client = client;
 		this.mail = mail;
 		this.mdp = mdp;
 		this.tel = tel;
@@ -89,13 +86,6 @@ public class Client implements Serializable {
 		this.nom = nom;
 	}
 
-	public String getClient() {
-		return Client;
-	}
-
-	public void setClient(String client) {
-		Client = client;
-	}
 
 	public String getMail() {
 		return mail;
@@ -133,9 +123,10 @@ public class Client implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", Client=" + Client + ", mail=" + mail + ", mdp=" + mdp + ", tel="
-				+ tel + "]";
+		return "Client [id=" + id + ", nom=" + nom + ", mail=" + mail + ", mdp=" + mdp + ", tel=" + tel + "]";
 	}
+
+	
 	
 
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Page accueilClient</title>
+</h:head>
+
+<h:body>
+
+	
+
+<h:form>
+	<p:stack icon="/resources/images/stack.png" expanded="true">
+		<p:menuitem value="Ajouter" icon="/resources/images/add.png"
+			url="ajoutClient.xhtml" />
+		<p:menuitem value="Modifier" icon="/resources/images/update.png"
+			url="modifClient.xhtml" />
+			<p:menuitem value="Supprimer" icon="/resources/images/delete.png"
+			url="supClient.xhtml" />
+		<p:menuitem value="Logout" icon="/resources/images/logout.png"
+			action="#{cMB.seDeconnecter}" />
+			
+	</p:stack>
+</h:form>
+
+</h:body>
+
+</html>

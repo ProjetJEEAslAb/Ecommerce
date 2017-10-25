@@ -25,6 +25,16 @@ public class ClientService implements IClientService {
 		return clientDao.addClient(cl);
 	}
 
+	@Override
+	public int updateClient(Client cl) {
+		return  clientDao.updateClient(cl);
+	}
+
+	@Override
+	public int deleteClient(Client cl) {
+		return clientDao.deleteClient(cl);
+	}
+
 	
 
 	

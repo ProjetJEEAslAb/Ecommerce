@@ -29,19 +29,11 @@
 			Mail : <h:inputText value="#{cMB.client.mail}" />
 			Mot de passe : <h:inputText value="#{cMB.client.mdp}" />
 			<h:commandButton value="Se connecter" action="#{cMB.seConnecterClient}" />
+			<p:commandButton value="Inscription" action="ajoutClient.xhtml" icon="ui-icon-disk" />
 		</h:panelGrid>
 	</h:form>
 
-	<h:form>
-		<p:growl id="messages" />
-		<legend>Formulaire d'inscription Client</legend>
-		<h:panelGrid columns="2">
-			Mail : <h:inputText value="#{aMB.agent.mail}" />
-			Mot de passe : <h:inputText value="#{aMB.agent.mdp}" />
-			<h:commandButton value="S'inscrire" action="register.xhtml" />
-		</h:panelGrid>
-	</h:form>
-
+	
 
 </h:body>
 

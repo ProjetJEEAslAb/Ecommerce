@@ -2,20 +2,41 @@ package fr.adaming.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="produits")
 public class Produit implements Serializable {
 	
 	// ============ 1. Attributs ============
+	@Id
+	@Column(name="id_pro")
 	private long idProduit;
 	
+	@Column(name="desi_pro")
 	private String designation;
+	@Column(name="desc_pro")
 	private String description;
 	
+	@Column(name="prix_pro")
 	private double prix;
 	
+	@Column(name="qte_pro")
 	private int quantite;
 	
+	@Column(name="select_pro")
 	private boolean selectionne;
 
+	// Association UML avec une seule Categorie
+	@ManyToOne
+	@JoinColumn(name="cat_id", referencedColumnName="id_cat")
+	private Categorie attCategorie;
+	
 	// ============ 2. Constructeurs ============
 	// Vide
 	public Produit() {

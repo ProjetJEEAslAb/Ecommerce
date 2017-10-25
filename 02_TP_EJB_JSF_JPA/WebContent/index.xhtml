@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Page accueil</title>
+</h:head>
+
+<h:body>
+
+	<h1>#{sessionScope.agentSession.mail}</h1>
+
+	<h:form>
+		<p:dataTable id="ListeC" var="client"
+			value="#{sessionScope.clientsListe}">
+
+			<p:column headerText="ID" width="3%">
+				<h:outputText value="#{client.id}" />
+			</p:column>
+
+			<p:column headerText="Nom">
+				<h:outputText value="#{client.nom}" />
+			</p:column>
+
+			<p:column headerText="Prenom">
+				<h:outputText value="#{client.prenom}" />
+			</p:column>
+
+			<p:column headerText="Date de naissance">
+				<h:outputText value="#{client.dateNaissance}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
+
+
+<h:form>
+	<p:stack icon="/resources/images/stack.png" expanded="true">
+	<p:menuitem value="Accueil" icon="/resources/images/home.png"
+			url="index.xhtml" />
+		<p:menuitem value="Ajouter" icon="/resources/images/add.png"
+			url="add.xhtml" />
+		<p:menuitem value="Supprimer" icon="/resources/images/delete.png"
+			url="delete.xhtml" />
+		<p:menuitem value="Chercher" icon="/resources/images/find.png"
+			url="find.xhtml" />
+		<p:menuitem value="Modifier" icon="/resources/images/update.png"
+			url="update.xhtml" />
+		<p:menuitem value="Logout" icon="/resources/images/logout.png"
+			action="#{aMB.seDeconnecter}" />
+	</p:stack>
+</h:form>
+
+</h:body>
+
+</html>

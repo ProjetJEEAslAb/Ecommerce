@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Page login</title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<legend>Client</legend>
+		<p:growl id="messages" autoUpdate="true" />
+		<h:panelGrid columns="2">
+
+			<p:outputLabel for="Id" value="ID : " />
+			<p:inputMask id="Id" value="#{cMB.client.id}" required="true" />
+
+			<p:outputLabel for="nomId" value="Nom : " />
+			<p:inputMask id="nomId" value="#{cMB.client.nom}" required="true" />
+
+			<p:outputLabel for="prenomId" value="Prénom : " />
+			<p:inputMask id="prenomId" value="#{cMB.client.prenom}"
+				required="true" />
+
+			<p:outputLabel for="dnId" value="Date de naissance : " />
+			<p:calendar id="dnId" value="#{cMB.client.dateNaissance}" navigator="true" yearRange="c-100:c+0"/>
+
+			<p:commandButton styleClass="myButton" value="Modifier"
+				action="#{cMB.updateClient}" icon="ui-icon-circle-plus" />
+		</h:panelGrid>
+	</h:form>
+
+<h:form>
+	<p:stack icon="/resources/images/stack.png" expanded="true">
+	<p:menuitem value="Accueil" icon="/resources/images/home.png"
+			url="index.xhtml" />
+		<p:menuitem value="Ajouter" icon="/resources/images/add.png"
+			url="add.xhtml" />
+		<p:menuitem value="Supprimer" icon="/resources/images/delete.png"
+			url="delete.xhtml" />
+		<p:menuitem value="Chercher" icon="/resources/images/find.png"
+			url="find.xhtml" />
+		<p:menuitem value="Modifier" icon="/resources/images/update.png"
+			url="update.xhtml" />
+	</p:stack>
+</h:form>
+
+</h:body>
+
+</html>

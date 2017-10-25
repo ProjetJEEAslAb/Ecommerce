@@ -1,6 +1,7 @@
 package fr.adaming.managedBean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -9,19 +10,26 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import fr.adaming.model.Agent;
+import fr.adaming.model.Categorie;
+import fr.adaming.model.Produit;
 import fr.adaming.service.IAgentService;
+import fr.adaming.service.ICategorieService;
 
-@ManagedBean(name="aMB")
+@ManagedBean(name = "aMB")
 @RequestScoped
 public class AgentManagedBean implements Serializable {
 
 	// ============ 1. Injection de dépendance Service ============
 	@EJB
 	private IAgentService agentService;
+	@EJB
+	private ICategorieService categorieService;
 
 	// ============ 2. Attributs ============
 	// Dans la page
 	private Agent agent;
+	private List<Categorie> listeCategories;
+	private List<Produit> listeProduits;
 
 	// ============ 3. Constructeur vide ============
 	public AgentManagedBean() {
@@ -45,6 +53,26 @@ public class AgentManagedBean implements Serializable {
 		this.agent = agent;
 	}
 
+	public List<Categorie> getListeCategories() {
+		return listeCategories;
+	}
+
+	public void setListeCategories(List<Categorie> listeCategories) {
+		this.listeCategories = listeCategories;
+	}
+
+	public List<Produit> getListeProduits() {
+		return listeProduits;
+	}
+
+	public void setListeProduits(List<Produit> listeProduits) {
+		this.listeProduits = listeProduits;
+	}
+
+	public void setAgentService(IAgentService agentService) {
+		this.agentService = agentService;
+	}
+
 	// ============ 5. Méthodes ============
 	// TODO seConnecter
 	public String seConnecter() {
@@ -53,8 +81,18 @@ public class AgentManagedBean implements Serializable {
 
 			Agent agentOut = agentService.isExist(this.agent);
 
+			// Ajouter la liste des catégories
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("categorieListe", agentOut.getListeCategorie());
+
 			// Ajouter l'agent dans la session
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("agentSession", agentOut);
+
+			// // Récupération de la liste des produits
+			// this.listeProduits =
+			// produitService.getAllCategoriesByAgent(this.agent);
+			// // Ajouter la liste des catégories
+			// FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe",
+			// this.listeProduits);
 
 			return "accueilAgent";
 

@@ -1,4 +1,4 @@
-package fr.adaming.dao;
+package fr.adaming.service;
 
 import java.util.List;
 
@@ -6,18 +6,12 @@ import javax.ejb.Local;
 
 import fr.adaming.model.Agent;
 import fr.adaming.model.Categorie;
-import fr.adaming.model.Client;
 
 @Local
-public interface ICategorieDao {
-
+public interface ICategorieService {
+	
 	// ============= Méthodes pour Agent =============
 	// TODO getAllClient
 	public List<Categorie> getAllCategoriesByAgent(Agent a);
-
-	// ============= Méthodes pour Client =============
-	public List<Categorie> getAllCategories();
-
-	public Client getProduitByCategories(Categorie ca);
 
 }

@@ -23,6 +23,7 @@ public class AgentServiceImpl implements IAgentService {
 		this.agentDao = agentDao;
 	}
 
+	// ============ 3. Méthodes ============
 	@Override
 	public Agent isExist(Agent a) throws Exception {
 		

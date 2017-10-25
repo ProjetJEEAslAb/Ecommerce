@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public class Agent implements Serializable {
 	private String mdp;
 
 	// Association avec plusieurs Categorie
-	@OneToMany(mappedBy = "attAgent")
+	@OneToMany(mappedBy = "attAgent", fetch=FetchType.EAGER)
 	private List<Categorie> listeCategorie;
 
 	// Association avec plusieurs Produit

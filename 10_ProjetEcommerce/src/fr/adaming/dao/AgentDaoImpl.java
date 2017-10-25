@@ -27,35 +27,4 @@ public class AgentDaoImpl implements IAgentDao {
 		return null;
 	}
 
-	// ============ 3. Méthode de gestion des Produits par l'Agent ============
-	@Override
-	public Produit getAllProduit(Agent a) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Produit findProduitById(Produit p, Agent a) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Produit addProduit(Produit p, Agent a) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Produit deleteProduit(Produit p, Agent a) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Produit updateProduit(Produit p, Agent a) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

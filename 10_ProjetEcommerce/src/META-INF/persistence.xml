@@ -5,8 +5,15 @@
 	
 	<persistence-unit name="PU_EC" transaction-type="JTA">
 
-		<!-- DataSource -->
+		<!-- === 1. DataSource === -->
 		<jta-data-source>java:/ecommerceDataSource</jta-data-source>
+		
+		<!-- === 2. Enumérer les classes persistantes gérées par l'ORM === -->
+		<class>fr.adaming.model.Agent</class>
+		<class>fr.adaming.model.Categorie</class>
+		<class>fr.adaming.model.Produit</class>
+		<class>fr.adaming.model.Client</class>
+		<class>fr.adaming.model.Commande</class>
 
 		<!-- Propriétés de Hibernate : génération des tables + requêtes sql -->
 		<properties>

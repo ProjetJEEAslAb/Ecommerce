@@ -1,10 +1,13 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,6 +23,14 @@ public class Agent implements Serializable {
 	private String mail;
 	@Column(name = "mdp_a")
 	private String mdp;
+
+	// Association avec plusieurs Categorie
+	@OneToMany(mappedBy = "attAgent")
+	private List<Categorie> listeCategorie;
+
+	// Association avec plusieurs Produit
+	@OneToMany(mappedBy = "attAgent")
+	private List<Produit> listeProduit;
 
 	// ============ 2. Constructeurs ============
 	// Vide
@@ -65,6 +76,22 @@ public class Agent implements Serializable {
 
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
+	}
+
+	public List<Categorie> getListeCategorie() {
+		return listeCategorie;
+	}
+
+	public void setListeCategorie(List<Categorie> listeCategorie) {
+		this.listeCategorie = listeCategorie;
+	}
+
+	public List<Produit> getListeProduit() {
+		return listeProduit;
+	}
+
+	public void setListeProduit(List<Produit> listeProduit) {
+		this.listeProduit = listeProduit;
 	}
 
 	// ============ 4. Méthode toString ============

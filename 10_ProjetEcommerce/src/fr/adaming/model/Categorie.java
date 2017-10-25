@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,6 +29,11 @@ public class Categorie implements Serializable {
 	// Association UML avec plusieurs Produit
 	@OneToMany(mappedBy="attCategorie", cascade=CascadeType.REMOVE)
 	private List<Produit> listeProduits;
+	
+	// Association avec un seul Agent
+	@ManyToOne
+	@JoinColumn(name="agent_id", referencedColumnName="id_a")
+	private Agent attAgent;
 	
 	// ============ 2. Constructeurs ============
 	// Vide
@@ -82,6 +89,14 @@ public class Categorie implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Agent getAttAgent() {
+		return attAgent;
+	}
+
+	public void setAttAgent(Agent attAgent) {
+		this.attAgent = attAgent;
 	}
 	
 	

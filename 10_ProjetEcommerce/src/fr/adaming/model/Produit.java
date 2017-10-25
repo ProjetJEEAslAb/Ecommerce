@@ -32,10 +32,15 @@ public class Produit implements Serializable {
 	@Column(name="select_pro")
 	private boolean selectionne;
 
-	// Association UML avec une seule Categorie
+	// Association avec une seule Categorie
 	@ManyToOne
 	@JoinColumn(name="cat_id", referencedColumnName="id_cat")
 	private Categorie attCategorie;
+	
+	// Association avec un seul Agent
+	@ManyToOne
+	@JoinColumn(name="agent_id", referencedColumnName="id_a")
+	private Agent attAgent;
 	
 	// ============ 2. Constructeurs ============
 	// Vide

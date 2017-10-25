@@ -1,12 +1,14 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,12 +20,19 @@ public class Client implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_client")
-	private long id;
+	private Long id;
 	private String nom;
 	private String Client;
 	private String mail;
 	private String tel;
-
+	
+	
+//=======================================================================//
+	
+	//transformation de l'association uml en java
+	@OneToMany(mappedBy="client")
+	private List<Commande> listeCommande;
+	
 //=======================================================================//
 	
 	// declarations des constructeurs
@@ -43,7 +52,7 @@ public class Client implements Serializable {
 
 	// constructeur avec id
 
-	public Client(long id, String nom, String client, String mail, String tel) {
+	public Client(Long id, String nom, String client, String mail, String tel) {
 		super();
 		this.id = id;
 		this.nom = nom;
@@ -56,11 +65,11 @@ public class Client implements Serializable {
 
 	// declaration des getters et setters
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

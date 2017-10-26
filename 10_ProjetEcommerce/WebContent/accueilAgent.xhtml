@@ -13,6 +13,10 @@
 <h:body>
 
 	<h:form>
+	<p:outputLabel value="Recherche:" for="catId" />
+        <p:autoComplete id="catId" value="#{catMB.categorie}" completeMethod="#{catMB.completeCategorie}"
+                        var="cat" itemLabel="#{cat.nomCategorie}" itemValue="#{cat}" converter="catConverter" forceSelection="true" />
+ 
 		<p:dataTable id="ListeC" var="cat"
 			value="#{sessionScope.categorieListe}">
 
@@ -29,6 +33,25 @@
 			</p:column>
 		</p:dataTable>
 	</h:form>
+
+
+
+		<p:dataTable id="singleCatId" var="cat"
+			value="#{catMB.categorie}">
+
+			<p:column headerText="ID" width="3%">
+				<h:outputText value="#{cat.idCategorie}" />
+			</p:column>
+
+			<p:column headerText="Nom">
+				<h:outputText value="#{cat.nomCategorie}" />
+			</p:column>
+
+			<p:column headerText="Description">
+				<h:outputText value="#{cat.description}" />
+			</p:column>
+		</p:dataTable>
+
 
 	<h:form>
 		<p:dataTable id="ListeC" var="pro"

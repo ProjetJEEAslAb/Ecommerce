@@ -6,7 +6,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-@ManagedBean(name="cMB")
+@ManagedBean(name="pMB")
 @ViewScoped
 public class ProduitManagedBean {
 

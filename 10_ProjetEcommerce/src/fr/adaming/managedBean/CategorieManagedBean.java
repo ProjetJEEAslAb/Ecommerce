@@ -96,6 +96,14 @@ public class CategorieManagedBean implements Serializable {
 	public void setIndice(boolean indice) {
 		this.indice = indice;
 	}
+	
+	public List<Categorie> getListeCategorie() {
+		return listeCategorie;
+	}
+
+	public void setListeCategorie(List<Categorie> listeCategorie) {
+		this.listeCategorie = listeCategorie;
+	}
 
 	// ============ 5. Méthodes ============
 

@@ -12,58 +12,125 @@
 
 <h:body>
 
-	<h:form>
-	<p:outputLabel value="Recherche:" for="catId" />
-        <p:autoComplete id="catId" value="#{catMB.categorie}" completeMethod="#{catMB.completeCategorie}"
-                        var="cat" itemLabel="#{cat.nomCategorie}" itemValue="#{cat}" converter="catConverter" forceSelection="true" />
- 
-		<p:dataTable id="ListeC" var="cat"
-			value="#{sessionScope.categorieListe}">
+	<!-- =========================== Liste des catégories =========================== -->
 
-			<p:column headerText="ID" width="3%">
-				<h:outputText value="#{cat.idCategorie}" />
-			</p:column>
+	<h:form id="form">
+		<p:dataGrid var="cat" value="#{catMB.listeCategorie}" columns="3"
+			layout="grid" rows="12" paginator="true" id="cat"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="10,20,30">
 
-			<p:column headerText="Nom" filterBy="#{cat.nomCategorie}" filterMatchMode="contains">
-				<h:outputText value="#{cat.nomCategorie}" />
-			</p:column>
+			<f:facet name="header">
+            Catégories disponibles
+        	</f:facet>
 
-			<p:column headerText="Description">
-				<h:outputText value="#{cat.description}" />
-			</p:column>
-		</p:dataTable>
+			<p:panel header="#{cat.nomCategorie}" style="text-align:center">
+				<h:panelGrid columns="1" style="width:100%">
+					<h:outputText value="#{cat.description}" />
+
+					<p:commandLink update=":form:catDetail"
+						oncomplete="PF('catDialog').show()" title="Détails">
+						<h:outputText styleClass="ui-icon ui-icon-search"
+							style="margin:0 auto;" />
+						<f:setPropertyActionListener value="#{cat}"
+							target="#{catMB.categorie}" />
+					</p:commandLink>
+				</h:panelGrid>
+			</p:panel>
+
+		</p:dataGrid>
+
+		<p:dialog header="Info catégorie" widgetVar="catDialog" modal="true"
+			showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="catDetail" style="text-align:center;">
+				<p:panelGrid columns="2" rendered="#{not empty catMB.categorie}"
+					columnClasses="label,value">
+
+					<h:outputText value="Nom :" />
+					<h:outputText value="#{catMB.categorie.nomCategorie}" />
+
+					<h:outputText value="Description :" />
+					<h:outputText value="#{catMB.categorie.description}" />
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
 	</h:form>
 
+	<p:spacer />
 
-<p:spacer/>
+	<!-- =========================== Liste des produits =========================== -->
+	<!-- 	<h:form> -->
+	<!-- 		<p:dataTable id="ListeP" var="pro" -->
+	<!-- 			value="#{sessionScope.produitListe}" rowKey="#{pro.idProduit}" -->
+	<!-- 			selection="#{pMB.selectedProduits}" selectionMode="single" rowStyleClass="#{pro.quantite le 10 ? 'empty' : null}> -->
 
+	<!-- 			<p:column selectionMode="multiple" -->
+	<!-- 				style="width:16px;text-align:center" /> -->
 
-	<h:form>
-		<p:dataTable id="ListeC" var="pro"
-			value="#{sessionScope.produitListe}">
+	<!-- 			<p:column headerText="ID" width="3%"> -->
+	<!-- 				<h:outputText value="#{pro.idProduit}" /> -->
+	<!-- 			</p:column> -->
 
-			<p:column headerText="ID" width="3%">
-				<h:outputText value="#{pro.idProduit}" />
-			</p:column>
+	<!-- 			<p:column headerText="Nom" filterBy="#{pro.designation}" -->
+	<!-- 				filterMatchMode="contains"> -->
+	<!-- 				<h:outputText value="#{pro.designation}" /> -->
+	<!-- 			</p:column> -->
 
-			<p:column headerText="Nom">
-				<h:outputText value="#{pro.designation}" />
-			</p:column>
+	<!-- 			<p:column headerText="Description" filterBy="#{pro.description}" -->
+	<!-- 				filterMatchMode="contains"> -->
+	<!-- 				<h:outputText value="#{pro.description}" /> -->
+	<!-- 			</p:column> -->
 
-			<p:column headerText="Description">
-				<h:outputText value="#{pro.description}" />
-			</p:column>
+	<!-- 			<p:column headerText="Prix" filterBy="#{pro.prix}" -->
+	<!-- 				filterMatchMode="contains"> -->
+	<!-- 				<h:outputText value="#{pro.prix}" /> -->
+	<!-- 			</p:column> -->
 
-			<p:column headerText="Prix">
-				<h:outputText value="#{pro.prix}" />
-			</p:column>
+	<!-- 			<p:column headerText="Quantité" filterBy="#{pro.quantite}" -->
+	<!-- 				filterMatchMode="contains"> -->
+	<!-- 				<h:outputText value="#{pro.quantite}" /> -->
+	<!-- 			</p:column> -->
 
-			<p:column headerText="Quantité">
-				<h:outputText value="#{pro.quantite}" />
-			</p:column>
-		</p:dataTable>
-	</h:form>
+	<!-- 		</p:dataTable> -->
 
+	<!-- 		<p:contextMenu for="produits"> -->
+	<!-- 			<p:menuitem value="Voir" update="proDetail" icon="ui-icon-search" -->
+	<!-- 				oncomplete="PF('proDialog').show()" /> -->
+	<!-- 			<p:menuitem value="Supprimer" update="produits" icon="ui-icon-close" -->
+	<!-- 				actionListener="#{pMB.deleteProduit}" /> -->
+	<!-- 		</p:contextMenu> -->
+
+	<!-- 		<p:dialog header="Produit Info" widgetVar="proDialog" modal="true" -->
+	<!-- 			showEffect="fade" hideEffect="fade" resizable="false"> -->
+	<!-- 			<p:outputPanel id="proDetail" style="text-align:center;"> -->
+	<!-- 				<p:panelGrid columns="2" -->
+	<!-- 					rendered="#{not empty pMB.selectedProduits}" -->
+	<!-- 					columnClasses="label,value"> -->
+
+	<!-- 					<h:outputText value="Id:" /> -->
+	<!-- 					<h:outputText value="#{pMB.selectedProduits.idProduit}" /> -->
+
+	<!-- 					<h:outputText value="Nom" /> -->
+	<!-- 					<h:outputText value="#{pMB.selectedProduits.designation}" /> -->
+
+	<!-- 					<h:outputText value="Description" /> -->
+	<!-- 					<h:outputText value="#{pMB.selectedProduits.description}" /> -->
+
+	<!-- 					<h:outputText value="Prix" /> -->
+	<!-- 					<h:outputText value="$#{pMB.selectedProduits.prix}" /> -->
+
+	<!-- 					<h:outputText value="Quantité" /> -->
+	<!-- 					<h:outputText value="$#{pMB.selectedProduits.quantite}" /> -->
+
+	<!-- 					<h:outputText value="Catégorie" /> -->
+	<!-- 					<h:outputText value="$#{pMB.selectedProduits.attCategorie.nomCategorie}" /> -->
+	<!-- 				</p:panelGrid> -->
+	<!-- 			</p:outputPanel> -->
+	<!-- 		</p:dialog> -->
+
+	<!-- 	</h:form> -->
+
+	<!-- =========================== Menu panier =========================== -->
 	<h:form>
 		<p:stack icon="/resources/images/stack.png" expanded="true">
 			<p:menuitem value="Accueil" icon="/resources/images/home.png"

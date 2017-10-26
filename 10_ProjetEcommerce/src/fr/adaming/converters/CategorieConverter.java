@@ -17,6 +17,7 @@ public class CategorieConverter implements Converter{
 
 	@EJB
 	ICategorieService catService;
+	
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
 		  if(value != null && value.trim().length() > 0) {

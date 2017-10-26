@@ -17,18 +17,15 @@ public class ProduitDaoImpl implements IProduitDao{
 	EntityManager em;
 	
 	@Override
-	public List<Produit> GetAllProduits(Client cl) {
+	public List<Produit> GetAllProduits() {
 		
 		//requete jpql
 		
-		String req = "SELECT pro FROM Produit pro WHERE cl.id=:pId";
+		String req = "SELECT pro FROM Produit pro";
 		
 		//creation du query
 		Query query = em.createQuery(req);
-		
-		//passage des parametres
-		query.setParameter("pId", cl.getId());
-		
+
 		List<Produit> liste = (List<Produit>) query.getResultList();
 		
 		return liste;
@@ -43,6 +40,8 @@ public class ProduitDaoImpl implements IProduitDao{
 		int verif=query.executeUpdate();
 		return verif;
 	}
+
+	
 
 	
 	

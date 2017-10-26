@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
@@ -43,18 +44,18 @@ public class ProduitManagedBean implements Serializable{
 		this.produit=new Produit();
 	}
 //=======================================================================//
-	public void init() {
-		
-		// Récupération du contexte
-		FacesContext context = FacesContext.getCurrentInstance();
-		
-		// Récupération de la session
-		this.clientSession=(HttpSession) context.getExternalContext().getSession(false);
-		
-		//recuperation du client a partir de la session
-		this.client=(Client) clientSession.getAttribute("clientSession");
-		this.listeProduit=produitService.GetAllProduits(this.client);
-	}
+//	public void init() {
+//
+//		// Récupération du contexte
+//		FacesContext context = FacesContext.getCurrentInstance();
+//
+//		// Récupération de la session
+//		this.clientSession = (HttpSession) context.getExternalContext().getSession(false);
+//
+//		// recuperation du client a partir de la session
+//		this.client = (Client) clientSession.getAttribute("clientSession");
+//		this.listeProduit = produitService.GetAllProduits(this.client);
+//	}
 
 //=======================================================================//
 		//getters et setters
@@ -113,18 +114,25 @@ public class ProduitManagedBean implements Serializable{
 	//les methodes
 	public String deleteProduit(){
 		
-		this.client=(Client) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("clientsession");
-		
-		try{
-		
-		return null;
-		}catch(Exception e){
+		try {
+			 // Trouver la catégorie à supprimer
+			 Produit proDel = produitService.getProduitById(this.produit);
 			
-		}
-		return null;
-		
+			 // Supprimer la catégorie retrouvée
+			 produitService.deleteProduit(proDel);
+			
+			 // Actualiser la liste à afficher
+			 this.listeProduit = produitService.GetAllProduits();
+			 
+			 return "";
+			
+			 } catch (Exception e) {
+			
+			 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué"));
+			 return "delete";
+
 	}
 	
-	
+	}
 	
 }

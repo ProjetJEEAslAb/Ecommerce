@@ -19,13 +19,19 @@ public class ProduitServiceImpl implements IProduitService{
 //=======================================================================//	
 	
 	@Override
-	public List<Produit> GetAllProduits(Client cl) {
-		return produitDao.GetAllProduits(cl);
+	public List<Produit> GetAllProduits() {
+		return produitDao.GetAllProduits();
 	}
 
 	@Override
 	public int deleteProduit(Produit pro) {
 		return produitDao.deleteProduit(pro);
+	}
+
+	@Override
+	public Produit getProduitById(Produit produit) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

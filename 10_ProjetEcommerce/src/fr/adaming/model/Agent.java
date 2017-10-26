@@ -79,7 +79,7 @@ public class Agent implements Serializable {
 	}
 
 	public void setMdp(String mdp) {
-		this.mdp = mdp;
+		this.mdp = mdp; 
 	}
 
 	public List<Categorie> getListeCategorie() {

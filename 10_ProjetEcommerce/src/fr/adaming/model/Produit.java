@@ -1,14 +1,17 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -44,6 +47,10 @@ public class Produit implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="agent_id", referencedColumnName="id_a")
 	private Agent attAgent;
+	
+	//association avec plusieurs ligne de commandes
+	@OneToMany(mappedBy="attProduit",fetch=FetchType.EAGER)
+	private List<LigneCommande> ligneCommande;
 	
 	// ============ 2. Constructeurs ============
 	// Vide

@@ -1,14 +1,41 @@
 package fr.adaming.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="produits")
 public class LigneCommande {
 
 	
 	//les attributs 
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id_lc")
+	private int id_lc;
 	
+	@Column(name="qn_lc")
 	private int quantite;
+	
+	@Column(name="prix_lc")
 	private int prix;
 	
+
+	// associations avec un produit
+	@ManyToOne
+	@JoinColumn(name="produit_id", referencedColumnName="id_pro")
+	private Produit attProduit;
+	
+	//association avec un panier
+	
+	private Panier attPanier;
 //=======================================================================//
 	
 	// les constructeurs
@@ -20,6 +47,14 @@ public class LigneCommande {
 	
 	public LigneCommande(int quantite, int prix) {
 		super();
+		this.quantite = quantite;
+		this.prix = prix;
+	}
+
+
+	public LigneCommande(int id_lc, int quantite, int prix) {
+		super();
+		this.id_lc = id_lc;
 		this.quantite = quantite;
 		this.prix = prix;
 	}
@@ -43,14 +78,35 @@ public class LigneCommande {
 	public void setPrix(int prix) {
 		this.prix = prix;
 	}
+	
+	public int getId_lc() {
+		return id_lc;
+	}
 
+	public void setId_lc(int id_lc) {
+		this.id_lc = id_lc;
+	}
+
+	public Produit getAttProduit() {
+		return attProduit;
+	}
+
+	public void setAttProduit(Produit attProduit) {
+		this.attProduit = attProduit;
+	}
+
+	public Panier getAttPanier() {
+		return attPanier;
+	}
+
+	public void setAttPanier(Panier attPanier) {
+		this.attPanier = attPanier;
+	}
+
+	
 //=======================================================================//
 	
-		//methode to string
-	
-	@Override
-	public String toString() {
-		return "LigneCommande [quantite=" + quantite + ", prix=" + prix + "]";
-	}
+
+
 	
 }

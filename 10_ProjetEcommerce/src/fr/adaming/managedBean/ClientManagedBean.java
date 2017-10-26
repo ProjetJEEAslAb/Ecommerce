@@ -8,18 +8,24 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.persistence.Table;
 import javax.servlet.http.HttpSession;
 
 import fr.adaming.model.Agent;
 import fr.adaming.model.Client;
+import fr.adaming.model.Produit;
 import fr.adaming.service.IClientService;
+import fr.adaming.service.IProduitService;
 
 @ManagedBean(name="cMB")
 @RequestScoped
 public class ClientManagedBean implements Serializable{
 	
+	//injection des dependances
+	
 	@EJB
 	private IClientService clientService;
+	private IProduitService produitService;
 
 //=======================================================================//
 	
@@ -27,6 +33,7 @@ public class ClientManagedBean implements Serializable{
 	
 	private Client client;
 	HttpSession session;
+	private List<Produit> listeProduits;
 	
 //=======================================================================//
 	
@@ -34,7 +41,8 @@ public class ClientManagedBean implements Serializable{
 	public ClientManagedBean() {
 		this.client = new Client();//instanciation du client sinon erreur no target unreachable;
 	}
-	
+
+
 //=======================================================================//	
 //creation de la session client
 	
@@ -55,6 +63,14 @@ public class ClientManagedBean implements Serializable{
 	
 	// getters et setters
 
+	public List<Produit> getListeProduits() {
+		return listeProduits;
+	}
+
+	public void setListeProduits(List<Produit> listeProduits) {
+		this.listeProduits = listeProduits;
+	}
+
 	public IClientService getClientService() {
 		return clientService;
 	}
@@ -73,13 +89,14 @@ public class ClientManagedBean implements Serializable{
 	
 //=======================================================================//
 	//les methodes metiers
+	
 	public String seConnecterClient() {
 
 		try {
 			Client client_out = clientService.isExist(this.client);
 
 			// ajouter le client dans la session
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clientSession", client_out);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", client_out);
 
 			return "accueilClient";
 			

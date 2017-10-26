@@ -24,7 +24,7 @@
 				<h:outputText value="#{cat.idCategorie}" />
 			</p:column>
 
-			<p:column headerText="Nom">
+			<p:column headerText="Nom" filterBy="#{cat.nomCategorie}" filterMatchMode="contains">
 				<h:outputText value="#{cat.nomCategorie}" />
 			</p:column>
 
@@ -35,22 +35,7 @@
 	</h:form>
 
 
-
-		<p:dataTable id="singleCatId" var="cat"
-			value="#{catMB.categorie}">
-
-			<p:column headerText="ID" width="3%">
-				<h:outputText value="#{cat.idCategorie}" />
-			</p:column>
-
-			<p:column headerText="Nom">
-				<h:outputText value="#{cat.nomCategorie}" />
-			</p:column>
-
-			<p:column headerText="Description">
-				<h:outputText value="#{cat.description}" />
-			</p:column>
-		</p:dataTable>
+<p:spacer/>
 
 
 	<h:form>

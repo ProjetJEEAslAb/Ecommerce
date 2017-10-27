@@ -20,16 +20,27 @@ public class ProduitDaoImpl implements IProduitDao{
 	public List<Produit> GetAllProduits() {
 		
 		//requete jpql
-		
 		String req = "SELECT pro FROM Produit pro";
 		
 		//creation du query
 		Query query = em.createQuery(req);
-
 		List<Produit> liste = (List<Produit>) query.getResultList();
 		
 		return liste;
 	}
+
+//=======================================================================//
+
+	@Override
+	public Produit getProduitById(Produit pro) {
+		String req = "SELECT pro FROM Produit pro WHERE pro.idProduit=:pIdProduit";
+		Query query = em.createQuery(req);
+		query.setParameter("pIdProduit", pro.getIdProduit());
+		Produit pro_out = (Produit) query.getSingleResult();
+		return pro_out;
+	}
+
+//=======================================================================//
 
 	@Override
 	public int deleteProduit(Produit pro) {
@@ -41,6 +52,7 @@ public class ProduitDaoImpl implements IProduitDao{
 		return verif;
 	}
 
+	
 	
 
 	

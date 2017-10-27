@@ -12,7 +12,7 @@ public interface IProduitService {
 
 	public List<Produit> GetAllProduits();
 	public int deleteProduit (Produit pro);
-	public Produit getProduitById(Produit produit);
+	public Produit getProduitById(Produit pro);
 	
 
 	

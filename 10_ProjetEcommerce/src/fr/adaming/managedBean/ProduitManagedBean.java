@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Produit;
@@ -110,29 +111,63 @@ public class ProduitManagedBean implements Serializable{
 	}	
 
 //=======================================================================//
+	public List<Produit> completeProduit(String query) {
 
-	//les methodes
-	public String deleteProduit(){
-		
-		try {
-			 // Trouver la catégorie à supprimer
-			 Produit proDel = produitService.getProduitById(this.produit);
-			
-			 // Supprimer la catégorie retrouvée
-			 produitService.deleteProduit(proDel);
-			
-			 // Actualiser la liste à afficher
-			 this.listeProduit = produitService.GetAllProduits();
-			 
-			 return "";
-			
-			 } catch (Exception e) {
-			
-			 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué"));
-			 return "delete";
+		List<Produit> listeFiltree = new ArrayList<Produit>();
+
+		for (int i = 0; i < this.listeProduit.size(); i++) {
+			Produit skin = this.listeProduit.get(i);
+			if (skin.getDesignation().toLowerCase().startsWith(query.toLowerCase())) {
+				listeFiltree.add(skin);
+			}
+		}
+
+		return listeFiltree;
 
 	}
 	
+//=======================================================================//
+	
+	public String getProduitById() {
+
+		try {
+			//trouver le produit que l'on cherche
+			this.produit = produitService.getProduitById(this.produit);
+			this.indice = true;
+			return "rechercheProduit";
+			
+		} catch (Exception e) {
+			this.indice=false;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche de produit a échoué"));
+			return "rechercheProduit";
+		}
+
 	}
+	
+//=======================================================================//
+	// les methodes
+		public String deleteProduit() {
+
+			try {
+				// Trouver le produit à supprimer
+				Produit proDel = produitService.getProduitById(this.produit);
+
+				// Supprimer le produit recherché
+				produitService.deleteProduit(proDel);
+
+				// Actualiser la liste à afficher
+				this.listeProduit = produitService.GetAllProduits();
+
+				return "accueilClient";
+
+			} catch (Exception e) {
+
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué"));
+				return "supProduit";
+
+			}
+
+		}
+		
 	
 }

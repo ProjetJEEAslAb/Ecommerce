@@ -27,19 +27,6 @@ public interface ICategorieService {
 	// TODO getAllCategorie
 	public List<Categorie> getAllCategorie(Agent a);
 
-//	// TODO getProduitById
-//	public Produit getProduitById(Produit pro, Agent a) throws Exception;
-//
-//	// TODO addCategorie
-//	public Produit addProduit(Produit pro);
-//
-//	// TODO deleteCategorie
-//	public Produit deleteProduit(Produit pro, Agent a);
-//
-//	// TODO updateCategorie
-//	public Produit updateProduit(Produit pro, Agent a);
-//
-//	// TODO getAllCategorie
-//	public List<Produit> getAllProduit(Agent a);
+
 
 }

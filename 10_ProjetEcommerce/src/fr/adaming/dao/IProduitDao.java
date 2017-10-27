@@ -3,6 +3,7 @@ package fr.adaming.dao;
 import java.util.List;
 import javax.ejb.Local;
 
+import fr.adaming.model.Agent;
 import fr.adaming.model.Client;
 import fr.adaming.model.Produit;
 
@@ -16,6 +17,22 @@ public interface IProduitDao {
 	public int deleteProduit (Produit pro);
 
 	public Produit addProduit(Produit pro);
+	
+	// ============= Méthodes pour Agent =============
+	// TODO getProduitById
+	public Produit getProduitByIdByAgent(Produit pro) throws Exception;
+
+	// TODO addProduit
+	public Produit addProduitByAgent(Produit pro);
+
+	// TODO deleteProduit
+	public Produit deleteProduitByAgent(Produit pro);
+
+	// TODO updateProduit
+	public Produit updateProduitByAgent(Produit pro);
+
+	// TODO getAllProduit
+	public List<Produit> getAllProduitByAgent(Agent a);
 		
 
 }

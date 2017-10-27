@@ -12,107 +12,181 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import fr.adaming.model.Agent;
 import fr.adaming.model.Categorie;
 import fr.adaming.model.Client;
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Produit;
+import fr.adaming.service.ICategorieService;
 import fr.adaming.service.IProduitService;
 
-@ManagedBean(name="pMB")
+@ManagedBean(name = "pMB")
 @ViewScoped
-public class ProduitManagedBean implements Serializable{
+public class ProduitManagedBean implements Serializable {
 
-//=======================================================================//
-	//injection dependance
+	// =======================================================================//
+	// injection dependance
 	@EJB
 	private IProduitService produitService;
-	
-//=======================================================================//
-	//attributs
+	@EJB
+	private ICategorieService categorieService;
+
+	// =======================================================================//
+	// attributs
 	private Produit produit;
+	private Categorie categorie;
 	private List<Produit> listeProduit;
+	private List<Produit> listeProduitAgent;
 	private Client client;
 	private LigneCommande ligneCommande;
 	private List<Produit> selectedProduits;
 	private HttpSession clientSession;
-	
+	private HttpSession agentSession;
+	private Agent agent;
+
 	// Pour l'affichage des tables
 	private boolean indice = false;
-//=======================================================================//
-	//constructeur vide
+	// =======================================================================//
+	// constructeur vide
 
 	public ProduitManagedBean() {
-		this.client=new Client();
-		this.produit=new Produit();
+		this.agent = new Agent();
+		this.client = new Client();
+		this.produit = new Produit();
 	}
-//=======================================================================//
+
+	// =======================================================================//
 	@PostConstruct
 	public void init() {
 
 		// Récupération du contexte
-		//FacesContext context = FacesContext.getCurrentInstance();
+		FacesContext context = FacesContext.getCurrentInstance();
 
-//		// Récupération de la session
-//		this.clientSession = (HttpSession) context.getExternalContext().getSession(false);
+		// Récupération de la session
+		this.agentSession = (HttpSession) context.getExternalContext().getSession(false);
+		// Récupération de l'agent à partir de la session
+		this.agent = (Agent) agentSession.getAttribute("agentSession");
+		this.listeProduitAgent = produitService.getAllProduitByAgent(this.agent);
+
+		// // Récupération de la session
+		// this.clientSession = (HttpSession)
+		// context.getExternalContext().getSession(false);
 
 		// recuperation du client a partir de la session
 		// this.client = (Client) clientSession.getAttribute("clientSession");
 		this.listeProduit = produitService.GetAllProduits();
 	}
 
-//=======================================================================//
-		//getters et setters
-	
+	// =======================================================================//
+	// getters et setters
+
 	public IProduitService getProduitService() {
 		return produitService;
 	}
+
 	public void setProduitService(IProduitService produitService) {
 		this.produitService = produitService;
 	}
+
 	public Produit getProduit() {
 		return produit;
 	}
+
 	public void setProduit(Produit produit) {
 		this.produit = produit;
 	}
+
 	public List<Produit> getListeProduit() {
 		return listeProduit;
 	}
+
 	public void setListeProduit(List<Produit> listeProduit) {
 		this.listeProduit = listeProduit;
 	}
+
 	public Client getClient() {
 		return client;
 	}
+
 	public void setClient(Client client) {
 		this.client = client;
 	}
+
 	public LigneCommande getLigneCommande() {
 		return ligneCommande;
 	}
+
 	public void setLigneCommande(LigneCommande ligneCommande) {
 		this.ligneCommande = ligneCommande;
 	}
+
 	public List<Produit> getSelectedProduits() {
 		return selectedProduits;
 	}
+
 	public void setSelectedProduits(List<Produit> selectedProduits) {
 		this.selectedProduits = selectedProduits;
 	}
+
 	public HttpSession getClientSession() {
 		return clientSession;
 	}
+
 	public void setClientSession(HttpSession clientSession) {
 		this.clientSession = clientSession;
 	}
+
 	public boolean isIndice() {
 		return indice;
 	}
+
 	public void setIndice(boolean indice) {
 		this.indice = indice;
-	}	
+	}
 
-//=======================================================================//
+	public List<Produit> getListeProduitAgent() {
+		return listeProduitAgent;
+	}
+
+	public void setListeProduitAgent(List<Produit> listeProduitAgent) {
+		this.listeProduitAgent = listeProduitAgent;
+	}
+
+	public HttpSession getAgentSession() {
+		return agentSession;
+	}
+
+	public void setAgentSession(HttpSession agentSession) {
+		this.agentSession = agentSession;
+	}
+
+	public Agent getAgent() {
+		return agent;
+	}
+
+	public void setAgent(Agent agent) {
+		this.agent = agent;
+	}
+
+	public ICategorieService getCategorieService() {
+		return categorieService;
+	}
+
+	public void setCategorieService(ICategorieService categorieService) {
+		this.categorieService = categorieService;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+	
+	
+
+	// =======================================================================//
 	public List<Produit> completeProduit(String query) {
 
 		List<Produit> listeFiltree = new ArrayList<Produit>();
@@ -127,49 +201,163 @@ public class ProduitManagedBean implements Serializable{
 		return listeFiltree;
 
 	}
-	
-//=======================================================================//
-	
+
+	// =======================================================================//
+
 	public String getProduitById() {
 
 		try {
-			//trouver le produit que l'on cherche
+			// trouver le produit que l'on cherche
 			this.produit = produitService.getProduitById(this.produit);
 			this.indice = true;
 			return "rechercheProduit";
-			
+
 		} catch (Exception e) {
-			this.indice=false;
+			this.indice = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche de produit a échoué"));
 			return "rechercheProduit";
 		}
 
 	}
-	
-//=======================================================================//
+
+	// =======================================================================//
 	// les methodes
-		public String deleteProduit() {
+	public String deleteProduit() {
 
-			try {
-				// Trouver le produit à supprimer
-				Produit proDel = produitService.getProduitById(this.produit);
+		try {
+			// Trouver le produit à supprimer
+			Produit proDel = produitService.getProduitById(this.produit);
 
-				// Supprimer le produit recherché
-				produitService.deleteProduit(proDel);
+			// Supprimer le produit recherché
+			produitService.deleteProduit(proDel);
 
-				// Actualiser la liste à afficher
-				this.listeProduit = produitService.GetAllProduits();
+			// Actualiser la liste à afficher
+			this.listeProduit = produitService.GetAllProduits();
 
-				return "supProduit";
+			return "supProduit";
 
-			} catch (Exception e) {
+		} catch (Exception e) {
 
-				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué"));
-				return "supProduit";
-
-			}
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué"));
+			return "supProduit";
 
 		}
-		
-	
+
+	}
+
+	// ==================== Méthodes Agent ====================
+
+	// TODO getProduitById
+	public String getProduitByIdByAgent() {
+
+		// Récupérer l'agent de la session
+		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+
+		try {
+
+			this.produit = produitService.getProduitByIdByAgent(this.produit, this.agent);
+
+			this.indice = true;
+
+			return "findAgent";
+
+		} catch (Exception e) {
+
+			this.indice = false;
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Le produit n'existe pas"));
+			return "findAgent";
+
+		}
+
+	}
+
+	// TODO addProduit
+	public String addProduitByAgent() {
+
+		// Récupérer l'agent de la session
+		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+
+		try {
+			// Ajouter les informations dans this.categorie
+			this.produit.setAttAgent(this.agent);
+			this.produit = produitService.addProduitByAgent(this.produit);
+
+			// Actualiser la liste à afficher
+			List<Produit> liste = produitService.getAllProduitByAgent(this.agent);
+			agentSession.setAttribute("produitListe", liste);
+
+			return "accueilAgent";
+
+		} catch (Exception e) {
+
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout a échoué"));
+			return "addAgent";
+
+		}
+
+	}
+
+	// TODO deleteProduit
+	public String deleteProduitByAgent() {
+
+		// Récupérer l'agent de la session
+		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+
+		try {
+			// Trouver la catégorie à supprimer
+			Produit proDel = produitService.getProduitByIdByAgent(this.produit, this.agent);
+
+			// Supprimer la catégorie retrouvée
+			produitService.deleteProduitByAgent(proDel, this.agent);
+
+			// Actualiser la liste à afficher
+			List<Produit> liste = produitService.getAllProduitByAgent(this.agent);
+			agentSession.setAttribute("produitListe", liste);
+
+			return "accueilAgent";
+
+		} catch (Exception e) {
+
+			// FacesContext.getCurrentInstance().addMessage(null, new
+			// FacesMessage("La suppression a échoué"));
+			return "deleteAgent";
+
+		}
+
+	}
+
+	// TODO updateProduit
+	public String updateProduitByAgent() {
+
+		// Récupérer l'agent de la session
+		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+
+		try {
+			// Trouver la catégorie à modifier
+			Produit proUp = produitService.getProduitByIdByAgent(this.produit, this.agent);
+
+			// Modifier la catégorie retrouvée
+			proUp.setDesignation(this.produit.getDesignation());
+			proUp.setDescription(this.produit.getDescription());
+			proUp.setPrix(this.produit.getPrix());
+			proUp.setQuantite(this.produit.getQuantite());
+			proUp.setAttCategorie(this.produit.getAttCategorie());
+
+			produitService.updateProduitByAgent(proUp, this.agent);
+
+			// Actualiser la liste à afficher
+			List<Produit> liste = produitService.getAllProduitByAgent(this.agent);
+			agentSession.setAttribute("produitListe", liste);
+
+			return "accueilAgent";
+
+		} catch (Exception e) {
+
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La modification a échoué"));
+			return "updateAgent";
+
+		}
+
+	}
+
 }

@@ -38,20 +38,28 @@
 		<legend>Produit</legend>
 		<p:growl id="messages" autoUpdate="true" />
 		<h:panelGrid columns="2">
-			<p:outputLabel for="desiId" value="Désignation : " />
-			<p:inputMask id="desiId" value="Designation" required="true" />
 
-			<p:outputLabel for="descId" value="Description : " />
-			<p:inputMask id="descId" value="Description" required="true" />
+			<p:outputLabel for="Id" value="ID : " />
+			<p:inputMask id="Id" value="#{pMB.produit.idProduit}"
+				required="true" />
+
+			<p:outputLabel for="desiId" value="Désignation : " />
+			<p:inputMask id="desiId" value="#{pMB.produit.designation}"
+				required="true" />
+
+			<p:outputLabel for="descpId" value="Description : " />
+			<p:inputMask id="descpId" value="#{pMB.produit.description}"
+				required="true" />
 
 			<p:outputLabel for="prixId" value="Prix : " />
-			<p:inputMask id="prixId" value="Prix" required="true" />
+			<p:inputMask id="prixId" value="#{pMB.produit.prix}" required="true" />
 
 			<p:outputLabel for="qteId" value="Quantité : " />
-			<p:inputMask id="qteId" value="Quantité" required="true" />
+			<p:inputMask id="qteId" value="#{pMB.produit.quantite}"
+				required="true" />
 
 			<p:commandButton styleClass="myButton" value="Ajouter"
-				action="EnCours" icon="ui-icon-circle-plus" />
+				action="#{pMB.updateProduitByAgent}" icon="ui-icon-circle-plus" />
 		</h:panelGrid>
 	</h:form>
 

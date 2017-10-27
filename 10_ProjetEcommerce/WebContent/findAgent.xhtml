@@ -15,8 +15,8 @@
 	<h:form>
 		<p:growl id="messages" autoUpdate="true" />
 		<h:panelGrid columns="3">
-			<p:outputLabel for="Id" value="ID Catégorie : " />
-			<p:inputMask id="Id" value="#{catMB.categorie.idCategorie}"
+			<p:outputLabel for="Idcat" value="ID Catégorie : " />
+			<p:inputMask id="Idcat" value="#{catMB.categorie.idCategorie}"
 				required="true" size="5" />
 			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
 				action="#{catMB.getCategorieById}" update="@all" />
@@ -24,22 +24,61 @@
 	</h:form>
 
 	<h:form>
-		<p:dataTable id="ListeC" var="cat"
-			value="#{catMB.categorie}" rendered="#{catMB.indice}">
-
-			<p:column headerText="ID" width="3%">
-				<h:outputText value="#{cat.idCategorie}" />
-			</p:column>
-
-			<p:column headerText="Nom">
-				<h:outputText value="#{cat.nomCategorie}" />
-			</p:column>
-
-			<p:column headerText="Description">
-				<h:outputText value="#{cat.description}" />
-			</p:column>
-		</p:dataTable>
+		<p:growl id="messages" autoUpdate="true" />
+		<h:panelGrid columns="3">
+			<p:outputLabel for="Idpro" value="ID Produit : " />
+			<p:inputMask id="Idpro" value="#{pMB.produit.idProduit}"
+				required="true" size="5" />
+			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
+				action="#{pMB.getProduitByIdByAgent}" update="@all" />
+		</h:panelGrid>
 	</h:form>
+
+
+	<p:dataTable id="ListeC" var="cat" value="#{catMB.categorie}"
+		rendered="#{catMB.indice}">
+
+		<p:column headerText="ID" width="3%">
+			<h:outputText value="#{cat.idCategorie}" />
+		</p:column>
+
+		<p:column headerText="Nom">
+			<h:outputText value="#{cat.nomCategorie}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{cat.description}" />
+		</p:column>
+	</p:dataTable>
+
+
+
+	<p:dataTable id="ListeP" var="pro" value="#{pMB.produit}" rendered="#{pMB.indice}">
+		<p:column headerText="ID" width="3%">
+			<h:outputText value="#{pro.idProduit}" />
+		</p:column>
+
+		<p:column headerText="Nom">
+			<h:outputText value="#{pro.designation}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{pro.description}" />
+		</p:column>
+
+		<p:column headerText="Prix">
+			<h:outputText value="#{pro.prix}" />
+		</p:column>
+
+		<p:column headerText="Quantité">
+			<h:outputText value="#{pro.quantite}" />
+		</p:column>
+
+		<p:column headerText="Catégorie">
+			<h:outputText value="#{pro.attCategorie.nomCategorie}" />
+		</p:column>
+	</p:dataTable>
+
 
 </h:body>
 

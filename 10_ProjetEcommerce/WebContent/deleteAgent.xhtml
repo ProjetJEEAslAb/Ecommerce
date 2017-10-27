@@ -12,76 +12,22 @@
 
 <h:body>
 
-<!-- =========================== Liste des produits =========================== -->
-		<h:form>
-			<p:dataTable id="ListeP" var="pro"
-				value="#{sessionScope.produitListe}" rowKey="#{pro.idProduit}"
-				selection="#{pMB.selectedProduits}" selectionMode="single" rowStyleClass="#{pro.quantite le 10 ? 'empty' : null"}>
+	<h:form>
+		<p:growl id="messages" autoUpdate="true" />
+		<h:panelGrid columns="3">
+			<p:outputLabel for="Idcat" value="ID Catégorie : " />
+			<p:inputMask id="Idcat" value="#{catMB.categorie.idCategorie}"
+				required="false" size="5" />
+			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
+				action="#{catMB.deleteCategorie}" update="@all" />
 
-				<p:column selectionMode="multiple" style="width:16px;text-align:center"/>
-
-				<p:column headerText="ID" width="3%">
-					<h:outputText value="#{pro.idProduit}" />
-				</p:column>
-
-				<p:column headerText="Nom" filterBy="#{pro.designation}"
-					filterMatchMode="contains">
-					<h:outputText value="#{pro.designation}" />
-				</p:column>
-
-				<p:column headerText="Description" filterBy="#{pro.description}"
-					filterMatchMode="contains">
-					<h:outputText value="#{pro.description}" />
-				</p:column>
-
-				<p:column headerText="Prix" filterBy="#{pro.prix}"
-					filterMatchMode="contains">
-					<h:outputText value="#{pro.prix}" />
-				</p:column>
-
-				<p:column headerText="Quantité" filterBy="#{pro.quantite}"
-					filterMatchMode="contains">
-					<h:outputText value="#{pro.quantite}" />
-				</p:column>
-
-			</p:dataTable>
-
-			<p:contextMenu for="produits">
-				<p:menuitem value="Voir" update="proDetail" icon="ui-icon-search"
-					oncomplete="PF('proDialog').show()" />
-				<p:menuitem value="Supprimer" update="produits" icon="ui-icon-close"
-					actionListener="#{pMB.deleteProduit}" />
-			</p:contextMenu>
-
-			<p:dialog header="Produit Info" widgetVar="proDialog" modal="true"
-				showEffect="fade" hideEffect="fade" resizable="false">
-				<p:outputPanel id="proDetail" style="text-align:center;">
-					<p:panelGrid columns="2"
-						rendered="#{not empty pMB.selectedProduits}"
-						columnClasses="label,value">
-
-						<h:outputText value="Id:" />
-						<h:outputText value="#{pMB.selectedProduits.idProduit}" />
-
-						<h:outputText value="Nom" />
-						<h:outputText value="#{pMB.selectedProduits.designation}" />
-
-						<h:outputText value="Description" />
-						<h:outputText value="#{pMB.selectedProduits.description}" />
-
-						<h:outputText value="Prix" />
-						<h:outputText value="$#{pMB.selectedProduits.prix}" />
-
-						<h:outputText value="Quantité" />
-						<h:outputText value="$#{pMB.selectedProduits.quantite}" />
-
-						<h:outputText value="Catégorie" />
-						<h:outputText value="$#{pMB.selectedProduits.attCategorie.nomCategorie}" />
-					</p:panelGrid>
-				</p:outputPanel>
-			</p:dialog>
-
-		</h:form>
+			<p:outputLabel for="Idpro" value="ID Produit : " />
+			<p:inputMask id="Idpro" value="#{pMB.produit.idProduit}"
+				required="false" size="5" />
+			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
+				action="#{pMB.deleteProduitByAgent}" update="@all" />
+		</h:panelGrid>
+	</h:form>
 
 </h:body>
 

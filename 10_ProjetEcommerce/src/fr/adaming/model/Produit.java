@@ -136,6 +136,22 @@ public class Produit implements Serializable {
 	public void setSelectionne(boolean selectionne) {
 		this.selectionne = selectionne;
 	}
+
+	public Agent getAttAgent() {
+		return attAgent;
+	}
+
+	public void setAttAgent(Agent attAgent) {
+		this.attAgent = attAgent;
+	}
+
+	public List<LigneCommande> getLigneCommande() {
+		return ligneCommande;
+	}
+
+	public void setLigneCommande(List<LigneCommande> ligneCommande) {
+		this.ligneCommande = ligneCommande;
+	}
 	
 	
 

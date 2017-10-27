@@ -58,6 +58,58 @@
 
 	<p:spacer />
 
+	<!-- =========================== Liste des catégories en tableau =========================== -->
+	<h:form>
+		<p:dataTable id="ListeC" var="cat"
+			value="#{sessionScope.categorieListe}" rowKey="#{cat.idCategorie}"
+			selection="#{pMB.selectedCategorie}" selectionMode="single">
+
+			<p:column headerText="ID" width="3%">
+				<h:outputText value="#{cat.idCategorie}" />
+			</p:column>
+
+			<p:column headerText="Nom" filterBy="#{cat.nomCategorie}"
+				filterMatchMode="contains">
+				<h:outputText value="#{cat.nomCategorie}" />
+			</p:column>
+
+			<p:column headerText="Description" filterBy="#{cat.description}"
+				filterMatchMode="contains">
+				<h:outputText value="#{cat.description}" />
+			</p:column>
+
+		</p:dataTable>
+
+		<p:contextMenu for="cat">
+			<p:menuitem value="Voir" update="catDetail" icon="ui-icon-search"
+				oncomplete="PF('catDialog').show()" />
+			<p:menuitem value="Supprimer" update="cat" icon="ui-icon-close"
+				actionListener="#{catMB.deleteCategorie}" />
+		</p:contextMenu>
+
+		<p:dialog header="Catégorie Info" widgetVar="catDialog" modal="true"
+			showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="catDetail" style="text-align:center;">
+				<p:panelGrid columns="2"
+					rendered="#{not empty cat.selectedCategorie}"
+					columnClasses="label,value">
+
+					<h:outputText value="Id:" />
+					<h:outputText value="#{catMB.selectedCategorie.idCategorie}" />
+
+					<h:outputText value="Nom" />
+					<h:outputText value="#{catMB.selectedCategorie.nomCategorie}" />
+
+					<h:outputText value="Description" />
+					<h:outputText value="#{catMB.selectedCategorie.description}" />
+
+				</p:panelGrid>
+			</p:outputPanel>
+		</p:dialog>
+
+	</h:form>
+
+
 	<!-- =========================== Liste des produits =========================== -->
 	<!-- 	<h:form> -->
 	<!-- 		<p:dataTable id="ListeP" var="pro" -->

@@ -35,10 +35,14 @@ public class CategorieManagedBean implements Serializable {
 	// Pour l'affichage des tables
 	private boolean indice = false;
 
+	// Sélection
+	private Categorie selectedCategorie;
+
 	// ============ 3. Constructeur vide ============
 	public CategorieManagedBean() {
 		this.agent = new Agent();
 		this.categorie = new Categorie();
+		this.selectedCategorie = new Categorie();
 	}
 
 	// Exécuter la méthode juste après l'instanciation du MB
@@ -96,13 +100,21 @@ public class CategorieManagedBean implements Serializable {
 	public void setIndice(boolean indice) {
 		this.indice = indice;
 	}
-	
+
 	public List<Categorie> getListeCategorie() {
 		return listeCategorie;
 	}
 
 	public void setListeCategorie(List<Categorie> listeCategorie) {
 		this.listeCategorie = listeCategorie;
+	}
+
+	public Categorie getSelectedCategorie() {
+		return selectedCategorie;
+	}
+
+	public void setSelectedCategorie(Categorie selectedCategorie) {
+		this.selectedCategorie = selectedCategorie;
 	}
 
 	// ============ 5. Méthodes ============
@@ -340,20 +352,17 @@ public class CategorieManagedBean implements Serializable {
 
 	// TODO Autocomplete Categorie
 	public List<Categorie> completeCategorie(String query) {
-		
-		List<Categorie> listeFiltree=new ArrayList<Categorie>() ;
-	
-        
-        for (int i = 0; i < this.listeCategorie.size(); i++) {
-            Categorie skin = this.listeCategorie.get(i);
-            if(skin.getNomCategorie().toLowerCase().startsWith(query.toLowerCase())) {
-                listeFiltree.add(skin);
-            }
-        }
-		
-		
 
-        return listeFiltree;
+		List<Categorie> listeFiltree = new ArrayList<Categorie>();
+
+		for (int i = 0; i < this.listeCategorie.size(); i++) {
+			Categorie skin = this.listeCategorie.get(i);
+			if (skin.getNomCategorie().toLowerCase().startsWith(query.toLowerCase())) {
+				listeFiltree.add(skin);
+			}
+		}
+
+		return listeFiltree;
 	}
 
 }

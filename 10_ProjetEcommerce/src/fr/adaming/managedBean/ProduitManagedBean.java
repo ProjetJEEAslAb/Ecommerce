@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -45,18 +46,19 @@ public class ProduitManagedBean implements Serializable{
 		this.produit=new Produit();
 	}
 //=======================================================================//
-//	public void init() {
-//
-//		// Récupération du contexte
-//		FacesContext context = FacesContext.getCurrentInstance();
-//
+	@PostConstruct
+	public void init() {
+
+		// Récupération du contexte
+		//FacesContext context = FacesContext.getCurrentInstance();
+
 //		// Récupération de la session
 //		this.clientSession = (HttpSession) context.getExternalContext().getSession(false);
-//
-//		// recuperation du client a partir de la session
-//		this.client = (Client) clientSession.getAttribute("clientSession");
-//		this.listeProduit = produitService.GetAllProduits(this.client);
-//	}
+
+		// recuperation du client a partir de la session
+		// this.client = (Client) clientSession.getAttribute("clientSession");
+		this.listeProduit = produitService.GetAllProduits();
+	}
 
 //=======================================================================//
 		//getters et setters

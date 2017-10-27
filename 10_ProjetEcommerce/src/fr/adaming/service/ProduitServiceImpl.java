@@ -25,7 +25,6 @@ public class ProduitServiceImpl implements IProduitService{
 
 	@Override
 	public Produit getProduitById(Produit pro) {
-		
 		return produitDao.getProduitById(pro);
 	}
 	

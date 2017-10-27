@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="produits")
+@Table(name="ligneComandes")
 public class LigneCommande {
 
 	
@@ -18,7 +18,7 @@ public class LigneCommande {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id_lc")
+	@Column(name = "id_lic")
 	private int id_lc;
 	
 	@Column(name="qn_lc")

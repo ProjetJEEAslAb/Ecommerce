@@ -13,16 +13,74 @@
 </h:head>
 
 <h:body>
+
+<h:form>
+		<p:menubar>
+			<p:menuitem value="AccueilGeneral" url="accueilGeneral.xhtml" color="red" />
+			<p:menuitem value="supProduit" url="#" color="red" />
+			
+		</p:menubar>	
+	</h:form>	
+	
+		<!-- tracer la ligne horizontale -->
+			<p:separator />
+			
+		<!-- espacer les elements -->
+			<p:spacer height="20" />
+		<br/>
+		<br/>
+
 	<h:form>
-		<p:growl id="messages" autoUpdate="true" />
-		<h:panelGrid columns="3">
-			<p:outputLabel for="Id" value="ID Catégorie : " />
-			<p:inputMask id="Id" value="#{catMB.categorie.idCategorie}"
-				required="true" size="5" />
-			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
-				action="#{catMB.deleteCategorie}" update="@all" />
-		</h:panelGrid>
+		<p:commandButton value="Supprimer un produit" action="#{pMB.listeProduit}"  icon="ui-icon-disk" update=@all/>
+			<p:dataTable id="ListeP" var="pro" value="#{sessionScope.produitListe}" rowKey="#{pro.idProduit}">
+
+				<p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+
+				<p:column headerText="ID" width="3%">
+					<h:outputText value="#{pro.idProduit}" />
+				</p:column>
+				
+			</p:dataTable>
 	</h:form>
+<!-- tracer la ligne horizontale -->
+			<p:separator />
+			
+		<!-- espacer les elements -->
+			<p:spacer height="20" />
+		<br/>
+		<br/>
+<!-- =========================== Liste des produits =========================== -->
+		<h:form>
+			<p:dataTable id="ListeP" var="pro" value="#{pMB.listeProduit}" rowKey="#{pro.idProduit}" rowStyleClass="#{pro.quantite le 10 ? 'empty' : null}">
+
+				<p:column selectionMode="multiple" style="width:16px;text-align:center" />
+
+				<p:column headerText="ID" width="3%">
+					<h:outputText value="#{pro.idProduit}" />
+				</p:column>
+
+				<p:column headerText="Nom" filterBy="#{pro.designation}"
+					filterMatchMode="contains">
+					<h:outputText value="#{pro.designation}" />
+				</p:column>
+
+				<p:column headerText="Description" filterBy="#{pro.description}"
+					filterMatchMode="contains">
+					<h:outputText value="#{pro.description}" />
+				</p:column>
+
+				<p:column headerText="Prix" filterBy="#{pro.prix}"
+					filterMatchMode="contains">
+					<h:outputText value="#{pro.prix}" />
+				</p:column>
+
+				<p:column headerText="Quantité" filterBy="#{pro.quantite}"
+					filterMatchMode="contains">
+					<h:outputText value="#{pro.quantite}" />
+				</p:column>
+
+			</p:dataTable>		
+		</h:form>
 </h:body>
 
 

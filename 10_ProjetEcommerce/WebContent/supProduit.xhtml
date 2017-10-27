@@ -31,16 +31,12 @@
 		<br/>
 
 	<h:form>
-		<p:commandButton value="Supprimer un produit" action="#{pMB.listeProduit}"  icon="ui-icon-disk" update=@all/>
-			<p:dataTable id="ListeP" var="pro" value="#{sessionScope.produitListe}" rowKey="#{pro.idProduit}">
+		<p:commandButton value="Supprimer un produit" action="#{pMB.deleteProduit}" icon="ui-icon-disk" update="@all"/>
+			<h:panelGrid columns="2" styleClass="centered">
 
-				<p:column selectionMode="multiple" style="width:16px;text-align:center"/>
-
-				<p:column headerText="ID" width="3%">
-					<h:outputText value="#{pro.idProduit}" />
-				</p:column>
-				
-			</p:dataTable>
+			<p:outputLabel for="idId" value="Id produit: " />
+			<p:inputMask id="idId" value="#{pMB.produit.idProduit}" />
+			</h:panelGrid>
 	</h:form>
 <!-- tracer la ligne horizontale -->
 			<p:separator />

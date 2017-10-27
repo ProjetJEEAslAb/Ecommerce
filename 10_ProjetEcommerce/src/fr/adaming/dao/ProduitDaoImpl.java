@@ -52,6 +52,12 @@ public class ProduitDaoImpl implements IProduitDao{
 		return verif;
 	}
 
+	@Override
+	public Produit addProduit(Produit pro) {
+		em.persist(pro);
+		return pro;
+	}
+
 	
 	
 

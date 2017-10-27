@@ -160,7 +160,7 @@ public class ProduitManagedBean implements Serializable{
 				// Actualiser la liste à afficher
 				this.listeProduit = produitService.GetAllProduits();
 
-				return "accueilClient";
+				return "supProduit";
 
 			} catch (Exception e) {
 

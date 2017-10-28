@@ -40,10 +40,8 @@ public class LigneCommandeManagedBean {
 	// constructeur vide	
 	
 	public LigneCommandeManagedBean() {
-		this.attPanier=new Panier();
 		this.ligneCommande = new LigneCommande();
 	}
-	
 // =======================================================================//
 	
 	@PostConstruct
@@ -51,7 +49,6 @@ public class LigneCommandeManagedBean {
 		FacesContext context = FacesContext.getCurrentInstance();
 	this.listeLigneCommande = ligneCommandeService.GetAllLigneCommande();
 	}
-
 
 // =======================================================================//
 	// getters et setters
@@ -88,10 +85,19 @@ public class LigneCommandeManagedBean {
 		this.ligneCommande = ligneCommande;
 	}
 	 
+	public boolean isIndice() {
+		return indice;
+	}
+
+	public void setIndice(boolean indice) {
+		this.indice = indice;
+	}
+
 // =======================================================================//
 	//methodes
 
-	public String rechercherLigneCommande(LigneCommande lc){
+
+	public String rechercherLigneCommande(){
 		
 		try {
 			// trouver le la ligne de commande que l'on cherche
@@ -107,17 +113,17 @@ public class LigneCommandeManagedBean {
 
 	}
 	
-	public String ajouterLigneCommande(LigneCommande lc) {
+	public String ajouterLigneCommande() {
 
 		try {
 			// Ajouter les informations dans this.panier
 			this.ligneCommande = ligneCommandeService.addLigneCommandePanier(this.ligneCommande);
-			return "accueilClient";
+			return "panier";
 
 		} catch (Exception e) {
 
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout a échoué"));
-			return "ajoutLigneCommande";
+			return "ajouterLigneCommande";
 
 		}
 

@@ -30,10 +30,13 @@
 		<p:column headerText="Prix produit">
 			<h:outputText value="#{lcMB.ligneCommande.prix}" />
 		</p:column>
+		
+		<p:column headerText="Id produit">
+			<h:outputText value="#{lcMB.ligneCommande.attProduit.idProduit}" />
+		</p:column>
 	</p:dataTable>
 
-				<p:commandButton value="Valider la commande" action="#{lcMB.ValiderLigneCommande}"  icon="ui-icon-disk" />
-				<p:commandButton value="Annuler la commande" action="#{lcMB.AnullerLigneCommande}"  icon="ui-icon-disk" />
+			
 </h:body>
 
 </html>

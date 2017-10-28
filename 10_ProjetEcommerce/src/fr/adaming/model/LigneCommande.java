@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="ligneComandes")
@@ -34,7 +35,7 @@ public class LigneCommande {
 	private Produit attProduit;
 	
 	//association avec un panier
-	
+	@Transient
 	private Panier attPanier;
 //=======================================================================//
 	

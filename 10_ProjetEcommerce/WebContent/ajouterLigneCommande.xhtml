@@ -18,15 +18,12 @@
 	<h:form >
 			<p:growl id="messages" autoUpdate="true" />
 				<h:panelGrid columns="2" styleClass="centered">
-
-					<p:outputLabel for="id_lcId" value="Id de la ligne de commande: " />
-					<p:inputMask id="id_lcId" value="#{lcMB.ligneCommande.id_lc}" />
 				
 					<p:outputLabel for="quantiteId" value="Quantite produit: " />
 					<p:inputMask id="quantiteId" value="#{lcMB.ligneCommande.quantite}" />
 				
-					<p:outputLabel for="prixId" value="Prix produit: " />
-					<p:inputMask id="prixId" value="#{lcMB.ligneCommande.prix}" />
+					<p:outputLabel for="idId" value="ID produit: " />
+					<p:inputMask id="idId" value="#{lcMB.ligneCommande.attProduit.idProduit}" />
 				
 					<p:commandButton value="ajouter ligne de commande" action="#{lcMB.ajouterLigneCommande}"  icon="ui-icon-disk" />
 				</h:panelGrid>

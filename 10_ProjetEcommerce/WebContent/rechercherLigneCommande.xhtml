@@ -25,6 +25,22 @@
 					<p:commandButton value="rechercher une ligne de commande" action="#{lcMB.rechercherLigneCommande}"  icon="ui-icon-disk" />
 				</h:panelGrid>
 	</h:form>
+	
+	<p:dataTable id="listeLigneCommande" var="panier" value="#{lcMB.ligneCommande}"
+		rendered="#{lcMB.indice}">
+
+		<p:column headerText="Id de la ligne de commande" width="3%">
+			<h:outputText value="#{panier.id_lc}" />
+		</p:column>
+
+		<p:column headerText="Quantite produit">
+			<h:outputText value="#{panier.quantite}" />
+		</p:column>
+
+		<p:column headerText="Prix produit">
+			<h:outputText value="#{panier.prix}" />
+		</p:column>
+	</p:dataTable>
 
 </h:body>
 </html>

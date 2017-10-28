@@ -13,7 +13,7 @@ import fr.adaming.model.LigneCommande;
 public class LigneCommandeServiceImpl implements ILigneCommandeService {
 
 	@EJB
-	private ILigneCommandeDao LigneCommandeDao= new LigneCommandeDaoImpl();
+	private ILigneCommandeDao LigneCommandeDao;
 	
 // =======================================================================//
 
@@ -29,7 +29,6 @@ public class LigneCommandeServiceImpl implements ILigneCommandeService {
 
 	@Override
 	public LigneCommande addLigneCommandePanier(LigneCommande lc) {
-		
 		return LigneCommandeDao.addLigneCommandePanier(lc);
 	}
 	

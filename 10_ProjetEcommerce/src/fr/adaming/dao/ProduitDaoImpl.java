@@ -54,7 +54,7 @@ public class ProduitDaoImpl implements IProduitDao {
 	}
 
 	@Override
-	public Produit addProduit(Produit pro) {
+	public Produit addProduitByLc(Produit pro) {
 		em.persist(pro);
 		return pro;
 	}

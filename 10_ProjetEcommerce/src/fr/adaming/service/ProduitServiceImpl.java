@@ -34,6 +34,11 @@ public class ProduitServiceImpl implements IProduitService {
 		return produitDao.deleteProduit(pro);
 	}
 
+	@Override
+	public Produit addProduitByLc(Produit pro) {
+		return produitDao.addProduitByLc(pro);
+	}
+	
 	// ============ Méthodes pour Agent ============
 	// TODO getProduitByIdByAgent
 	@Override
@@ -87,7 +92,7 @@ public class ProduitServiceImpl implements IProduitService {
 	@Override
 	public Produit addProduitByAgent(Produit pro) {
 
-		return produitDao.addProduit(pro);
+		return produitDao.addProduitByAgent(pro);
 	}
 
 	// TODO getAllProduitByAgent
@@ -96,5 +101,7 @@ public class ProduitServiceImpl implements IProduitService {
 
 		return produitDao.getAllProduitByAgent(a);
 	}
+
+
 
 }

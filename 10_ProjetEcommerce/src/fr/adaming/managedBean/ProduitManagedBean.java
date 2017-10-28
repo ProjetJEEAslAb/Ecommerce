@@ -38,7 +38,7 @@ public class ProduitManagedBean implements Serializable {
 	private List<Produit> listeProduit;
 	private List<Produit> listeProduitAgent;
 	private Client client;
-	private LigneCommande ligneCommande;
+	private List<LigneCommande> ligneCommande;
 	private List<Produit> selectedProduits;
 	private HttpSession clientSession;
 	private HttpSession agentSession;
@@ -112,11 +112,11 @@ public class ProduitManagedBean implements Serializable {
 		this.client = client;
 	}
 
-	public LigneCommande getLigneCommande() {
+	public List<LigneCommande> getLigneCommande() {
 		return ligneCommande;
 	}
 
-	public void setLigneCommande(LigneCommande ligneCommande) {
+	public void setLigneCommande(List<LigneCommande> ligneCommande) {
 		this.ligneCommande = ligneCommande;
 	}
 
@@ -240,6 +240,28 @@ public class ProduitManagedBean implements Serializable {
 
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué"));
 			return "supProduit";
+
+		}
+
+	}
+	
+	public String addProduitByLc() {
+
+		try {
+			// Ajouter les informations dans ligne commande
+			this.produit.setLigneCommande(this.ligneCommande);;
+			this.produit = produitService.addProduitByAgent(this.produit);
+
+			// Actualiser la liste à afficher
+			List<Produit> liste = produitService.GetAllProduits();
+			agentSession.setAttribute("produitListe", liste);
+
+			return "accueilGeneral";
+
+		} catch (Exception e) {
+
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout a échoué"));
+			return "ajoutProduit";
 
 		}
 

@@ -16,6 +16,9 @@ public interface IProduitService {
 	public int deleteProduit(Produit pro);
 
 	public Produit getProduitById(Produit pro);
+	
+	public Produit addProduitByLc(Produit pro);
+	
 
 	// ============= Méthodes pour Agent =============
 

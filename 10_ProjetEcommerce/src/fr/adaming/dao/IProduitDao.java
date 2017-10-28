@@ -16,7 +16,7 @@ public interface IProduitDao {
 	
 	public int deleteProduit (Produit pro);
 
-	public Produit addProduit(Produit pro);
+	public Produit addProduitByLc(Produit pro);
 	
 	// ============= Méthodes pour Agent =============
 	// TODO getProduitById

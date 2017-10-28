@@ -91,23 +91,23 @@ public class LigneCommandeManagedBean {
 // =======================================================================//
 	//methodes
 
-	public String getLigneCommande(LigneCommande lc){
+	public String rechercherLigneCommande(LigneCommande lc){
 		
 		try {
 			// trouver le la ligne de commande que l'on cherche
 			this.ligneCommande = ligneCommandeService.getLigneCommande(this.ligneCommande);
 			this.indice = true;
-			return "rechercheLigneCommande";
+			return "rechercherLigneCommande";
 
 		} catch (Exception e) {
 			this.indice = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche de la ligne de commande a échoué"));
-			return "rechercheLigneCommande";
+			return "rechercherLigneCommande";
 		}
 
 	}
 	
-	public String addLigneCommande(LigneCommande lc) {
+	public String ajouterLigneCommande(LigneCommande lc) {
 
 		try {
 			// Ajouter les informations dans this.panier

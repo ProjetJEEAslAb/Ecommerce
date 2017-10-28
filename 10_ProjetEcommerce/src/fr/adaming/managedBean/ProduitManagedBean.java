@@ -234,7 +234,7 @@ public class ProduitManagedBean implements Serializable {
 			// Actualiser la liste à afficher
 			this.listeProduit = produitService.GetAllProduits();
 
-			return "supProduit";
+			return "ajoutProduit";
 
 		} catch (Exception e) {
 
@@ -255,7 +255,7 @@ public class ProduitManagedBean implements Serializable {
 			List<Produit> liste = produitService.GetAllProduits();
 			agentSession.setAttribute("produitListe", liste);
 
-			return "accueilGeneral";
+			return "Panier";
 
 		} catch (Exception e) {
 

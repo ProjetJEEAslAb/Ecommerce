@@ -104,9 +104,13 @@ public class LigneCommandeManagedBean {
 	public void setId_produit(Long id_produit) {
 		this.id_produit = id_produit;
 	}
+	
+	
 
 // =======================================================================//
 	//methodes
+
+
 
 
 	public String rechercherLigneCommande(){
@@ -147,41 +151,74 @@ public class LigneCommandeManagedBean {
 
 	}
 	
-	public String Valider() {
-
-		this.listeLigneCommande = ligneCommandeService.GetAllLigneCommande();
-
-		double sommePrixTotal = 0;
-		for (LigneCommande ligne : this.listeLigneCommande) {
-			if (!ligne.isValide()) {
-
-				Produit prodValide = ligne.getAttProduit();
-				prodValide = prodService.getProduitById(prodValide);
-
-				prodValide.setQuantite(prodValide.getQuantite() - ligne.getQuantite());
-				if (prodValide.getQuantite() > 0) {
-
-					sommePrixTotal = sommePrixTotal + ligne.getPrix();
-					ligne.setValide(true);
-					
-
-				} else if (prodValide.getQuantite() == 0) {
-
-					sommePrixTotal = sommePrixTotal + ligne.getPrix();
-					ligne.setValide(true);
-					prodService.deleteProduit(prodValide);
-					
-
-				} else {
-					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("stock epuise"));
-					return "panier";
-				}
-			}else{
-				continue;
-			}
-
-		}
-		return "accueilGeneral";
-		
-	}
+//	public String Valider() {
+//
+//		this.listeLigneCommande = ligneCommandeService.GetAllLigneCommande();
+//
+//		double sommePrixTotal = 0;
+//		for (LigneCommande ligne : this.listeLigneCommande) {
+//			if (ligne.getValide()!=0) {
+//
+//				Produit prodValide = ligne.getAttProduit();
+//				prodValide = prodService.getProduitById(prodValide);
+//
+//				prodValide.setQuantite(prodValide.getQuantite() - ligne.getQuantite());
+//				if (prodValide.getQuantite() > 0) {
+//
+//					sommePrixTotal = sommePrixTotal + ligne.getPrix();
+//					ligne.setValide(1);
+//					
+//
+//				} else if (prodValide.getQuantite() == 0) {
+//
+//					sommePrixTotal = sommePrixTotal + ligne.getPrix();
+//					ligne.setValide(1);
+//					prodService.deleteProduit(prodValide);
+//					
+//
+//				} else {
+//					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("stock epuise"));
+//					return "panier";
+//				}
+//			}else{
+//				continue;
+//			}
+//
+//		}
+//		return "accueilGeneral";
+//		
+//	}
+//	
+//	public String Annuler() {
+//		return "accueilGeneral";
+//	
+//	
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

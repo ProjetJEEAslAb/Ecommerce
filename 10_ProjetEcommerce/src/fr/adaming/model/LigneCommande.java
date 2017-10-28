@@ -28,9 +28,9 @@ public class LigneCommande {
 	@Column(name="prix_lc")
 	private double prix;
 	
-	@Column(name="valide_lc")
-	private boolean valide=false;
-	
+//	@Column(name = "valide_lc")
+//	private int valide = 0;
+
 	// associations avec un produit
 	@ManyToOne
 	@JoinColumn(name="produit_id", referencedColumnName="id_pro")
@@ -48,7 +48,6 @@ public class LigneCommande {
 		super();
 	}
 	
-
 	public LigneCommande(int quantite, double prix, Produit attProduit, Panier attPanier) {
 		super();
 		this.quantite = quantite;
@@ -56,6 +55,7 @@ public class LigneCommande {
 		this.attProduit = attProduit;
 		this.attPanier = attPanier;
 	}
+	
 
 public LigneCommande(int id_lc, int quantite, double prix, Produit attProduit, Panier attPanier) {
 		super();
@@ -66,11 +66,11 @@ public LigneCommande(int id_lc, int quantite, double prix, Produit attProduit, P
 		this.attPanier = attPanier;
 	}
 
-
-
 //=======================================================================//
 	
 	//getteurs et setters
+
+
 
 public int getId_lc() {
 	return id_lc;
@@ -121,20 +121,16 @@ public void setAttPanier(Panier attPanier) {
 	this.attPanier = attPanier;
 }
 
-
-public boolean isValide() {
-	return valide;
-}
-
-
-public void setValide(boolean valide) {
-	this.valide = valide;
-}
-
-
-
-
-	
+//
+//	public int getValide() {
+//		return valide;
+//	}
+//
+//	public void setValide(int valide) {
+//		this.valide = valide;
+//	}
+//
+//	
 //=======================================================================//
 	
 

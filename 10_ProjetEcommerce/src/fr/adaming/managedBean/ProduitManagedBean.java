@@ -35,6 +35,7 @@ public class ProduitManagedBean implements Serializable {
 	// attributs
 	private Produit produit;
 	private Categorie categorie;
+	private Long idCategorie;
 	private List<Produit> listeProduit;
 	private List<Produit> listeProduitAgent;
 	private Client client;
@@ -66,7 +67,8 @@ public class ProduitManagedBean implements Serializable {
 		this.agentSession = (HttpSession) context.getExternalContext().getSession(false);
 		// Récupération de l'agent à partir de la session
 		this.agent = (Agent) agentSession.getAttribute("agentSession");
-		//this.listeProduitAgent = produitService.getAllProduitByAgent(this.agent);
+		// this.listeProduitAgent =
+		// produitService.getAllProduitByAgent(this.agent);
 
 		// // Récupération de la session
 		// this.clientSession = (HttpSession)
@@ -88,6 +90,14 @@ public class ProduitManagedBean implements Serializable {
 		this.produitService = produitService;
 	}
 
+	public ICategorieService getCategorieService() {
+		return categorieService;
+	}
+
+	public void setCategorieService(ICategorieService categorieService) {
+		this.categorieService = categorieService;
+	}
+
 	public Produit getProduit() {
 		return produit;
 	}
@@ -96,12 +106,36 @@ public class ProduitManagedBean implements Serializable {
 		this.produit = produit;
 	}
 
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
+	public Long getIdCategorie() {
+		return idCategorie;
+	}
+
+	public void setIdCategorie(Long idCategorie) {
+		this.idCategorie = idCategorie;
+	}
+
 	public List<Produit> getListeProduit() {
 		return listeProduit;
 	}
 
 	public void setListeProduit(List<Produit> listeProduit) {
 		this.listeProduit = listeProduit;
+	}
+
+	public List<Produit> getListeProduitAgent() {
+		return listeProduitAgent;
+	}
+
+	public void setListeProduitAgent(List<Produit> listeProduitAgent) {
+		this.listeProduitAgent = listeProduitAgent;
 	}
 
 	public Client getClient() {
@@ -136,22 +170,6 @@ public class ProduitManagedBean implements Serializable {
 		this.clientSession = clientSession;
 	}
 
-	public boolean isIndice() {
-		return indice;
-	}
-
-	public void setIndice(boolean indice) {
-		this.indice = indice;
-	}
-
-	public List<Produit> getListeProduitAgent() {
-		return listeProduitAgent;
-	}
-
-	public void setListeProduitAgent(List<Produit> listeProduitAgent) {
-		this.listeProduitAgent = listeProduitAgent;
-	}
-
 	public HttpSession getAgentSession() {
 		return agentSession;
 	}
@@ -168,23 +186,13 @@ public class ProduitManagedBean implements Serializable {
 		this.agent = agent;
 	}
 
-	public ICategorieService getCategorieService() {
-		return categorieService;
+	public boolean isIndice() {
+		return indice;
 	}
 
-	public void setCategorieService(ICategorieService categorieService) {
-		this.categorieService = categorieService;
+	public void setIndice(boolean indice) {
+		this.indice = indice;
 	}
-
-	public Categorie getCategorie() {
-		return categorie;
-	}
-
-	public void setCategorie(Categorie categorie) {
-		this.categorie = categorie;
-	}
-	
-	
 
 	// =======================================================================//
 	public List<Produit> completeProduit(String query) {
@@ -203,6 +211,8 @@ public class ProduitManagedBean implements Serializable {
 	}
 
 	// =======================================================================//
+
+	
 
 	public String getProduitById() {
 
@@ -244,13 +254,14 @@ public class ProduitManagedBean implements Serializable {
 		}
 
 	}
-	
+
 	public String addProduitByLc() {
 
 		try {
 			// Ajouter les informations dans ligne commande
-			this.produit.setLigneCommande(this.ligneCommande);;
-			
+			this.produit.setLigneCommande(this.ligneCommande);
+			;
+
 			// Actualiser la liste à afficher
 			List<Produit> liste = produitService.GetAllProduits();
 			agentSession.setAttribute("produitListe", liste);
@@ -300,7 +311,10 @@ public class ProduitManagedBean implements Serializable {
 
 		try {
 			// Ajouter les informations dans this.produit
+			Categorie catAjout = new Categorie();
+			catAjout.setIdCategorie(this.idCategorie);
 			this.produit.setAttAgent(this.agent);
+			this.produit.setAttCategorie(catAjout);
 			this.produit = produitService.addProduitByAgent(this.produit);
 
 			// Actualiser la liste à afficher
@@ -352,9 +366,11 @@ public class ProduitManagedBean implements Serializable {
 
 		// Récupérer l'agent de la session
 		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
+		Categorie catUp = new Categorie();
+		catUp.setIdCategorie(this.idCategorie);
 
 		try {
-			// Trouver la catégorie à modifier
+			// Trouver le produit à modifier
 			Produit proUp = produitService.getProduitByIdByAgent(this.produit, this.agent);
 
 			// Modifier la catégorie retrouvée
@@ -362,7 +378,7 @@ public class ProduitManagedBean implements Serializable {
 			proUp.setDescription(this.produit.getDescription());
 			proUp.setPrix(this.produit.getPrix());
 			proUp.setQuantite(this.produit.getQuantite());
-			proUp.setAttCategorie(this.produit.getAttCategorie());
+			proUp.setAttCategorie(catUp);
 
 			produitService.updateProduitByAgent(proUp, this.agent);
 
@@ -380,8 +396,5 @@ public class ProduitManagedBean implements Serializable {
 		}
 
 	}
-	
-	
-	
 
 }

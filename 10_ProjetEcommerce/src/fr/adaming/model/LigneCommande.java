@@ -26,9 +26,11 @@ public class LigneCommande {
 	private int quantite;
 	
 	@Column(name="prix_lc")
-	private int prix;
+	private double prix;
 	
-
+	@Column(name="valide_lc")
+	private boolean valide=false;
+	
 	// associations avec un produit
 	@ManyToOne
 	@JoinColumn(name="produit_id", referencedColumnName="id_pro")
@@ -46,63 +48,92 @@ public class LigneCommande {
 		super();
 	}
 	
-	public LigneCommande(int quantite, int prix) {
+
+	public LigneCommande(int quantite, double prix, Produit attProduit, Panier attPanier) {
 		super();
 		this.quantite = quantite;
 		this.prix = prix;
+		this.attProduit = attProduit;
+		this.attPanier = attPanier;
 	}
 
-
-	public LigneCommande(int id_lc, int quantite, int prix) {
+public LigneCommande(int id_lc, int quantite, double prix, Produit attProduit, Panier attPanier) {
 		super();
 		this.id_lc = id_lc;
 		this.quantite = quantite;
 		this.prix = prix;
+		this.attProduit = attProduit;
+		this.attPanier = attPanier;
 	}
+
+
 
 //=======================================================================//
 	
 	//getteurs et setters
 
-	public int getQuantite() {
-		return quantite;
-	}
+public int getId_lc() {
+	return id_lc;
+}
 
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
-	}
 
-	public int getPrix() {
-		return prix;
-	}
+public void setId_lc(int id_lc) {
+	this.id_lc = id_lc;
+}
 
-	public void setPrix(int prix) {
-		this.prix = prix;
-	}
-	
-	public int getId_lc() {
-		return id_lc;
-	}
 
-	public void setId_lc(int id_lc) {
-		this.id_lc = id_lc;
-	}
+public int getQuantite() {
+	return quantite;
+}
 
-	public Produit getAttProduit() {
-		return attProduit;
-	}
 
-	public void setAttProduit(Produit attProduit) {
-		this.attProduit = attProduit;
-	}
+public void setQuantite(int quantite) {
+	this.quantite = quantite;
+}
 
-	public Panier getAttPanier() {
-		return attPanier;
-	}
 
-	public void setAttPanier(Panier attPanier) {
-		this.attPanier = attPanier;
-	}
+public double getPrix() {
+	return prix;
+}
+
+
+public void setPrix(double prix) {
+	this.prix = prix;
+}
+
+
+public Produit getAttProduit() {
+	return attProduit;
+}
+
+
+public void setAttProduit(Produit attProduit) {
+	this.attProduit = attProduit;
+}
+
+
+public Panier getAttPanier() {
+	return attPanier;
+}
+
+
+public void setAttPanier(Panier attPanier) {
+	this.attPanier = attPanier;
+}
+
+
+public boolean isValide() {
+	return valide;
+}
+
+
+public void setValide(boolean valide) {
+	this.valide = valide;
+}
+
+
+
+
 	
 //=======================================================================//
 	

@@ -14,28 +14,43 @@
 
 <h:body>
 
+
+<h:form>
+		<p:menubar>
+			<p:menuitem value="AccueilGeneral" url="accueilGeneral.xhtml" color="red" />
+			<p:menuitem value="AjoutClient" url="ajoutClient.xhtml" color="red" />
+			<p:menuitem value="ModifClient" url="modifClient.xhtml" color="red" />
+			<p:menuitem value="SupClient" url="supClient.xhtml" color="red" />
+			<p:menuitem value="rechercherLigneCommande" url="rechercherLigneCommande.xhtml" color="red" />
+			<p:menuitem value="ajouterLigneCommande" url="ajouterLigneCommande.xhtml" color="red" />
+			<p:menuitem value="Panier" url="#" color="red" />
+		</p:menubar>	
+	</h:form>	
+	
+	
 	<h1 style="color:#C7355C; text-align: center">Panier</h1>
 
-	<p:dataTable id="listeLigneCommande" var="panier" value="#{lcMB.ligneCommande}"
-		rendered="#{lcMB.ligneCommande.id_lc}">
+	<p:dataTable id="listeLigneCommande" var="panier" value="#{lcMB.listeLigneCommande}">
 
 		<p:column headerText="Id de la ligne de commande" width="3%">
-			<h:outputText value="#{lcMB.ligneCommande.id_lc}" />
+			<h:outputText value="#{panier.id_lc}" />
 		</p:column>
 
 		<p:column headerText="Quantite produit">
-			<h:outputText value="#{lcMB.ligneCommande.quantite}" />
+			<h:outputText value="#{panier.quantite}" />
 		</p:column>
 
-		<p:column headerText="Prix produit">
-			<h:outputText value="#{lcMB.ligneCommande.prix}" />
+		<p:column headerText="Prix total">
+			<h:outputText value="#{panier.prix}" />
 		</p:column>
 		
 		<p:column headerText="Id produit">
-			<h:outputText value="#{lcMB.ligneCommande.attProduit.idProduit}" />
+			<h:outputText value="#{panier.attProduit.designation}" />
 		</p:column>
 	</p:dataTable>
 
+<p:commandButton value="Valider la commande" action="#{lcMB.Valider}"  icon="ui-icon-disk" />
+<p:commandButton value="Annuler la commande" action="#{lcMB.Annuler}"  icon="ui-icon-disk" />
 			
 </h:body>
 

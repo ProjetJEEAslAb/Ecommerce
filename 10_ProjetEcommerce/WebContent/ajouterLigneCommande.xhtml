@@ -23,7 +23,7 @@
 					<p:inputMask id="quantiteId" value="#{lcMB.ligneCommande.quantite}" />
 				
 					<p:outputLabel for="idId" value="ID produit: " />
-					<p:inputMask id="idId" value="#{lcMB.ligneCommande.attProduit.idProduit}" />
+					<p:inputMask id="idId" value="#{lcMB.id_produit}" />
 				
 					<p:commandButton value="ajouter ligne de commande" action="#{lcMB.ajouterLigneCommande}"  icon="ui-icon-disk" />
 				</h:panelGrid>

@@ -260,7 +260,7 @@ public class ProduitManagedBean implements Serializable {
 		try {
 			// Ajouter les informations dans ligne commande
 			this.produit.setLigneCommande(this.ligneCommande);
-			;
+			
 
 			// Actualiser la liste à afficher
 			List<Produit> liste = produitService.GetAllProduits();

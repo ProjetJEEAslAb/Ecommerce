@@ -10,11 +10,13 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import fr.adaming.model.Categorie;
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Panier;
 import fr.adaming.model.Produit;
 import fr.adaming.service.ICategorieService;
 import fr.adaming.service.ILigneCommandeService;
+import fr.adaming.service.IProduitService;
 import fr.adaming.service.LigneCommandeServiceImpl;
 
 
@@ -26,12 +28,14 @@ public class LigneCommandeManagedBean {
 	// injection dependance
 	@EJB
 	private ILigneCommandeService ligneCommandeService;
-	
+	@EJB
+	private IProduitService prodService;
 // =======================================================================//
 	// attributs
 	
 	private Panier attPanier;
 	private List<LigneCommande> listeLigneCommande;
+	private Long id_produit;
 	private LigneCommande ligneCommande;
 	
 	// Pour l'affichage des tables
@@ -93,6 +97,14 @@ public class LigneCommandeManagedBean {
 		this.indice = indice;
 	}
 
+	public Long getId_produit() {
+		return id_produit;
+	}
+
+	public void setId_produit(Long id_produit) {
+		this.id_produit = id_produit;
+	}
+
 // =======================================================================//
 	//methodes
 
@@ -117,15 +129,59 @@ public class LigneCommandeManagedBean {
 
 		try {
 			// Ajouter les informations dans this.panier
+			Produit prodAjout = new Produit();
+			prodAjout.setIdProduit(this.id_produit);
+			this.ligneCommande.setAttProduit(prodAjout);
+			prodAjout=prodService.getProduitById(prodAjout);
+			this.ligneCommande.setPrix(prodAjout.getPrix()*this.ligneCommande.getQuantite());
 			this.ligneCommande = ligneCommandeService.addLigneCommandePanier(this.ligneCommande);
 			return "panier";
 
 		} catch (Exception e) {
 
+			
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("L'ajout a échoué"));
 			return "ajouterLigneCommande";
 
 		}
 
+	}
+	
+	public String Valider() {
+
+		this.listeLigneCommande = ligneCommandeService.GetAllLigneCommande();
+
+		double sommePrixTotal = 0;
+		for (LigneCommande ligne : this.listeLigneCommande) {
+			if (!ligne.isValide()) {
+
+				Produit prodValide = ligne.getAttProduit();
+				prodValide = prodService.getProduitById(prodValide);
+
+				prodValide.setQuantite(prodValide.getQuantite() - ligne.getQuantite());
+				if (prodValide.getQuantite() > 0) {
+
+					sommePrixTotal = sommePrixTotal + ligne.getPrix();
+					ligne.setValide(true);
+					
+
+				} else if (prodValide.getQuantite() == 0) {
+
+					sommePrixTotal = sommePrixTotal + ligne.getPrix();
+					ligne.setValide(true);
+					prodService.deleteProduit(prodValide);
+					
+
+				} else {
+					FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("stock epuise"));
+					return "panier";
+				}
+			}else{
+				continue;
+			}
+
+		}
+		return "accueilGeneral";
+		
 	}
 }

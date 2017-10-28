@@ -11,22 +11,119 @@
 </h:head>
 
 <h:body>
-<h:form>
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="200"
+			style=" text-align : center;">
+			<h:graphicImage value="resTest/bannergif.gif" width="50%"
+				height="90%" />
+
+			<p:commandLink id="withIcon1" action="#{buttonView.buttonAction}"
+				style="position:relative; bottom:40px; right:-100px">
+				<h:graphicImage value="resTest/pompon_rose_GF.jpg" width="5%"
+					height="40%" />
+			</p:commandLink>
+
+			<p:commandLink id="withIcon2" action="#{buttonView.buttonAction}"
+				style="position:relative; bottom:40px; right:-200px">
+				<h:graphicImage value="resTest/panier.jpg" width="5%" height="40%" />
+			</p:commandLink>
+		</p:layoutUnit>
+
+		<p:layoutUnit position="south" size="100" header="Bottom">
+			<h:outputText value="South unit content." />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="west" size="200" header="Left">
+			<h:outputText value="West unit content." />
+			<h:graphicImage value="resTest/a.gif" width="80%" length="80%" />
+			<br />
+			<br />
+			<h:graphicImage value="resTest/g.gif" width="70%" length="70%" />
+			<br />
+			<br />
+			<h:graphicImage value="resTest/e.gif" width="80%" length="80%" />
+			<br />
+			<br />
+			<h:graphicImage value="resTest/v.gif" width="80%" length="80%" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="east" size="200" header="Right">
+			<h:outputText value="Right unit content." />
+			<h:graphicImage
+				value="resTest/tumblr_n9sn3qRUwV1r5iumyo1_r1_1280.gif" width="90%"
+				length="90%" />
+			<br />
+			<br />
+			<h:graphicImage value="resTest/tumblr_n7f383vqpW1r5iumyo1_1280.gif"
+				width="90%" length="90%" />
+			<br />
+			<br />
+			<h:graphicImage value="resTest/q.gif" width="90%" length="90%" />
+			<br />
+			<br />
+			<h:graphicImage value="resTest/h.gif" width="80%" length="80%" />
+		</p:layoutUnit>
+
+		<p:layoutUnit position="center">
+
+			<h:form id="form">
+				<p:dataGrid var="pro" value="#{pMB.listeProduit}" columns="3"
+					layout="grid" rows="12" paginator="true" id="cat"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="10,20,30">
+
+					<f:facet name="header">
+            Produits disponibles
+        	</f:facet>
+
+					<p:panel header="#{pro.attCategorie.nomCategorie}"
+						style="text-align:center">
+						<h:panelGrid columns="1" style="width:100%">
+							<h:outputText value="#{pro.designation}" />
+
+							<p:commandLink update=":form:proDetail"
+								oncomplete="PF('proDialog').show()" title="Détails">
+								<h:outputText styleClass="ui-icon ui-icon-search"
+									style="margin:0 auto;" />
+								<f:setPropertyActionListener value="#{pro}"
+									target="#{pMB.produit}" />
+							</p:commandLink>
+						</h:panelGrid>
+					</p:panel>
+				</p:dataGrid>
+
+				<p:dialog header="Info Produit" widgetVar="proDialog" modal="true"
+					showEffect="fade" hideEffect="fade" resizable="false">
+					<p:outputPanel id="proDetail" style="text-align:center;">
+						<p:panelGrid columns="2" rendered="#{not empty pMB.produit}"
+							columnClasses="label,value">
+
+							<h:outputText value="Description :" />
+							<h:outputText value="#{pMB.produit.description}" />
+
+							<h:outputText value="Prix :" />
+							<h:outputText value="#{pMB.produit.prix}" />
+
+							<h:outputText value="En stock :" />
+							<h:outputText value="#{pMB.produit.quantite}" />
+						</p:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+			</h:form>
+
+		</p:layoutUnit>
+	</p:layout>
+
+	<h:form>
 		<p:menubar>
 			<p:menuitem value="AccueilGeneral" url="#" color="red" />
 			<p:menuitem value="supProduit" url="supProduit.xhtml" color="red" />
-			
-		</p:menubar>	
-	</h:form>	
-	<h:form>
-		<p:growl id="messages" />
-		<legend>Formulaire de login Agent</legend>
-		<h:panelGrid columns="2">
-			Mail : <h:inputText value="#{aMB.agent.mail}" />
-			Mot de passe : <h:inputText value="#{aMB.agent.mdp}" />
-			<h:commandButton value="Se connecter" action="#{aMB.seConnecter}" />
-		</h:panelGrid>
+
+		</p:menubar>
 	</h:form>
+
 
 	<h:form>
 		<p:growl id="messages" />

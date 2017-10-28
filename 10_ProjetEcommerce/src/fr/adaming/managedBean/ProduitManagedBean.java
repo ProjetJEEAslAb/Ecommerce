@@ -66,7 +66,7 @@ public class ProduitManagedBean implements Serializable {
 		this.agentSession = (HttpSession) context.getExternalContext().getSession(false);
 		// Récupération de l'agent à partir de la session
 		this.agent = (Agent) agentSession.getAttribute("agentSession");
-		this.listeProduitAgent = produitService.getAllProduitByAgent(this.agent);
+		//this.listeProduitAgent = produitService.getAllProduitByAgent(this.agent);
 
 		// // Récupération de la session
 		// this.clientSession = (HttpSession)

@@ -250,8 +250,7 @@ public class ProduitManagedBean implements Serializable {
 		try {
 			// Ajouter les informations dans ligne commande
 			this.produit.setLigneCommande(this.ligneCommande);;
-			this.produit = produitService.addProduitByAgent(this.produit);
-
+			
 			// Actualiser la liste à afficher
 			List<Produit> liste = produitService.GetAllProduits();
 			agentSession.setAttribute("produitListe", liste);
@@ -300,7 +299,7 @@ public class ProduitManagedBean implements Serializable {
 		this.agent = (Agent) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("agentSession");
 
 		try {
-			// Ajouter les informations dans this.categorie
+			// Ajouter les informations dans this.produit
 			this.produit.setAttAgent(this.agent);
 			this.produit = produitService.addProduitByAgent(this.produit);
 
@@ -381,5 +380,8 @@ public class ProduitManagedBean implements Serializable {
 		}
 
 	}
+	
+	
+	
 
 }

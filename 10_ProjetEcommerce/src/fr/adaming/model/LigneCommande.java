@@ -102,7 +102,6 @@ public class LigneCommande {
 	public void setAttPanier(Panier attPanier) {
 		this.attPanier = attPanier;
 	}
-
 	
 //=======================================================================//
 	

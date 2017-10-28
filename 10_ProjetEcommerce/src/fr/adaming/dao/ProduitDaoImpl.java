@@ -74,7 +74,7 @@ public class ProduitDaoImpl implements IProduitDao {
 
 		// 3. Résultat
 		Produit proFind = (Produit) query.getSingleResult();
-		System.out.println("Dao" + proFind);
+		System.out.println("Dao" + proFind.getDesignation());
 		return proFind;
 	}
 

@@ -35,6 +35,9 @@
 		<p:growl id="messages" autoUpdate="true" />
 		<h:panelGrid columns="2">
 
+			<p:outputLabel for="catId" value="ID Categorie : " />
+			<p:inputMask id="catId" value="#{pMB.idCategorie}" required="true" />
+
 			<p:outputLabel for="desiId" value="Désignation : " />
 			<p:inputMask id="desiId" value="#{pMB.produit.designation}"
 				required="true" />

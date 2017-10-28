@@ -17,18 +17,17 @@
 		<h:panelGrid columns="3">
 			<p:outputLabel for="Idcat" value="ID Catégorie : " />
 			<p:inputMask id="Idcat" value="#{catMB.categorie.idCategorie}"
-				required="true" size="5" />
+				required="false" size="5" />
 			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
 				action="#{catMB.getCategorieById}" update="@all" />
 		</h:panelGrid>
 	</h:form>
 
 	<h:form>
-		<p:growl id="messages" autoUpdate="true" />
 		<h:panelGrid columns="3">
 			<p:outputLabel for="Idpro" value="ID Produit : " />
 			<p:inputMask id="Idpro" value="#{pMB.produit.idProduit}"
-				required="true" size="5" />
+				required="false" size="5" />
 			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
 				action="#{pMB.getProduitByIdByAgent}" update="@all" />
 		</h:panelGrid>
@@ -52,8 +51,8 @@
 	</p:dataTable>
 
 
+	<p:dataTable id="ListeP" var="pro" value="#{pMB.produit}">
 
-	<p:dataTable id="ListeP" var="pro" value="#{pMB.produit}" rendered="#{pMB.indice}">
 		<p:column headerText="ID" width="3%">
 			<h:outputText value="#{pro.idProduit}" />
 		</p:column>
@@ -75,11 +74,9 @@
 		</p:column>
 
 		<p:column headerText="Catégorie">
-			<h:outputText value="#{pro.attCategorie.nomCategorie}" />
+			<h:outputText value="#{pro.attCategorie.idCategorie}" />
 		</p:column>
 	</p:dataTable>
-
-
 </h:body>
 
 </html>

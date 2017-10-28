@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Page login</title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+		<p:growl id="messages" autoUpdate="true" />
+		<h:panelGrid columns="3">
+			<p:outputLabel for="Idcat" value="ID Catégorie : " />
+			<p:inputMask id="Idcat" value="#{catMB.categorie.idCategorie}"
+				required="false" size="5" />
+			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
+				action="#{catMB.getCategorieById}" update="@all" />
+		</h:panelGrid>
+	</h:form>
+
+	<h:form>
+		<h:panelGrid columns="3">
+			<p:outputLabel for="Idpro" value="ID Produit : " />
+			<p:inputMask id="Idpro" value="#{pMB.produit.idProduit}"
+				required="false" size="5" />
+			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
+				action="#{pMB.getProduitByIdByAgent}" update="@all" />
+		</h:panelGrid>
+	</h:form>
+
+
+	<p:dataTable id="ListeC" var="cat" value="#{catMB.categorie}"
+		rendered="#{catMB.indice}">
+
+		<p:column headerText="ID" width="3%">
+			<h:outputText value="#{cat.idCategorie}" />
+		</p:column>
+
+		<p:column headerText="Nom">
+			<h:outputText value="#{cat.nomCategorie}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{cat.description}" />
+		</p:column>
+	</p:dataTable>
+<<<<<<< HEAD
+	
+	<p:dataTable id="ListeP" var="pro" value="#{pMB.produit}" rendered="#{pMB.indice}">
+=======
+
+
+	<p:dataTable id="ListeP" var="pro" value="#{pMB.produit}">
+
+>>>>>>> branch 'master' of https://github.com/ProjetJEEAslAb/Ecommerce.git
+		<p:column headerText="ID" width="3%">
+			<h:outputText value="#{pro.idProduit}" />
+		</p:column>
+
+		<p:column headerText="Nom">
+			<h:outputText value="#{pro.designation}" />
+		</p:column>
+
+		<p:column headerText="Description">
+			<h:outputText value="#{pro.description}" />
+		</p:column>
+
+		<p:column headerText="Prix">
+			<h:outputText value="#{pro.prix}" />
+		</p:column>
+
+		<p:column headerText="Quantité">
+			<h:outputText value="#{pro.quantite}" />
+		</p:column>
+
+		<p:column headerText="Catégorie">
+			<h:outputText value="#{pro.attCategorie.idCategorie}" />
+		</p:column>
+	</p:dataTable>
+</h:body>
+
+</html>

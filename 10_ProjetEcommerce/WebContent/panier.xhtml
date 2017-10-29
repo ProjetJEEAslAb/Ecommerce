@@ -31,7 +31,7 @@
 	<h1 style="color:#C7355C; text-align: center">Panier
 	<h:graphicImage value="resTest/h.gif" width="8%" length="8%" style="position:relative; bottom:-20px;left:40px"/>
 	</h1>
-
+<h:form>
 	<p:dataTable id="listeLigneCommande" var="panier" value="#{lcMB.listeLigneCommande}">
 
 		<p:column headerText="Id de la ligne de commande" width="3%">
@@ -46,11 +46,24 @@
 			<h:outputText value="#{panier.prix}" />
 		</p:column>
 		
-		<p:column headerText="Id produit">
+		<p:column headerText="designation">
 			<h:outputText value="#{panier.attProduit.designation}" />
 		</p:column>
-	</p:dataTable>
+		
+		<p:column headerText="id du produit">
+			<h:outputText value="#{panier.attProduit.idProduit}" />
+		</p:column>
+		
+		<p:column>
+			<p:commandButton  action="#{lcMB.supprimerLigneCommande}" icon="ui-icon-close" title="View" update="@all">
+                <f:setPropertyActionListener value="#{panier.id_lc}" target="#{lcMB.ligneCommande.id_lc}" />
+            </p:commandButton>
+         </p:column>
+         
 
+	</p:dataTable>
+</h:form>
+   
 <p:commandButton value="Valider la commande" action="#{lcMB.Valider}"  icon="ui-icon-disk" />
 <p:commandButton value="Annuler la commande" action="#{lcMB.Annuler}"  icon="ui-icon-disk" />
 			

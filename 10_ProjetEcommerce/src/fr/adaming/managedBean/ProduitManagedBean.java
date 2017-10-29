@@ -220,12 +220,12 @@ public class ProduitManagedBean implements Serializable {
 			// trouver le produit que l'on cherche
 			this.produit = produitService.getProduitById(this.produit);
 			this.indice = true;
-			return "rechercheProduit";
+			return "rechercherProduit";
 
 		} catch (Exception e) {
 			this.indice = false;
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la recherche de produit a échoué"));
-			return "rechercheProduit";
+			return "rechercherProduit";
 		}
 
 	}
@@ -244,7 +244,7 @@ public class ProduitManagedBean implements Serializable {
 			// Actualiser la liste à afficher
 			this.listeProduit = produitService.GetAllProduits();
 
-			return "ajoutProduit";
+			return "panier";
 
 		} catch (Exception e) {
 

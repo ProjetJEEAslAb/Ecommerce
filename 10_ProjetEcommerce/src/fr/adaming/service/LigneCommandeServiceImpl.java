@@ -31,6 +31,12 @@ public class LigneCommandeServiceImpl implements ILigneCommandeService {
 	public LigneCommande addLigneCommandePanier(LigneCommande lc) {
 		return LigneCommandeDao.addLigneCommandePanier(lc);
 	}
+
+	@Override
+	public int deleteLigneCommandePanier(LigneCommande lc) {
+		
+		return LigneCommandeDao.deleteLigneCommandePanier(lc) ;
+	}
 	
 	
 }

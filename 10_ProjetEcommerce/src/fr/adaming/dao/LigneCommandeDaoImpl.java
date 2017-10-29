@@ -56,6 +56,16 @@ public class LigneCommandeDaoImpl implements ILigneCommandeDao{
 	}
 
 	
+//=====================================================================//
+	@Override
+	public int deleteLigneCommandePanier(LigneCommande lc) {
+		String req = " DELETE LigneCommande lc WHERE lc.id_lc=:pId_lc";
+		Query query = em.createQuery(req);
+		query.setParameter("pId_lc", lc.getId_lc());
+		int verif = query.executeUpdate();
+		return verif;
+	}
+
 	
 	
 	

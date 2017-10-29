@@ -151,6 +151,28 @@ public class LigneCommandeManagedBean {
 
 	}
 	
+	public String supprimerLigneCommande(){
+		try {
+			// Trouver le produit à supprimer
+			LigneCommande lcsup = ligneCommandeService.getLigneCommande(this.ligneCommande);
+
+			// Supprimer le produit recherché
+			ligneCommandeService.deleteLigneCommandePanier(lcsup);
+
+			// Actualiser la liste à afficher
+			this.listeLigneCommande = ligneCommandeService.GetAllLigneCommande();
+
+			return "panier";
+
+		} catch (Exception e) {
+
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("La suppression a échoué"));
+			return "supProduit";
+
+		}
+
+	}
+	
 //	public String Valider() {
 //
 //		this.listeLigneCommande = ligneCommandeService.GetAllLigneCommande();

@@ -16,4 +16,7 @@ public interface ILigneCommandeDao {
 	
 	public LigneCommande addLigneCommandePanier(LigneCommande lc);
 	
+	public int deleteLigneCommandePanier(LigneCommande lc);
+	
+	
 }

@@ -52,7 +52,7 @@
 
 				<f:facet name="footer">
 					<p:commandButton value="Login" update="growl"
-						action="#{cMB.seConnecterClient}"
+						action="#{cMB.seConnecterClient1}"
 						oncomplete="handleLoginRequest(xhr, status, args)" />
 				</f:facet>
 			</h:panelGrid>
@@ -91,6 +91,9 @@
 		<p:outputPanel id="proDetail" style="text-align:center;">
 			<p:panelGrid columns="2" rendered="#{not empty pMB.produit}"
 				columnClasses="label,value">
+				
+				<h:outputText value="Id produit :" />
+				<h:outputText value="#{pMB.produit.idProduit}" />
 
 				<h:outputText value="Description :" />
 				<h:outputText value="#{pMB.produit.description}" />

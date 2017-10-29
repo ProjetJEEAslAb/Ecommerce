@@ -98,7 +98,7 @@ public class ClientManagedBean implements Serializable{
 			// ajouter le client dans la session
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", client_out);
 
-			return "accueilClient";
+			return "accueilGeneral";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,6 +107,22 @@ public class ClientManagedBean implements Serializable{
 		return "accueilGeneral";
 	}
 	
+	public String seConnecterClient1() {
+
+		try {
+			Client client_out = clientService.isExist(this.client);
+
+			// ajouter le client dans la session
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", client_out);
+
+			return "panier";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("l'identifiant et/ou le mot de passe est erroné"));
+		}
+		return "accueilGeneral";
+	}
 
 	// la methode pour se deconnecter
 
@@ -128,7 +144,7 @@ public class ClientManagedBean implements Serializable{
 
 		if (cl.getId() != 0) {
 
-			return "accueilClient";
+			return "accueilGeneral";
 
 		} else {
 
@@ -136,7 +152,7 @@ public class ClientManagedBean implements Serializable{
 		// afficher le message d'erreur sur la page
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("l'ajout a échoué"));
 
-		return "ajoutClient";
+		return "accueilGeneral";
 
 	}
 	

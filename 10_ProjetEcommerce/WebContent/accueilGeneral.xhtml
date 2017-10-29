@@ -14,9 +14,10 @@
 <h:body>
 <h:form>
 	<!-- ============================ Bannière  ============================ -->
-	<u><h1 style="position:relative; top:100px; left:80px">
+	<u style ="color:#e60000"><h1 style="position:relative; top:120px; left:80px; color:#ff6666">
 				<b>POKE</b> shop
 			</h1></u>
+	
 	<h:graphicImage value="resTest/bannergif.gif" style="position:relative; bottom:70px; left:500px"/>
 </h:form >
 <hr/>
@@ -30,7 +31,7 @@
 				update="messages" />
 			<p:menuitem value="S'inscrire" action="ajoutClient"
 				update="messages" />
-			<p:menuitem value="Panier" actionListener="#{menuView.save}"
+			<p:menuitem value="Panier" action ="seConnecter" 
 				update="messages" />
 		</p:tabMenu>
 
@@ -101,7 +102,7 @@
 				<h:outputText value="#{pMB.produit.quantite}" />
 			</p:panelGrid>
 		</p:outputPanel>
-		<p:commandLink value="valider" type="button" action="#{lcMB.ajouterLigneCommande}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="@all"/>
+		<b><p:commandLink value="Ajouter au panier" style="color:#b32400" type="button" action="#{lcMB.ajouterLigneCommande}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="@all"/></b>
 	</p:dialog>
 
 

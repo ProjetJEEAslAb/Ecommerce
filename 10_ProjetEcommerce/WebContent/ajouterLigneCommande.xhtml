@@ -11,9 +11,16 @@
 	<title>Page ajout LC</title>
 </h:head>
 
+
+
 <h:body>
 	<h:form>
-		<p:commandButton value="Retour" action="#{cMB.seConnecterClient}"  icon="ui-icon-disk" />	
+		<p:menubar>
+				<p:menuitem value="AccueilGeneral" url="accueilGeneral.xhtml" color="red" />
+				<p:menuitem value="ajouter une ligne de commande" url="#" color="red" />
+				<p:menuitem value="suprimer un produit" url="supProduit.xhtml" color="red" />
+				<p:menuitem value="Ajouter un produit" url="ajoutProduit.xhtml" color="red" />
+		</p:menubar>
 	</h:form>
 		
 	<h1 style="color:#C7355C; text-align: center"> Formulaire d'ajout de commandes</h1>

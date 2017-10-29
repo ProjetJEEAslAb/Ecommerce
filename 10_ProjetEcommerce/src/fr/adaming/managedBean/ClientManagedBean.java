@@ -98,7 +98,7 @@ public class ClientManagedBean implements Serializable{
 			// ajouter le client dans la session
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", client_out);
 
-			return "accueilGeneral";
+			return "accueilClient";
 			
 		} catch (Exception e) {
 			e.printStackTrace();

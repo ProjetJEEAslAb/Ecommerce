@@ -10,22 +10,16 @@
 	<title>Page accueil Client</title>
 </h:head>
 
-<h:body>
-
-	
-
+<h:body >
+	<h:graphicImage value="resTest/welcom_pikachu.bmp" style="position:relative; width:100%; height:1100px"/>
 <h:form>
-	<p:stack icon="/resources/images/stack.png" expanded="true">
-		<p:menuitem value="Ajouter" icon="/resources/images/add.png"
-			url="ajoutClient.xhtml" />
-		<p:menuitem value="Modifier" icon="/resources/images/update.png"
-			url="modifClient.xhtml" />
-			<p:menuitem value="Supprimer" icon="/resources/images/delete.png"
-			url="supClient.xhtml" />
-		<p:menuitem value="Logout" icon="/resources/images/logout.png"
-			action="#{cMB.seDeconnecterClient}" />
-			
-	</p:stack>
+	<p:dock position="bottom">
+    	<p:menuitem value="Ajouter" icon="/resources/images/add.png" url="ajoutClient.xhtml"/>
+    	<p:menuitem value="Modifier" icon="/resources/images/update.png" url="modifClient.xhtml"/>
+    	<p:menuitem value="Supprimer" icon="/resources/images/delete.png" url="supClient.xhtml"/>
+    	<p:menuitem value="Logout" icon="/resources/images/logout.png" action="#{cMB.seDeconnecterClient}"/>
+    	
+    </p:dock>
 </h:form>
 
 </h:body>

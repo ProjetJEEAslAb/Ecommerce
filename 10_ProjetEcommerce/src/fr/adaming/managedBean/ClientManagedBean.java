@@ -25,6 +25,7 @@ public class ClientManagedBean implements Serializable {
 
 	@EJB
 	private IClientService clientService;
+	@EJB
 	private IProduitService produitService;
 
 	// =======================================================================//

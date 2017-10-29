@@ -7,6 +7,7 @@ import javax.ejb.Stateful;
 
 import fr.adaming.dao.ILigneCommandeDao;
 import fr.adaming.dao.LigneCommandeDaoImpl;
+import fr.adaming.model.Client;
 import fr.adaming.model.LigneCommande;
 
 @Stateful
@@ -18,8 +19,9 @@ public class LigneCommandeServiceImpl implements ILigneCommandeService {
 // =======================================================================//
 
 	@Override
-	public List<LigneCommande> GetAllLigneCommande() {
-		return LigneCommandeDao.GetAllLigneCommande();
+	public List<LigneCommande> GetAllLigneCommande(Client c) {
+		
+		return LigneCommandeDao.GetAllLigneCommande(c);
 	}
 
 	@Override
@@ -36,6 +38,11 @@ public class LigneCommandeServiceImpl implements ILigneCommandeService {
 	public int deleteLigneCommandePanier(LigneCommande lc) {
 		
 		return LigneCommandeDao.deleteLigneCommandePanier(lc) ;
+	}
+
+	@Override
+	public LigneCommande updateLigneCommande(LigneCommande lc) {
+		return LigneCommandeDao.updateLigneCommande(lc);
 	}
 	
 	

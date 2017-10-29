@@ -9,27 +9,19 @@
 
 <h:head>
 	<title>Page admin</title>
-
-	<script xmlns="http://www.w3.org/1999/xhtml" type="text/javascipt"
-		src="js/bootstrap.js"> </script>
 </h:head>
 
 <h:body>
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
-	<br />
+
 	<h1 style="color: #C7355C; text-align: center">Administrateurs</h1>
 
 	<!--========================= agent numero 1 =====================================-->
 	<h:form>
-	
+
 		<h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();"
 			title="login">
-			<p:graphicImage value="resTest/agent 1.jpg" width="5%" height="5%"
-				style="position:relative; top:250px; left:1000px" />
+			<p:graphicImage value="resources/images/admin.png"
+				style="margin-left: 40%; margin-top: 10%;" />
 		</h:outputLink>
 
 		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
@@ -37,8 +29,7 @@
 
 		<!--========================= Style de connection =====================================-->
 
-		<p:dialog header="Agent" widgetVar="dlg" resizable="false"
-			style="background-color:red">
+		<p:dialog header="Agent" widgetVar="dlg" resizable="false">
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="username" value="Username:" />
 				<p:inputText id="username" value="#{aMB.agent.mail}" required="true"
@@ -55,7 +46,7 @@
 				</f:facet>
 			</h:panelGrid>
 		</p:dialog>
-		
+
 	</h:form>
 
 	<script type="text/javascript">

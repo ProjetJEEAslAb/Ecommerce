@@ -23,17 +23,6 @@
 		</h:panelGrid>
 	</h:form>
 
-	<h:form>
-		<h:panelGrid columns="3">
-			<p:outputLabel for="Idpro" value="ID Produit : " />
-			<p:inputMask id="Idpro" value="#{pMB.produit.idProduit}"
-				required="false" size="5" />
-			<p:commandButton styleClass="myButton" icon="ui-icon-circle-minus"
-				action="#{pMB.getProduitByIdByAgent}" update="@all" />
-		</h:panelGrid>
-	</h:form>
-
-
 	<p:dataTable id="ListeC" var="cat" value="#{catMB.categorie}"
 		rendered="#{catMB.indice}">
 
@@ -49,36 +38,24 @@
 			<h:outputText value="#{cat.description}" />
 		</p:column>
 	</p:dataTable>
-	
-	<p:dataTable id="ListeP" var="pro" value="#{pMB.produit}" rendered="#{pMB.indice}">
 
+	<h:form>
+		<p:stack icon="/resources/images/stack.png" expanded="true">
+			<p:menuitem value="Accueil" icon="/resources/images/home.png"
+				url="accueilAgent.xhtml" />
+			<p:menuitem value="Ajouter" icon="/resources/images/add.png"
+				url="addAgent.xhtml" />
+			<p:menuitem value="Supprimer" icon="/resources/images/delete.png"
+				url="deleteAgent.xhtml" />
+			<p:menuitem value="Chercher" icon="/resources/images/find.png"
+				url="findAgent.xhtml" />
+			<p:menuitem value="Modifier" icon="/resources/images/update.png"
+				url="updateAgent.xhtml" />
+			<p:menuitem value="Logout" icon="/resources/images/logout.png"
+				action="#{aMB.seDeconnecter}" />
+		</p:stack>
+	</h:form>
 
-	<p:dataTable id="ListeP" var="pro" value="#{pMB.produit}">
-
-		<p:column headerText="ID" width="3%">
-			<h:outputText value="#{pro.idProduit}" />
-		</p:column>
-
-		<p:column headerText="Nom">
-			<h:outputText value="#{pro.designation}" />
-		</p:column>
-
-		<p:column headerText="Description">
-			<h:outputText value="#{pro.description}" />
-		</p:column>
-
-		<p:column headerText="Prix">
-			<h:outputText value="#{pro.prix}" />
-		</p:column>
-
-		<p:column headerText="Quantité">
-			<h:outputText value="#{pro.quantite}" />
-		</p:column>
-
-		<p:column headerText="Catégorie">
-			<h:outputText value="#{pro.attCategorie.idCategorie}" />
-		</p:column>
-	</p:dataTable>
 </h:body>
 
 </html>

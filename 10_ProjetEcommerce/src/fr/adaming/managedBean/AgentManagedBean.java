@@ -92,13 +92,6 @@ public class AgentManagedBean implements Serializable {
 			// Ajouter l'agent dans la session
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("agentSession", agentOut);
 
-			// // Récupération de la liste des produits
-			// this.listeProduits =
-			// produitService.getAllCategoriesByAgent(this.agent);
-			// // Ajouter la liste des catégories
-			// FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe",
-			// this.listeProduits);
-
 			return "accueilAgent";
 
 		} catch (Exception e) {
@@ -118,7 +111,7 @@ public class AgentManagedBean implements Serializable {
 		// Récupérer la session
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 
-		return "accueilGeneral";
+		return "admin";
 	}
 
 }

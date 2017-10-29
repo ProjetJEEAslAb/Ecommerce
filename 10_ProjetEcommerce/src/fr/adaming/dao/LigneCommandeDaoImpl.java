@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import fr.adaming.model.Client;
 import fr.adaming.model.LigneCommande;
 import fr.adaming.model.Produit;
 
@@ -19,13 +20,14 @@ public class LigneCommandeDaoImpl implements ILigneCommandeDao{
 //=======================================================================//
 
 	@Override
-	public List<LigneCommande> GetAllLigneCommande() {
+	public List<LigneCommande> GetAllLigneCommande(Client c) {
 
 		// requete jpql
-		String req = "SELECT lc FROM LigneCommande lc";
+		String req = "SELECT lc FROM LigneCommande lc WHERE attCommande.client.id=:pIdClient";
 
 		// creation du query
 		Query query = em.createQuery(req);
+		query.setParameter("pIdClient", c.getId());
 		List<LigneCommande> liste = query.getResultList();
 
 		return liste;
@@ -64,6 +66,12 @@ public class LigneCommandeDaoImpl implements ILigneCommandeDao{
 		query.setParameter("pId_lc", lc.getId_lc());
 		int verif = query.executeUpdate();
 		return verif;
+	}
+
+	@Override
+	public LigneCommande updateLigneCommande(LigneCommande lc) {
+		em.merge(lc);
+		return lc;
 	}
 
 	

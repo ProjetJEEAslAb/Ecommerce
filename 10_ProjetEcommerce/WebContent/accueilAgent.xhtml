@@ -41,7 +41,8 @@
 		</p:dataGrid>
 
 		<p:dialog header="Info catégorie" widgetVar="catDialog" modal="true"
-			showEffect="fade" hideEffect="fade" resizable="false">
+			showEffect="fade" hideEffect="fade" resizable="false"
+			draggable="true" width="300" position="center top">
 			<p:outputPanel id="catDetail" style="text-align:center;">
 				<p:panelGrid columns="2" rendered="#{not empty catMB.categorie}"
 					columnClasses="label,value">
@@ -62,8 +63,9 @@
 	<h:form>
 		<p:dataTable id="ListeP" var="pro"
 			value="#{sessionScope.produitListe}" rowKey="#{pro.idProduit}"
-			selection="#{pMB.selectedProduits}" selectionMode="single"
-			rowStyleClass="#{pro.quantite le 10 ? 'empty' : null}">
+			selection="#{pMB.produit}" selectionMode="single"
+			rowStyleClass="#{pro.quantite le 10 ? 'empty' : null}"
+			editable="true" widgetVar="cellPro">
 
 			<p:column headerText="ID" width="3%">
 				<h:outputText value="#{pro.idProduit}" />
@@ -71,28 +73,67 @@
 
 			<p:column headerText="Nom" filterBy="#{pro.designation}"
 				filterMatchMode="contains">
-				<h:outputText value="#{pro.designation}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{pro.designation}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{pro.designation}" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
 			<p:column headerText="Description" filterBy="#{pro.description}"
 				filterMatchMode="contains">
-				<h:outputText value="#{pro.description}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{pro.description}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{pro.description}" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
 			<p:column headerText="Prix" filterBy="#{pro.prix}"
 				filterMatchMode="contains">
-				<h:outputText value="#{pro.prix}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{pro.prix}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{pro.prix}" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
 			<p:column headerText="Quantité" filterBy="#{pro.quantite}"
 				filterMatchMode="contains">
-				<h:outputText value="#{pro.quantite}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{pro.quantite}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{pro.quantite}" />
+					</f:facet>
+				</p:cellEditor>
 			</p:column>
 
 			<p:column headerText="Catégorie"
 				filterBy="#{pro.attCategorie.nomCategorie}"
 				filterMatchMode="contains">
-				<h:outputText value="#{pro.attCategorie.nomCategorie}" />
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{pro.attCategorie.nomCategorie}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:inputText value="#{pro.attCategorie.nomCategorie}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column style="width:32px">
+				<p:rowEditor />
 			</p:column>
 		</p:dataTable>
 
@@ -104,36 +145,32 @@
 		</p:contextMenu>
 
 		<p:dialog header="Produit Info" widgetVar="proDialog" modal="true"
-			showEffect="fade" hideEffect="fade" resizable="false">
+			showEffect="fade" hideEffect="fade" resizable="false"
+			position="center top" draggable="true" width="300">
 			<p:outputPanel id="proDetail" style="text-align:center;">
-				<p:panelGrid columns="2"
-					rendered="#{not empty pMB.selectedProduits}"
+				<p:panelGrid columns="2" rendered="#{not empty pMB.produit}"
 					columnClasses="label,value">
 
 					<h:outputText value="Id:" />
-					<h:outputText value="#{pMB.selectedProduits.idProduit}" />
+					<h:outputText value="#{pMB.produit.idProduit}" />
 
 					<h:outputText value="Nom" />
-					<h:outputText value="#{pMB.selectedProduits.designation}" />
+					<h:outputText value="#{pMB.produit.designation}" />
 
 					<h:outputText value="Description" />
-					<h:outputText value="#{pMB.selectedProduits.description}" />
+					<h:outputText value="#{pMB.produit.description}" />
 
 					<h:outputText value="Prix" />
-					<h:outputText value="$#{pMB.selectedProduits.prix}" />
+					<h:outputText value="$#{pMB.produit.prix}" />
 
 					<h:outputText value="Quantité" />
-					<h:outputText value="$#{pMB.selectedProduits.quantite}" />
+					<h:outputText value="$#{pMB.produit.quantite}" />
 
 					<h:outputText value="Catégorie" />
-					<h:outputText
-						value="$#{pMB.selectedProduits.attCategorie.nomCategorie}" />
+					<h:outputText value="$#{pMB.produit.attCategorie.nomCategorie}" />
 				</p:panelGrid>
 			</p:outputPanel>
 		</p:dialog>
-
-
-
 	</h:form>
 
 	<!-- =========================== Menu panier =========================== -->

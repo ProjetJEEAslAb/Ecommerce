@@ -118,6 +118,8 @@ public class Client implements Serializable {
 	public void setMdp(String mdp) {
 		this.mdp = mdp;
 	}
+	
+	
 	// =======================================================================//
 	//methode toString
 

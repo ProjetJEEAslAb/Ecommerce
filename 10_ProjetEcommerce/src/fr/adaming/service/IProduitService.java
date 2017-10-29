@@ -32,7 +32,7 @@ public interface IProduitService {
 	public Produit deleteProduitByAgent(Produit pro, Agent a);
 
 	// TODO updateProduitByAgent
-	public Produit updateProduitByAgent(Produit pro, Agent a);
+	public Produit updateProduitByAgent(Produit pro);
 
 	// TODO getAllProduitByAgent
 	public List<Produit> getAllProduitByAgent(Agent a);

@@ -17,50 +17,50 @@ import fr.adaming.model.Produit;
 import fr.adaming.service.IClientService;
 import fr.adaming.service.IProduitService;
 
-@ManagedBean(name="cMB")
+@ManagedBean(name = "cMB")
 @RequestScoped
-public class ClientManagedBean implements Serializable{
-	
-	//injection des dependances
-	
+public class ClientManagedBean implements Serializable {
+
+	// injection des dependances
+
 	@EJB
 	private IClientService clientService;
 	private IProduitService produitService;
 
-//=======================================================================//
-	
-	//les attributs utilisés dans la page 	
-	
+	// =======================================================================//
+
+	// les attributs utilisés dans la page
+
 	private Client client;
 	HttpSession session;
 	private List<Produit> listeProduits;
-	
-//=======================================================================//
-	
-	//Constructeur vide
+
+	// =======================================================================//
+
+	// Constructeur vide
 	public ClientManagedBean() {
-		this.client = new Client();//instanciation du client sinon erreur no target unreachable;
+		this.client = new Client();// instanciation du client sinon erreur no
+									// target unreachable;
 	}
 
+	// =======================================================================//
+	// creation de la session client
 
-//=======================================================================//	
-//creation de la session client
-	
-	public void sessionClient(){
-		
+	public void sessionClient() {
+
 		// recuperation du context
 		FacesContext context = FacesContext.getCurrentInstance();
-		
+
 		// recuperer la session a partir du context
 		this.session = (HttpSession) context.getExternalContext().getSession(false);
-		
-		//recuperation du client a partir de la session
-		this.client=(Client) session.getAttribute("clientSession");
-		
+
+		// recuperation du client a partir de la session
+		this.client = (Client) session.getAttribute("clientSession");
+
 	}
-	
-//=======================================================================//
-	
+
+	// =======================================================================//
+
 	// getters et setters
 
 	public List<Produit> getListeProduits() {
@@ -86,57 +86,59 @@ public class ClientManagedBean implements Serializable{
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	
-//=======================================================================//
-	//les methodes metiers
-	
+
+	// =======================================================================//
+	// les methodes metiers
+
 	public String seConnecterClient() {
 
 		try {
 			Client client_out = clientService.isExist(this.client);
 
 			// ajouter le client dans la session
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", client_out);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clientSession", client_out);
 
 			return "accueilClient";
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("l'identifiant et/ou le mot de passe est erroné"));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("l'identifiant et/ou le mot de passe est erroné"));
 		}
 		return "accueilGeneral";
 	}
 	
-	public String seConnecterClient1() {
+	public String seConnecterClientPanier() {
 
 		try {
 			Client client_out = clientService.isExist(this.client);
 
 			// ajouter le client dans la session
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("produitListe", client_out);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("clientSession", client_out);
 
 			return "panier";
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			FacesContext.getCurrentInstance().addMessage(null,new FacesMessage("l'identifiant et/ou le mot de passe est erroné"));
+			FacesContext.getCurrentInstance().addMessage(null,
+					new FacesMessage("l'identifiant et/ou le mot de passe est erroné"));
 		}
 		return "accueilGeneral";
 	}
 
 	// la methode pour se deconnecter
 
-		public String seDeconnecterClient() {
+	public String seDeconnecterClient() {
 
-			// recuperer la session et la fermé
+		// recuperer la session et la fermé
 
-			FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-			
-			return "accueilGeneral";
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 
-		}
-	
-//=======================================================================//	
+		return "accueilGeneral";
+
+	}
+
+	// =======================================================================//
 	public String ajouterClient() {
 
 		// appelle de la methode pour ajouter un client
@@ -155,37 +157,36 @@ public class ClientManagedBean implements Serializable{
 		return "accueilGeneral";
 
 	}
-	
-//=======================================================================//	
-	public String modifierClient(){
-		
+
+	// =======================================================================//
+	public String modifierClient() {
+
 		// appelle de la methode pour modifier un client
 		int clientOut = clientService.updateClient(this.client);
-		
-		if (clientOut==1) {
-			
-			return "accueilClient";
-			
-		} else {
-			
-			// afficher le message d'erreur sur la page
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la modifiction a échoué"));
-			
-			return "modifClient";
-		}
-		
-		
-	}
-	
-//=======================================================================//	
-	public String suprimerClient() {
-		
-		// appelle de la methode
-		int clientOut = clientService.deleteClient(this.client);
-		
+
 		if (clientOut == 1) {
 
 			return "accueilClient";
+
+		} else {
+
+			// afficher le message d'erreur sur la page
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("la modifiction a échoué"));
+
+			return "modifClient";
+		}
+
+	}
+
+	// =======================================================================//
+	public String suprimerClient() {
+
+		// appelle de la methode
+		int clientOut = clientService.deleteClient(this.client);
+
+		if (clientOut == 1) {
+
+			return "accueilGeneral";
 
 		} else {
 
@@ -196,13 +197,5 @@ public class ClientManagedBean implements Serializable{
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

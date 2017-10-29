@@ -8,110 +8,122 @@
 
 <h:head>
 	<title>Page d'accueil du site</title>
-
+	<h:outputStylesheet library="css" name="monCss.css"></h:outputStylesheet>
 </h:head>
 
-<h:body>
-<h:form>
+<h:body styleClass="flex">
+	<!-- ============================ CSS  ============================ -->
+
 	<!-- ============================ Bannière  ============================ -->
-	<u style ="color:#e60000"><h1 style="position:relative; top:120px; left:80px; color:#ff6666">
-				<b>POKE</b> shop
-			</h1></u>
-	
-	<h:graphicImage value="resTest/bannergif.gif" style="position:relative; bottom:70px; left:500px"/>
-</h:form >
-<hr/>
+	<div class="banniere">
+		<h1>PokéShop</h1>
+		<h:graphicImage value="resources/images/bannergif.gif"
+			style="height: 200px" />
+		<h1 style="text-align: left;">
+			Une autre façon <br /> de faire ses courses
+		</h1>
+	</div>
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
 
 	<!-- ============================ Menu  ============================ -->
-	<h:form style="position:relative; bottom:110px">
-		<p:growl id="messages" showDetail="true" />
+	<div class="menu">
+		<h:form style="position:relative; bottom:110px">
+			<p:growl id="messages" showDetail="true" />
 
-		<p:tabMenu activeIndex="#{param.i}">
-			<p:menuitem value="Se connecter" onclick="PF('dlgClient').show();"
-				update="messages" />
-			<p:menuitem value="S'inscrire" action="ajoutClient"
-				update="messages" />
-			<p:menuitem value="Panier" action ="seConnecter" 
-				update="messages" />
-		</p:tabMenu>
+			<p:tabMenu activeIndex="#{param.i}">
+				<p:menuitem value="Accueil" action="accueilGeneral;"
+					update="messages" />
+				<p:menuitem value="Se connecter" onclick="PF('dlgClient').show();"
+					update="messages" />
+				<p:menuitem value="S'inscrire" action="ajoutClient"
+					update="messages" />
+				<p:menuitem value="Panier" action="seConnecter" update="messages" />
+			</p:tabMenu>
 
-		<!--========================= Style de connection =====================================-->
 
+			<!--========================= Style de connection =====================================-->
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 
-		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+			<p:dialog header="Connection" widgetVar="dlgClient" resizable="false">
+				<h:panelGrid columns="2" cellpadding="5">
+					<p:inputText id="username" value="#{cMB.client.mail}"
+						required="false" label="username" />
+					<p:watermark for="username" value="Email" />
 
-		<p:dialog header="Connection" widgetVar="dlgClient" resizable="false">
-			<h:panelGrid columns="2" cellpadding="5">
-				<p:inputText id="username" value="#{cMB.client.mail}"
-					required="false" label="username" />
-				<p:watermark for="username" value="Email" />
+					<p:password id="password" value="#{cMB.client.mdp}"
+						required="false" label="password" />
+					<p:watermark for="password" value="Mot de passe" />
 
-				<p:password id="password" value="#{cMB.client.mdp}" required="false"
-					label="password" />
-				<p:watermark for="password" value="Mot de passe" />
+					<f:facet name="footer">
+						<p:commandButton value="Login" update="growl"
+							action="#{cMB.seConnecterClient}"
+							oncomplete="handleLoginRequest(xhr, status, args)" />
+					</f:facet>
+				</h:panelGrid>
+			</p:dialog>
+		</h:form>
+	</div>
 
-				<f:facet name="footer">
-					<p:commandButton value="Login" update="growl"
-						action="#{cMB.seConnecterClient}"
-						oncomplete="handleLoginRequest(xhr, status, args)" />
-				</f:facet>
-			</h:panelGrid>
-		</p:dialog>
-	</h:form>
-<br/>
+	<!-- ============================ les produits  ============================ -->
+	<div>
+		<h:form>
+			<p:dataGrid var="pro" value="#{pMB.listeProduit}" columns="3"
+				layout="grid" rows="12" id="cat"
+				style="position:relative; bottom:100px;">
 
-		<!-- ============================ les produits  ============================ -->
-	
-<h:form>
-	<p:dataGrid var="pro" value="#{pMB.listeProduit}" columns="3"
-		layout="grid" rows="12" id="cat" style="position:relative; bottom:100px;">
-
-		<f:facet name="header">
+				<f:facet name="header">
             Produits disponibles
         	</f:facet>
 
-		<p:panel header="#{pro.attCategorie.nomCategorie}"
-			style="text-align:center">
-			<h:panelGrid columns="1" style="width:100%">
-				<h:outputText value="#{pro.designation}" />
+				<p:panel header="#{pro.attCategorie.nomCategorie}"
+					style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+						<h:outputText value="#{pro.designation}" />
 
-				<p:commandLink update="proDetail"
-					oncomplete="PF('proDialog').show()" title="Détails">
-					<h:outputText styleClass="ui-icon ui-icon-search"
-						style="margin:0 auto;" />
-					<f:setPropertyActionListener value="#{pro}" target="#{pMB.produit}" />
-				</p:commandLink>
-			</h:panelGrid>
-		</p:panel>
-	</p:dataGrid>
-</h:form>
+						<p:commandLink update="proDetail"
+							oncomplete="PF('proDialog').show()" title="Détails">
+							<h:outputText styleClass="ui-icon ui-icon-search"
+								style="margin:0 auto;" />
+							<f:setPropertyActionListener value="#{pro}"
+								target="#{pMB.produit}" />
+						</p:commandLink>
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+		</h:form>
 
-	<p:dialog header="Info Produit" widgetVar="proDialog" modal="true"
-		showEffect="fade" hideEffect="fade" resizable="false">
-		<p:outputPanel id="proDetail" style="text-align:center;">
-			<p:panelGrid columns="2" rendered="#{not empty pMB.produit}"
-				columnClasses="label,value">
-				
-				<h:outputText value="Id produit :" />
-				<h:outputText value="#{pMB.produit.idProduit}" />
+		<p:dialog header="Info Produit" widgetVar="proDialog" modal="true"
+			showEffect="fade" hideEffect="fade" resizable="false">
+			<p:outputPanel id="proDetail" style="text-align:center;">
+				<p:panelGrid columns="2" rendered="#{not empty pMB.produit}"
+					columnClasses="label,value">
 
-				<h:outputText value="Description :" />
-				<h:outputText value="#{pMB.produit.description}" />
+					<h:outputText value="Id produit :" />
+					<h:outputText value="#{pMB.produit.idProduit}" />
 
-				<h:outputText value="Prix :" />
-				<h:outputText value="#{pMB.produit.prix}" />
+					<h:outputText value="Description :" />
+					<h:outputText value="#{pMB.produit.description}" />
 
-				<h:outputText value="En stock :" />
-				<h:outputText value="#{pMB.produit.quantite}" />
-			</p:panelGrid>
-		</p:outputPanel>
-		<b><p:commandLink value="Ajouter au panier" style="color:#b32400" type="button" action="#{lcMB.ajouterLigneCommande}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="@all"/></b>
-	</p:dialog>
+					<h:outputText value="Prix :" />
+					<h:outputText value="#{pMB.produit.prix}" />
 
+					<h:outputText value="En stock :" />
+					<h:outputText value="#{pMB.produit.quantite}" />
+				</p:panelGrid>
+			</p:outputPanel>
+			<b><p:commandLink value="Ajouter au panier" style="color:#b32400"
+					type="button" action="seConnecter"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+					update="@all" /></b>
+		</p:dialog>
+	</div>
 
-	<footer>
-	
-	</footer>
 </h:body>
 
 </html>

@@ -262,9 +262,9 @@ public class ProduitManagedBean implements Serializable {
 			this.produit.setLigneCommande(this.ligneCommande);
 			
 
-			// Actualiser la liste à afficher
-			List<Produit> liste = produitService.GetAllProduits();
-			agentSession.setAttribute("produitListe", liste);
+//			// Actualiser la liste à afficher
+//			List<Produit> liste = produitService.GetAllProduits();
+//			agentSession.setAttribute("produitListe", liste);
 
 			return "Panier";
 
@@ -380,10 +380,10 @@ public class ProduitManagedBean implements Serializable {
 			proUp.setQuantite(this.produit.getQuantite());
 			proUp.setAttCategorie(catUp);
 
-			produitService.updateProduitByAgent(proUp, this.agent);
+			produitService.updateProduitByAgent(proUp);
 
 			// Actualiser la liste à afficher
-			List<Produit> liste = produitService.getAllProduitByAgent(this.agent);
+			List<Produit> liste = produitService.GetAllProduits();
 			agentSession.setAttribute("produitListe", liste);
 
 			return "accueilAgent";

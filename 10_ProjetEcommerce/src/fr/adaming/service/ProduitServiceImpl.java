@@ -38,7 +38,7 @@ public class ProduitServiceImpl implements IProduitService {
 	public Produit addProduitByLc(Produit pro) {
 		return produitDao.addProduitByLc(pro);
 	}
-	
+
 	// ============ Méthodes pour Agent ============
 	// TODO getProduitByIdByAgent
 	@Override
@@ -74,18 +74,12 @@ public class ProduitServiceImpl implements IProduitService {
 
 	// TODO updateProduitByAgent
 	@Override
-	public Produit updateProduitByAgent(Produit pro, Agent a) {
+	public Produit updateProduitByAgent(Produit pro) {
 
 		Produit proUp = produitDao.updateProduitByAgent(pro);
 
-		if (proUp.getAttAgent().getId() == a.getId()) {
+		return proUp;
 
-			return proUp;
-
-		} else {
-
-			return null;
-		}
 	}
 
 	// TODO addProduitByAgent
@@ -101,7 +95,5 @@ public class ProduitServiceImpl implements IProduitService {
 
 		return produitDao.getAllProduitByAgent(a);
 	}
-
-
 
 }

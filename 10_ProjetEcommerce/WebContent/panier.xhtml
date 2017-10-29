@@ -14,59 +14,69 @@
 
 <h:body>
 
-
-<h:form>
-		<p:menubar>
-			<p:menuitem value="AccueilGeneral" url="accueilGeneral.xhtml" color="red" />
-			<p:menuitem value="ajouter une ligne de commande" url="ajouterLigneCommande.xhtml" color="red" />
-			<p:menuitem value="suprimer un produit" url="supProduit.xhtml" color="red" />
-			<p:menuitem value="rechercher une commande" url="rechercherLigneCommande.xhtml" color="red" />
-			<p:menuitem value="Ajouter un produit" url="ajoutProduit.xhtml" color="red" />
-			
-			<p:menuitem value="Panier" url="#" color="red" />
-		</p:menubar>	
-	</h:form>	
-	
-	
-	<h1 style="color:#C7355C; text-align: center">Panier
-	<h:graphicImage value="resTest/h.gif" width="8%" length="8%" style="position:relative; bottom:-20px;left:40px"/>
+	<h1 style="color: #C7355C; text-align: center">
+		Panier
+		<h:graphicImage value="resTest/h.gif" width="8%" length="8%"
+			style="position:relative; bottom:-20px;left:40px" />
 	</h1>
-<h:form>
-	<p:dataTable id="listeLigneCommande" var="panier" value="#{lcMB.listeLigneCommande}">
+	<h:form>
+		<p:dataTable id="listeLigneCommande" var="panier"
+			value="#{lcMB.listeLigneCommande}">
 
-		<p:column headerText="Id de la ligne de commande" width="3%">
-			<h:outputText value="#{panier.id_lc}" />
-		</p:column>
+			<p:column headerText="Id de la ligne de commande" width="3%">
+				<h:outputText value="#{panier.id_lc}" />
+			</p:column>
 
-		<p:column headerText="Quantite produit">
-			<h:outputText value="#{panier.quantite}" />
-		</p:column>
+			<p:column headerText="designation">
+				<h:outputText value="#{panier.attProduit.designation}" />
+			</p:column>
 
-		<p:column headerText="Prix total">
-			<h:outputText value="#{panier.prix}" />
-		</p:column>
+			<p:column headerText="Quantite produit">
+				<h:outputText value="#{panier.quantite}" />
+			</p:column>
+
+			<p:column headerText="Prix total">
+				<h:outputText value="#{panier.prix}" />
+			</p:column>
+
+			<p:column headerText="Etat">
+				<h:outputText value="#{panier.valide}" />
+			</p:column>
+
+			<p:column>
+				<p:commandButton action="#{lcMB.supprimerLigneCommande}"
+					icon="ui-icon-close" title="View" update="@all">
+					<f:setPropertyActionListener value="#{panier.id_lc}"
+						target="#{lcMB.ligneCommande.id_lc}" />
+				</p:commandButton>
+			</p:column>
+
+
+		</p:dataTable>
+	</h:form>
+
+	<p:commandButton value="Valider la commande" action="#{lcMB.Valider}"
+		icon="ui-icon-disk" update="@all" />
+	<p:commandButton value="Annuler la commande" action="#{lcMB.Annuler}"
+		icon="ui-icon-disk" update="@all" />
 		
-		<p:column headerText="designation">
-			<h:outputText value="#{panier.attProduit.designation}" />
-		</p:column>
-		
-		<p:column headerText="id du produit">
-			<h:outputText value="#{panier.attProduit.idProduit}" />
-		</p:column>
-		
-		<p:column>
-			<p:commandButton  action="#{lcMB.supprimerLigneCommande}" icon="ui-icon-close" title="View" update="@all">
-                <f:setPropertyActionListener value="#{panier.id_lc}" target="#{lcMB.ligneCommande.id_lc}" />
-            </p:commandButton>
-         </p:column>
-         
+		<h:form>
+				<p:dock position="bottom" >
+					<p:menuitem value="Accueil" icon="/resources/images/home.png"
+						url="accueilClient.xhtml" />
+					<p:menuitem value="Panier" icon="/resources/images/find.png"
+						url="panier.xhtml" />
+					<p:menuitem value="Acheter" icon="/resources/images/add.png"
+						url="ajouterLigneCommande.xhtml" />
+					<p:menuitem value="Modifier" icon="/resources/images/update.png"
+						url="modifClient.xhtml" />
+					<p:menuitem value="Supprimer" icon="/resources/images/delete.png"
+						url="supClient.xhtml" />
+					<p:menuitem value="Logout" icon="/resources/images/logout.png"
+						action="#{cMB.seDeconnecterClient}" />
+				</p:dock>
+			</h:form>
 
-	</p:dataTable>
-</h:form>
-   
-<p:commandButton value="Valider la commande" action="#{lcMB.Valider}"  icon="ui-icon-disk" />
-<p:commandButton value="Annuler la commande" action="#{lcMB.Annuler}"  icon="ui-icon-disk" />
-			
 </h:body>
 
 </html>

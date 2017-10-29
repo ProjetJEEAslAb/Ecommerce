@@ -13,21 +13,23 @@
 
 <h:body>
 
-	<h1 style="color:#C7355C; text-align: center"> Formulaire de recherche</h1>
+	<h1 style="color: #C7355C; text-align: center">Formulaire de
+		recherche</h1>
 
-	<h:form >
-			<p:growl id="messages" autoUpdate="true" />
-				<h:panelGrid columns="2" styleClass="centered">
+	<h:form>
+		<p:growl id="messages" autoUpdate="true" />
+		<h:panelGrid columns="2" styleClass="centered">
 
-					<p:outputLabel for="id_lcId" value="Id de la ligne de commande: " />
-					<p:inputMask id="id_lcId" value="#{lcMB.ligneCommande.id_lc}" />
-				
-					<p:commandButton value="rechercher une ligne de commande" action="#{lcMB.rechercherLigneCommande}"  icon="ui-icon-disk" />
-				</h:panelGrid>
+			<p:outputLabel for="id_lcId" value="Id de la ligne de commande: " />
+			<p:inputMask id="id_lcId" value="#{lcMB.ligneCommande.id_lc}" />
+
+			<p:commandButton value="rechercher une ligne de commande"
+				action="#{lcMB.rechercherLigneCommande}" icon="ui-icon-disk" />
+		</h:panelGrid>
 	</h:form>
-	
-	<p:dataTable id="listeLigneCommande" var="panier" value="#{lcMB.ligneCommande}"
-		rendered="#{lcMB.indice}">
+
+	<p:dataTable id="listeLigneCommande" var="panier"
+		value="#{lcMB.ligneCommande}" rendered="#{lcMB.indice}">
 
 		<p:column headerText="Id de la ligne de commande" width="3%">
 			<h:outputText value="#{panier.id_lc}" />
@@ -41,6 +43,25 @@
 			<h:outputText value="#{panier.prix}" />
 		</p:column>
 	</p:dataTable>
+
+	<h:form>
+		<p:dock position="bottom">
+			<p:menuitem value="Accueil" icon="/resources/images/home.png"
+				url="accueilClient.xhtml" />
+			<p:menuitem value="Panier" icon="/resources/images/find.png"
+				url="panier.xhtml" />
+			<p:menuitem value="Acheter" icon="/resources/images/add.png"
+				url="ajouterLigneCommande.xhtml" />
+			<p:menuitem value="Rechercher" icon="/resources/images/add.png"
+				url="rechercherLigneCommande.xhtml" />
+			<p:menuitem value="Modifier" icon="/resources/images/update.png"
+				url="modifClient.xhtml" />
+			<p:menuitem value="Supprimer" icon="/resources/images/delete.png"
+				url="supClient.xhtml" />
+			<p:menuitem value="Logout" icon="/resources/images/logout.png"
+				action="#{cMB.seDeconnecterClient}" />
+		</p:dock>
+	</h:form>
 
 </h:body>
 </html>

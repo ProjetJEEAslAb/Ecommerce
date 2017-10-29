@@ -12,13 +12,17 @@
 </h:head>
 
 <h:body>
-
+<h:form>
 	<!-- ============================ Bannière  ============================ -->
-	<h:graphicImage value="resTest/bannergif.gif" width="50%" height="90%" />
+	<u><h1 style="position:relative; top:100px; left:80px">
+				<b>POKE</b> shop
+			</h1></u>
+	<h:graphicImage value="resTest/bannergif.gif" style="position:relative; bottom:70px; left:500px"/>
+</h:form >
+<hr/>
 
 	<!-- ============================ Menu  ============================ -->
-
-	<h:form>
+	<h:form style="position:relative; bottom:110px">
 		<p:growl id="messages" showDetail="true" />
 
 		<p:tabMenu activeIndex="#{param.i}">
@@ -53,11 +57,13 @@
 			</h:panelGrid>
 		</p:dialog>
 	</h:form>
+<br/>
+
+		<!-- ============================ les produits  ============================ -->
+	
 <h:form>
 	<p:dataGrid var="pro" value="#{pMB.listeProduit}" columns="3"
-		layout="grid" rows="12" paginator="true" id="cat"
-		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="10,20,30">
+		layout="grid" rows="12" id="cat" style="position:relative; bottom:100px;">
 
 		<f:facet name="header">
             Produits disponibles
@@ -78,6 +84,7 @@
 		</p:panel>
 	</p:dataGrid>
 </h:form>
+
 	<p:dialog header="Info Produit" widgetVar="proDialog" modal="true"
 		showEffect="fade" hideEffect="fade" resizable="false">
 		<p:outputPanel id="proDetail" style="text-align:center;">
@@ -94,11 +101,13 @@
 				<h:outputText value="#{pMB.produit.quantite}" />
 			</p:panelGrid>
 		</p:outputPanel>
+		<p:commandLink value="valider" type="button" action="#{lcMB.ajouterLigneCommande}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" update="@all"/>
 	</p:dialog>
 
 
-
-
+	<footer>
+	
+	</footer>
 </h:body>
 
 </html>

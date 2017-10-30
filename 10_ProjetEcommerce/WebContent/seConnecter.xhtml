@@ -27,10 +27,11 @@
 			<p:spacer height="20" />
 		<br/>
 		<br/>
-<h1 style="color:#C7355C; text-align: left"> Inscription</h1>
+
+<h1 style="color:#009999; text-align:left"> Inscription</h1>
 
 	<h:form>
-		<h:panelGrid columns="2" styleClass="centered" style="border:solid">
+		<h:panelGrid columns="2" styleClass="centered" style="border:solid; border-color:#2d862d">
 
 			<p:outputLabel for="nomId" value="Nom: " />
 			<p:inputMask id="nomId" value="#{cMB.client.nom}" />
@@ -54,10 +55,10 @@
 	</h:form>
 
 
-<h1 style="color:#C7355C; text-align: left"> Connection</h1>
+<h1 style="color:#009999;text-align:left">Connection</h1>
 
 	<h:form>
-		<h:panelGrid columns="2" styleClass="centered" style="border:solid">
+		<h:panelGrid columns="2" styleClass="centered" style="border:solid; border-color:#2d862d">
 
 		
 			<p:outputLabel for="mailId" value="Identifiant: " />
@@ -66,10 +67,11 @@
 			<p:outputLabel for="passwordId" value="Password: " />
 			<p:inputMask id="passwordId" value="#{cMB.client.mdp}" />
 				
-  			<p:commandButton value="Login" action="#{cMB.seConnecterClientPanier}"  icon="ui-icon-disk"  />
+  			<p:commandButton value="Login" action="#{cMB.seConnecterClientPanier}" icon="ui-icon-disk"  />
  
 		</h:panelGrid>
 	</h:form>
+
 <h4><h:messages style="color:red"></h:messages></h4>
 	
 

@@ -16,12 +16,12 @@
 
 	<!-- ============================ Bannière  ============================ -->
 	<div class="banniere">
-		<h1>PokéShop</h1>
+		<h1 style="color:#009999">PokéShop</h1>
 		<h:graphicImage value="resources/images/bannergif.gif"
 			style="height: 200px" />
-		<h1 style="text-align: left;">
+		<h2 style="text-align: left; color:#2d862d; position:relative; bottom:-100px; border:solid">
 			Une autre façon <br /> de faire ses courses
-		</h1>
+		</h2>
 	</div>
 
 	<br />
@@ -35,7 +35,7 @@
 	<div class="menu">
 		<h:form style="position:relative; bottom:110px">
 			<p:growl id="messages" showDetail="true" />
-
+			
 			<p:tabMenu activeIndex="#{param.i}">
 				<p:menuitem value="Accueil" action="accueilGeneral;"
 					update="messages" />
@@ -45,9 +45,11 @@
 					update="messages" />
 				<p:menuitem value="Panier" action="seConnecter" update="messages" />
 			</p:tabMenu>
+</h:form>
 
 
 			<!--========================= Style de connection =====================================-->
+		<h:form>	
 			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 
 			<p:dialog header="Connection" widgetVar="dlgClient" resizable="false">

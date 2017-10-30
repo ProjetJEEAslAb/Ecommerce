@@ -143,6 +143,7 @@ public class LigneCommandeManagedBean {
 			prodAjout = prodService.getProduitById(prodAjout);
 			this.ligneCommande.setPrix(prodAjout.getPrix() * this.ligneCommande.getQuantite());
 			this.ligneCommande = ligneCommandeService.addLigneCommandePanier(this.ligneCommande);
+	
 
 			return "panier";
 

@@ -23,11 +23,10 @@ public class LigneCommandeDaoImpl implements ILigneCommandeDao{
 	public List<LigneCommande> GetAllLigneCommande(Client c) {
 
 		// requete jpql
-		String req = "SELECT lc FROM LigneCommande lc WHERE attCommande.client.id=:pIdClient";
+		String req = "SELECT lc FROM LigneCommande lc";
 
 		// creation du query
 		Query query = em.createQuery(req);
-		query.setParameter("pIdClient", c.getId());
 		List<LigneCommande> liste = query.getResultList();
 
 		return liste;

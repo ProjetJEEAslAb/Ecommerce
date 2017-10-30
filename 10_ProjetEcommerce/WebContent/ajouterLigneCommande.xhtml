@@ -15,7 +15,7 @@
 
 <h:body>
 
-	<h1 style="color: #C7355C; text-align: center">Formulaire d'ajout
+	<h1 style="color:#009999; text-align: center">Formulaire d'ajout
 		de commandes</h1>
 
 	<h:form>
@@ -37,7 +37,7 @@
 	<h:form>
 		<p:dataTable id="ListeP" var="pro" value="#{pMB.listeProduit}"
 			rowKey="#{pro.idProduit}"
-			rowStyleClass="#{pro.quantite le 10 ? 'empty' : null}">
+			rowStyleClass="#{pro.quantite le 10 ? 'empty' : null}" update="@all">
 
 			<p:column selectionMode="multiple"
 				style="width:16px;text-align:center" />
@@ -70,6 +70,7 @@
 	</h:form>
 
 	<h:form>
+	<br/>
 		<p:dock position="bottom">
 			<p:menuitem value="Accueil" icon="/resources/images/home.png"
 				url="accueilClient.xhtml" />
@@ -84,6 +85,7 @@
 			<p:menuitem value="Logout" icon="/resources/images/logout.png"
 				action="#{cMB.seDeconnecterClient}" />
 		</p:dock>
+		<br/>
 	</h:form>
 </h:body>
 </html>

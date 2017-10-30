@@ -9,16 +9,11 @@
 
 <h:head>
 	<title>Page se connecter</title>
+	<h:outputStylesheet library="css" name="monCss.css"></h:outputStylesheet>
 </h:head>
 
-<h:body>
+<h:body styleClass="flex">
 
-	<h:form>
-		<p:menubar>
-			<p:menuitem value="AccueilGeneral" url="accueilGeneral.xhtml" color="red" />
-			<p:menuitem value="seConnecter" url="#" color="red" />
-		</p:menubar>	
-	</h:form>		
 
 <!-- tracer la ligne horizontale -->
 			<p:separator />
@@ -72,6 +67,12 @@
 		</h:panelGrid>
 	</h:form>
 
+<h:form>
+		<p:dock position="bottom">
+			<p:menuitem value="Accueil" icon="/resources/images/home.png"
+				url="accueilGeneral.xhtml" />
+		</p:dock>
+	</h:form>
 <h4><h:messages style="color:red"></h:messages></h4>
 	
 

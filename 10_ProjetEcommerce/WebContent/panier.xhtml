@@ -10,9 +10,10 @@
 
 <h:head>
 	<title>Panier</title>
+	<h:outputStylesheet library="css" name="monCss.css"></h:outputStylesheet>
 </h:head>
 
-<h:body>
+<h:body styleClass="flex">
 
 	<h1 style="color: #009999; text-align: center">
 		Panier
@@ -60,8 +61,9 @@
 	<p:commandButton value="Annuler la commande" action="#{lcMB.Annuler}"
 		icon="ui-icon-disk" update="@all" />
 		
-		<h:form>
-				<p:dock position="bottom" >
+
+		<h:form >
+				<p:dock >
 					<p:menuitem value="Accueil" icon="/resources/images/home.png"
 						url="accueilClient.xhtml" />
 					<p:menuitem value="Panier" icon="/resources/images/find.png"
@@ -76,7 +78,7 @@
 						action="#{cMB.seDeconnecterClient}" />
 				</p:dock>
 			</h:form>
-
+	
 </h:body>
 
 </html>
